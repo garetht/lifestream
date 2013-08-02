@@ -1,0 +1,98 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@font-face {
+  font-family: 'Proxima Nova Light';
+  src:url(<%= asset_path('ProximaNova-Light.eot') %>);
+  src:url(<%= asset_path('ProximaNova-Light.eot?#iefix') %>) format('embedded-opentype'),
+    url(<%= asset_path('ProximaNova-Light.svg#ProximaNova-Light') %>) format('svg'),
+    url(<%= asset_path('ProximaNova-Light.woff') %>) format('woff'),
+    url(<%= asset_path('ProximaNova-Light.ttf') %>) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, nav, header, ul, li{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body{
+  font-family: "Proxima Nova Light";
+  font-smoothing: antialiased;
+  background: rgb(230, 230, 230)
+}
+
+.clearfix:after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+header{
+  height: 150px;
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgb(50, 50, 50)), to(rgb(43, 43, 43)));
+  background-image: -webkit-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
+  background-image: -moz-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
+  background-image: -o-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
+  background-image: linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
+}
+
+header .header-text{
+  padding-top: 48px;
+  font-size: 48px;
+  text-align: center;
+  color: #EEEEEE;
+  letter-spacing: 10px;
+}
+
+nav{
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgb(64, 46, 17)), to(rgb(77, 51, 0)));
+  background-image: -webkit-linear-gradient(rgb(64, 46, 17), rgb(77, 51, 0));
+  background-image: -moz-linear-gradient(rgb(64, 46, 17), rgb(77, 51, 0));
+  background-image: -o-linear-gradient(rgb(64, 46, 17), rgb(77, 51, 0));
+  background-image: linear-gradient(rgb(64, 46, 17), rgb(77, 51, 0));
+  background-color: #402E11;
+  border-top: 1px solid #6B4700;
+  height: 36px;
+}
+
+.navbar{
+  float: left;
+  padding-left: 26%;
+}
+
+.navbar ul li{
+  float: left;
+  list-style: none;
+  padding: 10px 60px 10px 60px;
+  -webkit-transition: all 0.3s;
+  cursor: pointer;
+}
+
+.navbar ul li a{
+  float: left;
+  color: rgb(230, 230, 230);
+  text-decoration: none;
+}
+
+.navbar ul li:hover{
+  background-color: rgb(230, 230, 230);
+  -webkit-transition: all 0.6s;
+}
+
+.navbar ul li:hover a{
+  color: #402E11;
+}
