@@ -10,6 +10,7 @@ gem 'sqlite3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 group :production do

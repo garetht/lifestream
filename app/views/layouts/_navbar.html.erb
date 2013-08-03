@@ -1,15 +1,18 @@
 <header>
-  <div class="header-text">
-    L I F E S T R E A M
-  </div>
+  <div class="header-text">L I F E S T R E A M</div>
 </header>
 <nav>
   <div class="navbar clearfix">
     <ul>
       <a href="#"><li class="home">Home</li></a>
-      <a href="<%= new_user_session_url %>"><li>Sign In</li></a>
-      <a href="<%= new_user_registration_url %>"><li>Sign Up</li></a>
       <a href="#"><li>Contact</li></a>
+      <% if current_user %>
+      <a href="<%= edit_user_registration_url %>"><li>Edit Profile</li></a>
+      <a href="<%= destroy_user_session_url %>" data-method="delete" rel="nofollow"><li>Sign Out</li></a>
+      <% else %>
+      <a href="<%= new_user_registration_url %>"><li>Sign Up</li></a>
+      <a href="<%= new_user_session_url %>"><li>Sign In</li></a>
+      <% end %>
     </ul>
   </div>
 </nav>

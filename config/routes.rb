@@ -4,6 +4,11 @@ Lifestream::Application.routes.draw do
   devise_scope :user do
     root :to => "devise/sessions#new"
   end
+
+  resources :streams, only: [:new, :create, :destroy] do
+    resources :posts
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

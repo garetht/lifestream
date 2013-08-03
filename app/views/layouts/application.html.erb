@@ -13,7 +13,8 @@
 <% elsif flash[:alert] %>
  <p class="alert"><%= flash[:alert] %></p>
 <% end %>
-<%= yield %>
-
+  <div class="container clearfix">
+    <%= yield %>
+  </div>
 </body>
 </html>

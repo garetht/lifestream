@@ -23,7 +23,7 @@
   font-style: normal;
 }
 
-body, nav, header, ul, li{
+body, nav, header, ul, li, label, input{
   margin: 0;
   padding: 0;
   border: 0;
@@ -42,7 +42,7 @@ body{
 }
 
 header{
-  height: 150px;
+  height: 125px;
   background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgb(50, 50, 50)), to(rgb(43, 43, 43)));
   background-image: -webkit-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
   background-image: -moz-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
@@ -71,7 +71,7 @@ nav{
 
 .navbar{
   float: left;
-  padding-left: 26%;
+  padding-left: 27%;
 }
 
 .navbar ul li{
@@ -95,4 +95,62 @@ nav{
 
 .navbar ul a li:hover{
   color: #402E11;
+}
+
+h1.authentication{
+  font-size: 72px;
+  text-align: center;
+}
+
+form.new_user{
+  padding-left: 30%;
+}
+
+label[for='user_login']{
+  display:block;
+  padding-left: 5px;
+  font-size: 24px;
+}
+
+label[for='user_password']{
+  display:block;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 24px;
+}
+
+#user_login{
+  padding: 10px;
+  outline: 0;
+  border: 1px solid #DDDDDD;
+  font-size: 24px;
+}
+
+#user_password{
+  padding: 10px;
+  outline: 0;
+  border: 1px solid #DDDDDD;
+  font-size: 24px;
+}
+
+.container{
+  width: 960px;
+  margin: auto;
+  padding: 60px;
+}
+
+.leftnavbar{
+  float: left;
+  width: 192px;
+  padding: 10px 0px 10px 30px;
+  border-right: 2px solid #888888;
+}
+
+.leftnavbar li{
+  list-style-type: none;
+  padding: 15px 0 15px 0;
+}
+
+.rightbar{
+  width: 768px;
 }
