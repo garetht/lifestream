@@ -11,14 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130802221429) do
+ActiveRecord::Schema.define(:version => 20130805170837) do
+
+  create_table "post_photos", :force => true do |t|
+    t.integer  "post_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "content_type"
+    t.string   "public_type"
+    t.boolean  "is_draft"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "streams", :force => true do |t|

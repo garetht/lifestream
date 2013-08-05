@@ -1,0 +1,26 @@
+.bound-box{
+  margin:auto;
+}
+.content{
+  float:left;
+  width: 500px;
+}
+
+.markdown-content{
+  float: left;
+}
+
+#markdown{
+  border: none;
+  outline: none;
+  font-family: sans-serif;
+  font-size: 1em;
+  width: 500px;
+  height: 100%;
+}
+
+.markdown-body{
+  float:left;
+  width: 500px;
+}
+

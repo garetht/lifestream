@@ -7,4 +7,8 @@ class StreamsController < ApplicationController
 
   def destroy
   end
+
+  def index
+    @names = Stream.pluck(:name)
+  end
 end

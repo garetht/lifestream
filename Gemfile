@@ -35,6 +35,7 @@ gem 'devise'
 gem 'rest-client'
 gem 'addressable'
 gem 'rails3-jquery-autocomplete'
+gem 'paperclip'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

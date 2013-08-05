@@ -1,2 +1,89 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<%= stylesheet_link_tag    "md_style", :media => "all" %>
+<%= stylesheet_link_tag    "md_github", :media => "all" %>
+<%= stylesheet_link_tag    "new_post", :media => "all" %>
+<%= javascript_include_tag "jquery-1.9.1.min" %>
+<%= javascript_include_tag "jquery.autosize-min" %>
+<%= javascript_include_tag "markdown" %>
+<%= javascript_include_tag "newpost_main" %>
+
+<section class="newpost">
+
+<h1>New Post</h1>
+<form accept-charset="UTF-8" action="<%= stream_posts_url(@streamid) %>" class="new_post" enctype="multipart/form-data" id="new_post" method="post">
+
+<input type="radio" name="post[content_type]" id="toggle-plaintext" value="plaintext" checked>
+<label for="toggle-plaintext">Plain Text</label>
+<input type="radio" name="post[content_type]" id="toggle-markdown" value="markdown">
+<label for="toggle-markdown">Markdown</label>
+<input type="radio" name="post[content_type]" id="toggle-code" value="code">
+<label for="toggle-code">Code</label>
+
+<button class="clear-field">Clear</button>
+
+<div class="edit-area">
+
+<div class="edit-field edit-plaintext active">
+<textarea id="text-edit" class="new-post-body" name="post[body]" placeholder="Write your post here."></textarea>
+</div>
+
+<div class="edit-field edit-markdown">
+  <div id="container">
+      <div class="markdown-content">
+        <textarea id="markdown-edit" class="new-post-body" name="post[body]" placeholder="Write Markdown in here."></textarea>
+      </div>
+    Live Preview
+      <div id="preview" class="mode">
+        <div id="output" class="markdown-body">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Photos!</h2>
+<div class="new-post-photos">  
+  <button class="add-photo">Add another photo</button>
+  <div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][0][image]" type="file"></div>
+
+</div>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Make new post!">
+</form>
+</section>
+
+<script type="application/javascript">
+
+var postphotos = 0;
+
+$(".clear-field").on("click", function(event){
+  event.preventDefault();
+  $('.active .new-post-body').val("");
+})
+
+$(".add-photo").on("click", function(event){
+  event.preventDefault();
+  postphotos += 1;
+  $(".new-post-photos").append(
+      '<div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][' + postphotos + '][image]" type="file"></div>'
+  )
+})
+
+$("#toggle-plaintext").on("click", function(event){
+  $(".edit-plaintext").addClass("active");
+  $(".edit-markdown").removeClass("active")
+  $(".edit-code").removeClass("active")
+});
+
+$("#toggle-markdown").on("click", function(event){
+  $(".edit-plaintext").removeClass("active")
+  $(".edit-markdown").addClass("active")
+  $(".edit-code").removeClass("active")
+});
+
+$("#toggle-code").on("click", function(event){
+  $(".edit-plaintext").removeClass("active")
+  $(".edit-markdown").removeClass("active")
+  $(".edit-code").addClass("active")
+});
+
+</script>

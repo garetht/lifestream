@@ -1,11 +1,15 @@
 Lifestream::Application.routes.draw do
+  get "post_photos/create"
+
+  get "post_photos/new"
+
   devise_for :users
 
   devise_scope :user do
     root :to => "devise/sessions#new"
   end
 
-  resources :streams, only: [:new, :create, :destroy] do
+  resources :streams, only: [:new, :create, :destroy, :index] do
     resources :posts
   end
 

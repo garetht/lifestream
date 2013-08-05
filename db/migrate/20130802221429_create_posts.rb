@@ -3,7 +3,9 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title
       t.text :body
-      t.string :type
+      t.string :content_type
+      t.string :public_type
+      t.boolean :is_draft
 
       t.timestamps
     end

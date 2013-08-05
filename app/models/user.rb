@@ -3,9 +3,11 @@ class User < ActiveRecord::Base
   # :token_authenticatable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :authentication_keys => [:login]
   attr_accessible :email, :password, :username, :remember_me,
-                  :password_confirmation, :default_stream_id
+                  :password_confirmation, :default_stream_id,
+                  :login
   attr_accessor :login
 
   validates :username, uniqueness: true

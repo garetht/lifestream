@@ -1,12 +1,5 @@
-<section class="leftnavbar">
-  
-<ul>
-  <li>Home</li>
-  <li>Streams</li>
-  <li>Posts</li>
-  <li>Categories</li>
-  <li>Atlas</li>
-</ul>
+<%= render "layouts/leftnavbar" %>
 
-</section>
-<section class="rightbar">There</section>
+<section class="rightbar">This is a nested index page for the posts of a given stream.</section>
+
+Click <a href="<%= new_stream_post_url(@streamid) %>">here</a> to create a new post in this stream, Stream <%= @streamid %>.
