@@ -1,17 +1,30 @@
-<h1 class="authentication">Sign In</h2>
+<%= stylesheet_link_tag    "devise", :media => "all" %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :login %><br />
-  <%= f.text_field :login, :autofocus => true %></div>
+<div class="signin-header">Sign in with your username or email.</div>
+<div class="signin-container clearfix">
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <div class="signin-options">
+    <%= render "devise/shared/links" %>
+  </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+  <div class="signin-form">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div><%= f.label :login, class: "signin-label" %>
+      <%= f.text_field :login, :autofocus => true, class: "signin-field" %></div>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+      <div><%= f.label :password, class: "signin-label" %>
+      <%= f.password_field :password, class: "signin-field" %></div>
 
-<%= render "devise/shared/links" %>
+      <% if devise_mapping.rememberable? -%>
+        <div><%= f.check_box :remember_me, class: "signin-remember" %> <%= f.label :remember_me, class: "signin-remember-label" %></div>
+      <% end -%>
+
+      <div class="signin-button-container"><%= f.submit "Sign in", class: "signin-button" %></div>
+    <% end %>
+  </div>
+
+
+
+</div>
+
+

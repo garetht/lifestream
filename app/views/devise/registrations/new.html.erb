@@ -1,22 +1,30 @@
+<div class="signup-header">Sign up for a free account with Lifestream.</div>
 
-<div class="sign-up">Sign Up for Lifehacker</div>
+<div class="signin-container">
+  <div class="signin-options">
+    <%= render "devise/shared/links" %>
+  </div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="signin-form">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <div class="signup-errors">
+        <%= devise_error_messages! %>
+      </div>
 
-  <div><%= f.label :username %><br />
-  <%= f.text_field :username %><br /></div>
+      <div><%= f.label :username, class: "signup-label" %>
+      <%= f.text_field :username, class: "signup-field" %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+      <div><%= f.label :email, class: "signup-label" %>
+      <%= f.email_field :email, :autofocus => true, class: "signup-field" %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+      <div><%= f.label :password, class: "signup-label" %>
+      <%= f.password_field :password, class: "signup-field" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <div><%= f.label :password_confirmation, class: "signup-label" %>
+      <%= f.password_field :password_confirmation, class: "signup-field" %></div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+      <div class="signup-button-container"><%= f.submit "Sign up", class: "signup-button" %></div>
+    <% end %>
+  </div>
 
-<%= render "devise/shared/links" %>
+</div>

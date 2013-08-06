@@ -42,34 +42,25 @@ class User < ActiveRecord::Base
     Post.where("stream_id IN (?)", streams.pluck(:id))
   end
 
-  def confirmed_friends
+  def friend_query(status)
     User.find_by_sql(<<-sql)
-    SELECT users.*
-    FROM "users" INNER JOIN "friendships"
-    ON "friendships"."friend_id" = "users"."id"
-    WHERE friend_status = 'confirmed'
-    AND user_id = #{id}
+      SELECT users.*
+      FROM "users" INNER JOIN "friendships"
+      ON "friendships"."friend_id" = "users"."id"
+      WHERE friend_status = #{status}
+      AND user_id = #{id}
     sql
+  end
+
+  def confirmed_friends
+    friend_query("'confirmed'")
   end
 
   def pending_friends
-    User.find_by_sql(<<-sql)
-    SELECT users.*
-    FROM "users" INNER JOIN "friendships"
-    ON "friendships"."friend_id" = "users"."id"
-    WHERE friend_status = 'pending'
-    AND user_id = #{id}
-    sql
+    friend_query("'pending'")
   end
 
   def requested_friends
-    query = <<-sql
-    SELECT users.*
-    FROM "users" INNER JOIN "friendships"
-    ON "friendships"."friend_id" = "users"."id"
-    WHERE friend_status = 'requested'
-    AND user_id = #{id}
-    sql
-    User.find_by_sql(query)
+    friend_query("'requested'")
   end
 end
