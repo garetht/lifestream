@@ -10,6 +10,15 @@
   font-size: 36px;
 }
 
+.devise-errors{
+  max-width: 270px;
+  font-size: 14px;
+}
+
+.devise-errors #error-explanation h2{
+  font-size: 14px;
+}
+
 .signin-label, .signup-label{
   display: block;
   text-transform: uppercase;
@@ -47,6 +56,7 @@
 .signin-options, .signup-options{
   float: left;
   padding-top: 25px;
+  padding-right: 20px;
 }
 
 .signin-form, .signup-form{
@@ -78,6 +88,12 @@
   text-transform: uppercase;
   font-size: 14px;
   color: #EEEEEE;
-  padding: 10px 7px;
+  padding: 10px 9px;
   border-radius: 3px;
 }
+
+.signin-button:hover, .signup-button:hover{
+  background-color: #6094C7;
+  cursor:pointer;
+}
+
