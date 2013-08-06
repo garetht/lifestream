@@ -1,0 +1,68 @@
+<%= stylesheet_link_tag    "friends_index", :media => "all" %>
+
+<%= render "layouts/leftnavbar" %>
+
+<section class="rightbar">
+  <div class="new-friendship">
+    <div class="new-friendship-link"><span class="new">new</span> <span class="postdot">friendship.</span></div>
+    <div class="new-friendship-form">
+      <form>
+        <label for="new-friendship-email">Enter your friend's email.</label>
+        <input id="new-friendship-email" type="text" name="friendship[email]">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button class="create-friendship">Add friend</button>
+      </form>
+    </div>
+
+  </div>
+
+<div class="pending-requests">
+  Pending Requests
+  <ul>
+  <% @pending_requests.each do |request| %>
+  <li><%= request.username %></li>
+  <% end %>
+  </ul>
+</div>
+
+<div class="pending-friends">
+  Pending Friends
+  <ul>
+  <% @pending_friends.each do |friend| %>
+  <li><%= friend.username %></li>
+  <% end %>
+  </ul>
+</div>
+
+<div class="friendships-list">
+  Friendships List
+  <ul>
+    <% @friends.each do |friend| %>
+    <li><%= friend.username %></li>
+    <% end %>
+  </ul>
+</div>
+
+</section>
+
+<script type="application/javascript">
+
+$(".new-friendship-link").on("click", function(event){
+  $(".new-friendship-form").toggleClass("active")
+})
+
+$(".create-friendship").on("click", function(event){
+  event.preventDefault();
+  var formData = $(this.form).serialize()
+  $.ajax({
+    url: "<%= friendships_url %>",
+    type: "POST",
+    data: formData
+  }).done(function(response){
+    $(".new-friendship-name").val("");
+    $(".new-friendship-form").removeClass("active");
+    // Do a new friendshipSquare fade in effect!
+  })
+})
+
+</script>

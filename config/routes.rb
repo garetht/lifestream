@@ -1,7 +1,4 @@
 Lifestream::Application.routes.draw do
-  get "post_photos/create"
-
-  get "post_photos/new"
 
   devise_for :users
 
@@ -10,8 +7,15 @@ Lifestream::Application.routes.draw do
   end
 
   resources :streams, only: [:new, :create, :destroy, :index] do
+    member do
+      post "default"
+    end
     resources :posts
   end
+
+  resources :posts, only: [:index]
+
+  resources :friendships, only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

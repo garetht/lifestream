@@ -1,6 +1,7 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
+      t.integer :stream_id
       t.string :title
       t.text :body
       t.string :content_type

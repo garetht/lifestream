@@ -1,2 +1,9 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<%= render "layouts/leftnavbar" %>
+
+<section class="rightbar">
+<%= render partial: "apost", locals: {post: @post, 
+          photos: @post.post_photos} %>
+<!-- import markdown parser -->
+<!-- inject parsed Markdown with JSON -->
+<!-- Display as Github-formatted stuff? -->
+</section>

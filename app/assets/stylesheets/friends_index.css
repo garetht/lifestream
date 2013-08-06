@@ -1,0 +1,41 @@
+.new-friendship{
+  padding-left: 30px;
+  float:left;
+  border-bottom: 1px black dotted;
+}
+
+.new-friendship-form{
+  display: none;
+}
+
+.new-friendship-form.active{
+  display: block;
+  padding-bottom: 10px;
+}
+
+.new-friendship-link:hover{
+  cursor: pointer;
+}
+
+#new-friendship-email{
+  border: 1px solid #aaa;
+}
+
+.pending-requests{
+  padding: 20px;
+  clear: left;
+}
+
+.pending-friends{
+  padding:20px;
+  clear:left;
+}
+
+.friendships-list{
+  padding: 20px;
+  clear:left;
+}
+
+.friendships-list ul{
+  list-style-type: none;
+}

@@ -1,5 +1,11 @@
 <%= render "layouts/leftnavbar" %>
 
-<section class="rightbar">This is a nested index page for the posts of a given stream.</section>
+<section class="rightbar">
 
-Click <a href="<%= new_stream_post_url(@streamid) %>">here</a> to create a new post in this stream, Stream <%= @streamid %>.
+  <a href="<%= new_stream_post_url(@streamid) %>"><span class="new">new</span> <span class="postdot">post.</span></a>
+
+<% @posts.each do |post| %>
+  <%= render partial: "apost", locals: {post: post, photos: post.post_photos} %>
+<% end %>
+
+</section>

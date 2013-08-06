@@ -1,0 +1,55 @@
+<div class="show-post-content clearfix">
+<header class="post-header">
+  <div class="date">
+    28
+  </div>
+  <div class="month">
+    6
+  </div>
+  <div class="year">
+    2011
+  </div>
+</header>
+
+<div class="post-content clearfix">
+  <div class="metadata">
+    Monday. 3:14pm. New York, NY.
+  </div>
+
+  <div class="post-body">
+    <% if post.content_type == "plaintext" %>
+    <%= post.body.split("\r\n\r\n").map{|item| "<p>#{item}</p>"}.join("").html_safe %>
+    <% elsif post.content_type == "markdown" %>
+    <% elsif post.content_type == "code" %>
+    <% end %>
+  </div>
+
+  <% unless photos.empty? %>
+    <div class="post-images clearfix">
+      <% photos.each do |photo| %>
+        <div class="post-image"> 
+          <%= image_tag photo.image.url %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="post-categories clearfix">
+    <div class="category-label">
+      Categories
+    </div>
+    <div class="category">
+      weird pictures
+    </div>
+    <div class="category">
+      black and white
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<!-- import markdown parser -->
+<!-- inject parsed Markdown with JSON -->
+<!-- Display as Github-formatted stuff? -->

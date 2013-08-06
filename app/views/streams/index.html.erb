@@ -1,9 +1,51 @@
+<%= stylesheet_link_tag    "streams_index", :media => "all" %>
+
 <%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
-<h1>Streams</h1>
+  <div class="new-stream">
+    <div class="new-stream-link"><span class="new">new</span> <span class="postdot">stream.</span></div>
+    <div class="new-stream-form">
+      <form>
+        <label for="new-stream-name">New Stream Name</label>
+        <input id="new-stream-name" type="text" name="stream[name]">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button class="create-stream">Create Stream</button>
+      </form>
+    </div>
 
-<% @names.each do |name| %>
-<%= name %>
-<% end %>
+  </div>
+
+<div class="streams-list">
+  <ul>
+    <% @streams.each do |stream| %>
+    <li><%= stream.name %>
+    <a href="<%= stream_posts_url(stream.id) %>">View Stream</a>
+    <!-- Make this an ajax request, and do a respond_to json -->
+    <a href="<%= default_stream_url(stream.id) %>" data-method="post">Make Default</a>
+    <% end %>
+  </ul>
+
 </section>
+
+<script type="application/javascript">
+
+$(".new-stream-link").on("click", function(event){
+  $(".new-stream-form").toggleClass("active")
+})
+
+$(".create-stream").on("click", function(event){
+  event.preventDefault();
+  var formData = $(this.form).serialize()
+  $.ajax({
+    url: "<%= streams_url %>",
+    type: "POST",
+    data: formData
+  }).done(function(response){
+    $(".new-stream-name").val("");
+    $(".new-stream-form").removeClass("active");
+    // Do a new StreamSquare fade in effect!
+  })
+})
+
+</script>

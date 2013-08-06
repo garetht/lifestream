@@ -2,17 +2,36 @@
   background-color: #eee;
 }
 
+.new{
+  font-family: "calluna",serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 3em;
+}
+
+.postdot{
+  font-family: "calluna",serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 3em;
+}
+
 .new-post-body{
   display: hidden;
-
+  
 }
 
-.edit-field{
+.live-preview{
   display: none;
+  font-family: "Proxima Nova Cond"
 }
 
-.edit-field.active{
+.live-preview.active{
   display:block;
+}
+
+.input-options{
+  padding: 20px 0;
 }
 
 /*This is the text field for plaintext and code.*/
@@ -20,7 +39,10 @@
   display:block;
   clear: right;
   width: 400px;
-  height: 200px;
+  height: 300px;
+  outline: none;
+  border:1px solid #bbb;
+  border-radius: 5px;
 }
 
 .new-post-photos{
@@ -36,10 +58,6 @@
   display:block;
 }
 
-.add-photo{
-
-}
-
 #markdown-content{
     height: 200px;
 }
@@ -47,7 +65,7 @@
 input[type=radio] {
     display:none;
 }
- 
+
 input[type=radio] + label {
     text-transform: uppercase;
     display:inline-block;

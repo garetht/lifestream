@@ -1,5 +1,7 @@
 $(function() {
   var currentMode = 'edit';
+  var container = $('.edit_area');
+  var header = $('#header');
   var headerHeight = header.outerHeight();
   var titleHeight = $('#header h1').outerHeight();
   var fixedTop = -titleHeight;
@@ -32,10 +34,12 @@ $(function() {
     }
   });
 
-  $('#output').html(markdown.toHTML(example));
   $('#markdown').bind('keyup', function() {
     isEdited = true;
     $('#output').html(markdown.toHTML($('#markdown').val()));
+    window.alert("pressed")
+    console.log("initializing highlighting");
+    hljs.initHighlighting();
   });
 
   //clear

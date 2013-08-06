@@ -23,6 +23,17 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Proxima Nova Cond';
+  src:url(<%= asset_path('ProximaNovaCond-Regular.eot') %>);
+  src:url(<%= asset_path('ProximaNovaCond-Regular.eot?#iefix') %>) format('embedded-opentype'),
+    url(<%= asset_path('ProximaNovaCond-Regular.svg#ProximaNovaCond-Regular') %>) format('svg'),
+    url(<%= asset_path('ProximaNovaCond-Regular.woff') %>) format('woff'),
+    url(<%= asset_path('ProximaNovaCond-Regular.ttf') %>) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body, nav, header, ul, li, label, input, h1{
   margin: 0;
   padding: 0;
@@ -41,20 +52,20 @@ body{
   display: table;
 }
 
-header{
+header.lifestream{
   height: 100px;
-  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgb(50, 50, 50)), to(rgb(43, 43, 43)));
-  background-image: -webkit-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
-  background-image: -moz-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
-  background-image: -o-linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
-  background-image: linear-gradient(rgb(50, 50, 50), rgb(43, 43, 43));
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgb(43, 43, 43)), to(rgb(50, 50, 50)));
+  background-image: -webkit-linear-gradient(rgb(43, 43, 43), rgb(50, 50, 50));
+  background-image: -moz-linear-gradient(rgb(43, 43, 43), rgb(50, 50, 50));
+  background-image: -o-linear-gradient(rgb(43, 43, 43), rgb(50, 50, 50));
+  background-image: linear-gradient(rgb(43, 43, 43), rgb(50, 50, 50));
 }
 
-header .header-text{
+header.lifestream .header-text{
   padding-top: 32px;
   font-size: 48px;
   text-align: center;
-  color: #EEEEEE;
+  color: #EAEAEA;
   letter-spacing: 10px;
 }
 
@@ -141,16 +152,41 @@ label[for='user_password']{
 .leftnavbar{
   float: left;
   width: 192px;
-  padding: 10px 0px 10px 30px;
-  border-right: 2px solid #888888;
+  padding: 10px 0px 10px 0px;
 }
 
 .leftnavbar li{
   list-style-type: none;
-  padding: 15px 60px 15px 0;
+  padding: 15px 40px 15px 10px;
+  -webkit-transition: all 0.1s;
+}
+
+.leftnavbar li:hover{
+  background: #555;
+  color: #E6E6E6;
+  -webkit-transition: all 0.1s;
+}
+
+.leftnavbar ul a{
+  text-decoration: none;
+  color: #402E11;
+}
+
+.leftnavbar ul a:hover{
+  text-decoration: none;
+  color: #E6E6E6;
+}
+
+.leftnavbar ul a:visited{
+  text-decoration: none;
+  color: #402E11;
 }
 
 .rightbar{
+  background-color: white;
   width: 768px;
-  padding: 60px 10px 10px 10px;
+  float: right;
+  padding: 10px 0px 10px 0px;
+  min-height: 400px;
 }
+
