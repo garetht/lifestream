@@ -6,44 +6,59 @@
 <%= javascript_include_tag "markdown" %>
 <%= javascript_include_tag "newpost_main" %>
 
+<script type="application/json" id="categories">
+  <%= @categories.to_json.html_safe %>
+</script>
+
 <section class="newpost">
 
 <span class="new">new</span> <span class="postdot">post.</span>
 <form accept-charset="UTF-8" action="<%= stream_posts_url(@streamid) %>" class="new_post" enctype="multipart/form-data" id="new_post" method="post">
 
-<div class="input-options">
-  <input type="radio" name="post[content_type]" id="toggle-plaintext" value="plaintext" checked>
-  <label for="toggle-plaintext">Plain Text</label>
-  <input type="radio" name="post[content_type]" id="toggle-markdown" value="markdown">
-  <label for="toggle-markdown">Markdown</label>
-  <input type="radio" name="post[content_type]" id="toggle-code" value="code">
-  <label for="toggle-code">Code</label>
-
-  <button class="clear-field">Clear</button>
-</div>
-
-<div class="edit-area">
   <div class="new-post-title">
-    <label for="edit-title">Title</label>
-    <input type="text" id="edit-title" name="post[title]">
+    <label for="edit-title" class="input-label">Title</label>
+    <input type="text" id="edit-title" class="input-field" name="post[title]">
+  </div>
+<div class="input-header clearfix">
+  <div class="input-options">
+    <input type="radio" name="post[content_type]" id="toggle-plaintext" value="plaintext" checked>
+    <label for="toggle-plaintext">Plain Text</label>
+    <input type="radio" name="post[content_type]" id="toggle-markdown" value="markdown">
+    <label for="toggle-markdown">Markdown</label>
+    <input type="radio" name="post[content_type]" id="toggle-code" value="code">
+    <label for="toggle-code">Code</label>
+
+    <button class="clear-button">Clear</button>
   </div>
 
+  <div class="live-preview-header-wrap clearfix">
+    <div class="live-preview-header live-preview-element">
+      Markdown Live Preview
+    </div>
+  </div>
+</div>
+
+<div class="edit-area clearfix">
+
   <div class="edit-field edit-markdown">
-    <div id="container">
+    <div id="container clearfix">
         <div class="markdown-content">
-          <textarea id="markdown-edit" class="new-post-body" name="post[body]" placeholder="Write your post in here."></textarea>
+          <textarea id="markdown-edit" class="new-post-body input-textarea" name="post[body]" placeholder="Write your post here."></textarea>
         </div>
-        <div id="preview" class="mode live-preview">
-          Live Preview
+        <div class="live-preview live-preview-element">
+
           <div id="output" class="markdown-body">
           </div>
         </div>
-      </div>
     </div>
+  </div>
 
 </div>
 
-<h2>Photos!</h2>
+<div class="input-label">Categories</div>
+<input type="text" class="edit-categories" name="categories">
+
+<div class="input-label">Photos!</div>
 <div class="new-post-photos">  
   <button class="add-photo">Add another photo</button>
   <div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][0][image]" type="file"></div>
@@ -56,11 +71,13 @@
 
 <script type="application/javascript">
 
+var categories = JSON.parse($("#categories").html())
 var postphotos = 0;
 
-$(".clear-field").on("click", function(event){
+$(".clear-button").on("click", function(event){
   event.preventDefault();
   $('.new-post-body').val("");
+  $('#output').html(markdown.toHTML($('#markdown-edit').val()));
 })
 
 $(".add-photo").on("click", function(event){
@@ -72,12 +89,17 @@ $(".add-photo").on("click", function(event){
 })
 
 $("#toggle-plaintext").on("click", function(event){
-  $(".live-preview").removeClass("active");
+  $(".live-preview-element").removeClass("active");
+  $(".clear-button").animate({marginLeft: 350}, 500 );
+  $("#markdown-edit").animate({width: 650}, 500 );
   $("#markdown-edit").focus()
 });
 
 $("#toggle-markdown").on("click", function(event){
-  $(".live-preview").addClass("active");
+  $(".clear-button").animate({marginLeft: 100}, 500 );
+  $("#markdown-edit").animate({width: 400}, 500, function(){
+    $(".live-preview-element").addClass("active");
+  });
   $("#markdown-edit").focus()
 });
 
@@ -86,5 +108,7 @@ $("#toggle-code").on("click", function(event){
   $(".edit-markdown").removeClass("active")
   $(".edit-code").addClass("active")
 });
+
+$(".edit-categories").select2({tags: categories})
 
 </script>

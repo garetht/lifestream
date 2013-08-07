@@ -1,48 +1,122 @@
 .newpost{
-  background-color: #eee;
 }
 
 .new{
-  font-family: "calluna",serif;
+  font-family: "calluna", serif;
   font-style: italic;
   font-weight: 700;
   font-size: 3em;
 }
 
 .postdot{
-  font-family: "calluna",serif;
+  font-family: "calluna", serif;
   font-style: italic;
   font-weight: 400;
   font-size: 3em;
 }
 
-.new-post-body{
-  display: hidden;
-  
+.input-header{
+  padding-top: 20px;
+  padding-left: 2px;
+}
+
+.input-label{
+  display: block;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: "Proxima Nova Cond";
+  padding-bottom: 4px;
+  padding-top: 10px;
+  color: #666;
+  border-radius: 5px;
+}
+
+.input-field{
+  padding: 9px;
+  min-width: 400px;
+  font-size: 18px;
+  outline: 0px;
+}
+
+.input-field:hover{
+  background-color: #F6F6E4;
+}
+
+.input-field:focus{
+  background-color: #ABC9E3;
+}
+
+.input-options{
+  float: left;
+}
+
+.edit-markdown{
+  padding: 0;
+}
+
+.edit-categories{
+  font-family: "Source Sans Pro";
+  width: 423px;
+}
+
+.select2-result-label{
+  font-family: "Source Sans Pro"
+}
+
+.input-textarea{
+  display:block;
+  float: left;
+  padding: 10px;
+  font-size:14px;
+  width: 650px;
+  height: 300px;
+  border-radius: 3px;
+  outline: 0px;
+  border:1px solid #dedede;
+}
+
+.live-preview-header-wrap{
+  margin: auto;
+  width: 400px;
+  float:right;
+}
+
+.live-preview-header{
+  display: none;
+}
+
+.live-preview-header.active{
+  display: block;
+  font-weight: bold;
+  font-family: "Source Sans Pro";
+  font-size: 18px;
 }
 
 .live-preview{
   display: none;
-  font-family: "Proxima Nova Cond"
 }
 
 .live-preview.active{
-  display:block;
+  display: block;
+  float:left;
+  font-family: "Source Sans Pro"
 }
 
-.input-options{
-  padding: 20px 0;
+.clear-button{
+  border: 0;
+  background-color: #8C313A;
+  font-family: "Source Sans Pro";
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #EEEEEE;
+  padding: 6px 10px;
+  margin-left: 350px;
+  border-radius: 3px;
 }
 
 /*This is the text field for plaintext and code.*/
 .new-post-body{
-  display:block;
-  clear: right;
-  width: 400px;
-  height: 300px;
-  outline: none;
-  border:1px solid #bbb;
-  border-radius: 5px;
+
 }
 
 .new-post-photos{
@@ -60,6 +134,10 @@
 
 #markdown-content{
     height: 200px;
+}
+
+.markdown-body{
+  font-family: "Source Sans Pro";
 }
 
 input[type=radio] {

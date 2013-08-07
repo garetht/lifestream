@@ -1,25 +1,29 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name, :parent_id
+  attr_accessible :name, :parent_id, :user_id
+
+  # has_many :children, class_name: "Category", foreign_key: 
+  has_many :children, class_name: "Category", foreign_key: :parent_id
+  has_one :parent, class_name: "Category", primary_key: :parent_id, 
+          foreign_key: :id
+  belongs_to :user
 
   def trace_full_route
     start = self
     @route = [start]
-    while start.parent_id
-      parent = Category.find(start.parent_id)
-      @route << parent
-      start = parent
+    while start.parent
+      @route << start.parent
+      start = start.parent
     end
     @route
   end
 
   def trace_id_route
-    startid, parentid = self.id, self.parent_id
-    @route =  [startid, parentid]
-    while parentid
-      parentid = Category.find(parentid).parent_id
-      @route << parentid
-      startid = parentid
+    start = self
+    @route = [start.id]
+    while start.parent
+      @route << start.parent.id
+      start = start.parent
     end
-    @route[0...-1]
+    @route
   end
 end
