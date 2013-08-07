@@ -5,9 +5,13 @@ class Category < ActiveRecord::Base
   has_many :children, class_name: "Category", foreign_key: :parent_id
   has_one :parent, class_name: "Category", primary_key: :parent_id, 
           foreign_key: :id
+  
   belongs_to :user
 
-  def trace_full_route
+  has_many :post_categories
+  has_many :posts, through: :post_categories
+
+  def trace_full_path
     start = self
     @route = [start]
     while start.parent
@@ -17,7 +21,7 @@ class Category < ActiveRecord::Base
     @route
   end
 
-  def trace_id_route
+  def trace_id_path
     start = self
     @route = [start.id]
     while start.parent

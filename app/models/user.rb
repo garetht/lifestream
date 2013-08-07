@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :streams
   has_many :friendships
   has_many :friends, through: :friendships, source: :friend
+  has_many :categories
 
   validates :username, uniqueness: true
 

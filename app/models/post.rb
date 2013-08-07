@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :stream
   has_many :post_photos
+
   has_many :post_categories
   has_many :categories, through: :post_categories
 

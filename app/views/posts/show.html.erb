@@ -1,8 +1,7 @@
 <%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
-<%= render partial: "apost", locals: {post: @post, 
-          photos: @post.post_photos} %>
+<%= render @post %>
 <!-- import markdown parser -->
 <!-- inject parsed Markdown with JSON -->
 <!-- Display as Github-formatted stuff? -->

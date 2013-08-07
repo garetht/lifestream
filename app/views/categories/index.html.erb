@@ -1,0 +1,7 @@
+<%= render "layouts/leftnavbar" %>
+
+<section class="rightbar">
+  <% @categories.each do |category| %>
+    <%= render category %>
+  <% end %>
+</section>
