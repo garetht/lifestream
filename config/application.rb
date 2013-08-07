@@ -60,5 +60,6 @@ module Lifestream
     config.assets.version = '1.0'
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    # Precompile additional assets
   end
 end

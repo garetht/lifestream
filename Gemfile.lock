@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/argerim/select2-rails.git
+  revision: 73c21036300df2bf527a28b51bc8845b42c3febd
+  specs:
+    select2-rails (3.4.7)
+      sass-rails
+      thor (~> 0.14)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,7 +60,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     debug_inspector (0.0.2)
-    devise (3.0.0)
+    devise (3.0.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -75,7 +83,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    multi_json (1.7.7)
+    multi_json (1.7.8)
     orm_adapter (0.4.0)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
@@ -154,5 +162,6 @@ DEPENDENCIES
   rails3-jquery-autocomplete
   rest-client
   sass-rails (~> 3.2.3)
+  select2-rails!
   sqlite3
   uglifier (>= 1.0.3)

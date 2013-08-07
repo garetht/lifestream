@@ -1,5 +1,8 @@
 Lifestream::Application.routes.draw do
 
+  get 'friendships/confirm' => "friendships#confirm"
+  get 'chosen' => 'chosen'
+
   devise_for :users
 
   devise_scope :user do

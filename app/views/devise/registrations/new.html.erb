@@ -1,11 +1,11 @@
 <div class="signup-header">Sign up for a free account with Lifestream.</div>
 
-<div class="signin-container">
-  <div class="signin-options">
+<div class="signup-container">
+  <div class="signup-options">
     <%= render "devise/shared/links" %>
   </div>
 
-  <div class="signin-form">
+  <div class="signup-form">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <div class="devise-errors">
         <%= devise_error_messages! %>
@@ -26,5 +26,14 @@
       <div class="signup-button-container"><%= f.submit "Sign up", class: "signup-button" %></div>
     <% end %>
   </div>
-
+    <select data-placeholder="Choose a Country..." class="opportune" multiple style="width:350px;" tabindex="4">
+      <option value=""></option>
+      <option value="United States">United States</option>
+      <option value="United Kingdom">United Kingdom</option>
+      <option value="Western Sahara">Western Sahara</option>
+    </select>
 </div>
+
+<script type="application/javascript">
+$(".opportune").select2()
+</script>
