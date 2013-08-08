@@ -1,7 +1,27 @@
 <%= render "layouts/leftnavbar" %>
+<%= javascript_include_tag "prototype" %>
+<%= javascript_include_tag "effects" %>
+<%= javascript_include_tag "dragdrop" %>
+<%= javascript_include_tag "sortable_tree" %>
+<%= stylesheet_link_tag "category_tree", media: "all" %>
 
 <section class="rightbar">
-  <% @categories.each do |category| %>
-    <%= render category %>
-  <% end %>
+<%= render partial: "rcat", locals: {hash: @hash, children: @root, first: true} %>
 </section>
+
+<script>
+  var tree = new SortableTree('tree', {
+    onDrop: function(drag, drop, event){
+      var locations = drag.to_params().match(/tree\[(\d+)\]\[parent_id\]=(\d+|[nul]+)/)
+      var from = locations[1]
+      var new_parent_id = locations[2]
+      console.log("before ajax")
+      jQuery.ajax({
+        url: "/categories/" + from,
+        type: 'PUT',
+        data: {new_parent_id: new_parent_id}
+      }).done(function(data){console.log("Success")})
+    }
+  });
+  tree.setSortable();
+</script>

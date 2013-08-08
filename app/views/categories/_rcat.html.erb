@@ -1,0 +1,9 @@
+<ul <%= 'id=tree' if first %>>
+<% children.each do |child| %>
+  <li id="node_<%= child.id %>">
+    <a><%= child.name %></a>
+    <%= render partial: "rcat", locals: {hash: hash, children: hash[child.id], first: false} %>
+  </li>
+<% end %>
+</ul>
+

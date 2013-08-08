@@ -21,6 +21,15 @@ class Category < ActiveRecord::Base
     @route
   end
 
+  def self.children_hash(user_id)
+    categories = Category.where('user_id = ?', user_id)
+    hash = Hash.new(Array.new)
+    categories.each do |category|
+      hash[category.parent_id] += [category]
+    end 
+    hash
+  end
+
   def trace_id_path
     start = self
     @route = [start.id]

@@ -17,7 +17,7 @@ Lifestream::Application.routes.draw do
   end
 
   resources :posts, only: [:index]
-  resources :categories, only: [:show, :index]
+  resources :categories, only: [:show, :index, :update]
   resources :friendships, only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation:
