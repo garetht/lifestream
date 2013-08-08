@@ -24,29 +24,31 @@
       </div>
     </div>
     <div class="streams">
-      <% @streams.each do |stream| %>
-        <li><%= stream.name %>
-        <a href="<%= stream_posts_url(stream.id) %>">View Stream</a>
-        <!-- Make this an ajax request, and do a respond_to json -->
-          <% if stream.id != current_user.default_stream_id %>
-            <a href="<%= default_stream_url(stream.id) %>" data-method="post">Make Default</a>
-          <% else %>
-            This is your default stream.
-          <% end %>
-        <% end %>
+    <% @streams.each do |stream| %>
+        <div class="stream  <%= "default-stream" if stream.id == current_user.default_stream_id %>">
+          <div class="stream-name">
+          <%= stream.name %>
+          </div>
+          <div class="stream-hide-container">
+            <button class="view-stream">
+              <div class="stream-half">
+                View Stream
+              </div>
+            </button>
+          </div>
+          <div class="stream-hide-container">
+            <button class="make-default">
+              <div class="stream-half">
+                Make Default
+              </div>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
     </div>
   </div>
-
-  <div class="new-stream">
-
-
-  </div>
-
-<div class="streams-list">
-  <ul>
-
-  </ul>
-
 </section>
 
 <script type="application/javascript">
