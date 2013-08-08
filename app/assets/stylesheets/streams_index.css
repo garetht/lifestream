@@ -1,5 +1,4 @@
 .new-stream{
-  padding-left: 30px;
   float:left;
 }
 
@@ -52,7 +51,7 @@
 
 .streams-text{
   display: block;
-  padding: 20px 0px 0px 120px;
+  padding: 20px 0px 0px 10px;
   color: #888;
   float:left;
   line-height: 200%;
@@ -66,7 +65,7 @@
 
 .stream{
   position: relative;
-  margin: 12px 20px 20px 20px;
+  margin: 12px 25px 20px 35px;
   width: 170px;
   height: 170px;
   background-color: #ff9d47;
@@ -106,14 +105,22 @@
   visibility: visible;
   font-size: 22px;
   font-family: "Source Sans Pro";
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   color: #efefef;
   text-align: center;
-  vertical-align: baseline;
   cursor: pointer;
   z-index: 2;
   -webkit-transition: background-color 0.3s;
   -webkit-transition: text 13s;
+}
+
+.stream-default-letter{
+  float:right;
+  position: absolute;
+  font-family: "Gotham";
+  color: #fff;
+  top: 2px;
+  right: 5px;
 }
 
 .view-stream, .make-default{
@@ -123,4 +130,14 @@
   padding: 0;
   position: relative;
   z-index: 2;
+}
+
+.new-stream-button{
+  display: block;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.input-field.inverse.new-stream{
+  min-width: 255px;
 }

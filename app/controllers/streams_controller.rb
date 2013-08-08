@@ -20,7 +20,13 @@ class StreamsController < ApplicationController
   end
 
   def default
-    current_user.update_attributes(default_stream_id: params[:id])
+    if current_user.streams.pluck(:id).include?(params[:id].to_i)
+      current_user.update_attributes(default_stream_id: params[:id])
+      respond_to do |format|
+        format.json {render json: "Success".to_json}
+      end
+    end
+
   end
 
 end

@@ -12,32 +12,41 @@
         streams 
       </div>
       <div class="streams-text">
-            <div class="new-stream-link">Create a new stream.</div>
-    <div class="new-stream-form">
+    <div class="new-stream-form active">
       <form>
-        <label for="new-stream-name">New Stream Name</label>
-        <input id="new-stream-name" type="text" name="stream[name]">
+        <label class="input-label" for="new-stream-name">New Stream Name</label>
+        <input class="input-field inverse new-stream" type="text" name="stream[name]">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <button class="create-stream">Create Stream</button>
+        <div class="new-stream-button">
+          <button class="blue-button create-stream-button">Create Stream</button>
+        </div>
       </form>
     </div>
       </div>
     </div>
     <div class="streams">
+
     <% @streams.each do |stream| %>
-        <div class="stream  <%= "default-stream" if stream.id == current_user.default_stream_id %>">
+        <div class="stream  <%= "default-stream" if stream.id == current_user.default_stream_id %>" id="stream-<%= stream.id %>">
+          <% if stream.id == current_user.default_stream_id %>
+            <div class="stream-default-letter">
+              D
+            </div>
+          <% end %>
           <div class="stream-name">
-          <%= stream.name %>
+            <%= stream.name %>
           </div>
           <div class="stream-hide-container">
-            <button class="view-stream">
-              <div class="stream-half">
-                View Stream
-              </div>
-            </button>
+            <a href="<%= stream_posts_url(stream.id) %>">
+              <button class="view-stream">
+                  <div class="stream-half">
+                    View Stream
+                  </div>
+              </button>
+            </a>
           </div>
           <div class="stream-hide-container">
-            <button class="make-default">
+            <button class="make-default" id="<%= stream.id %>">
               <div class="stream-half">
                 Make Default
               </div>
@@ -45,6 +54,7 @@
           </div>
         </div>
       <% end %>
+  
     </div>
 
     </div>
@@ -57,7 +67,7 @@ $(".new-stream-link").on("click", function(event){
   $(".new-stream-form").toggleClass("active")
 })
 
-$(".create-stream").on("click", function(event){
+$(".create-stream-button").on("click", function(event){
   event.preventDefault();
   var formData = $(this.form).serialize()
   $.ajax({
@@ -65,10 +75,27 @@ $(".create-stream").on("click", function(event){
     type: "POST",
     data: formData
   }).done(function(response){
-    $(".new-stream-name").val("");
-    $(".new-stream-form").removeClass("active");
+    $(".new-stream").val("");
+    window.reload();
     // Do a new StreamSquare fade in effect!
   })
+})
+
+$(".streams").on("click", ".show-stream", function(event){
+  event.preventDefault();
+})
+
+$(".streams").on("click", ".make-default", function(event){
+  event.preventDefault();
+  var id = $(this).attr("id")
+  var defaultLetter = '<div class="stream-default-letter">D</div>'
+  $.post("streams/" + id + "/default", {}).
+        done(function(data){
+          $(".stream.default-stream").removeClass("default-stream");
+          $(".stream-default-letter").remove();
+          $("#stream-" + id).addClass("default-stream");
+          $("#stream-" + id).prepend(defaultLetter);
+        })
 })
 
 </script>

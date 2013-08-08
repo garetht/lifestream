@@ -58,18 +58,9 @@
   float: left;
 }
 
-.post-categories{
+/*.post-categories{
   border-top: 1px dotted #aaa;
   border-bottom: 1px dotted #aaa;
-}
-
-.post-categories .category-label{
-  text-transform: uppercase;
-  font-size: 12px;
-  padding: 6px;
-  float: left;
-  color: #fff;
-  background-color: #aaa;
 }
 
 .post-categories .category{
@@ -78,4 +69,116 @@
   float: left;
   text-decoration: underline;
 }
+*/
+.posts-container{
+  width: 100%;
+  font-family: "Gotham"
+}
 
+.posts-text-container{
+  width: 100px;
+  float: left;
+}
+
+.posts-header{
+  width: 100%;
+  position: relative;
+}
+
+.post-date{
+  position: absolute;
+  bottom: 0px;
+  padding-top: 4px;
+  padding-left: 40px;
+  display: block;
+  float:left;
+/*  border-bottom: 10px solid rgb(230, 230, 230);
+*/  font-size: 48px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.post-under.post-border{
+  border-top: 10px solid rgb(230, 230, 230);  
+}
+
+.post-under{
+  width: 100px;
+  text-align: right;
+  display: block;
+  padding-top: 5px;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #bbb;
+  line-height: 75%;
+  float:right;
+}
+
+.post{
+  float: right;
+  width: 630px;
+  padding-left: 30px;
+}
+
+.post-title{
+  padding-bottom: 8px;
+  float: left;
+  font-family: "Proxima Nova Light";
+  font-size: 40px;
+}
+
+.post-title-container{
+  width: 630px;
+  padding-left: 30px;
+  float:right;
+}
+
+.post-body-container{
+  width: 630px;
+  min-height: 300px;
+  float: right;
+}
+
+.post-body-metadata{
+  width: 100%;
+  border-top: 1px dotted #ccc;
+  border-bottom: 1px dotted #ccc;
+  font-family: "Proxima Nova Cond";
+  padding: 5px 0px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.post-body{
+  padding: 20px 0px;
+  font-family: "Source Sans Pro";
+}
+
+.post-categories{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  display: block;
+}
+
+.post-categories .category-label{
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: "Proxima Nova Light";
+  padding: 7px 10px 6px 6px;
+  margin-right: 5px;
+  float: left;
+  color: #fff;
+  background-color: #ccc;
+}
+
+.category{
+  float: left;
+  margin: 3px 5px 5px 0px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background-color: #ddd;
+  color: #777;
+  font-size: 12px;
+  font-family: "Source Sans Pro";
+  border-radius: 20px;
+}

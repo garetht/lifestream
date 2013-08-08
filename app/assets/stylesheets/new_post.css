@@ -1,6 +1,3 @@
-.newpost{
-}
-
 .new{
   font-family: "calluna", serif;
   font-style: italic;
@@ -18,32 +15,6 @@
 .input-header{
   padding-top: 20px;
   padding-left: 2px;
-}
-
-.input-label{
-  display: block;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-family: "Proxima Nova Cond";
-  padding-bottom: 4px;
-  padding-top: 10px;
-  color: #666;
-  border-radius: 5px;
-}
-
-.input-field{
-  padding: 9px;
-  min-width: 400px;
-  font-size: 18px;
-  outline: 0px;
-}
-
-.input-field:hover{
-  background-color: #F6F6E4;
-}
-
-.input-field:focus{
-  background-color: #ABC9E3;
 }
 
 .input-options{

@@ -24,9 +24,9 @@
     <% end %>
   </div>
 
-  <% unless photos.empty? %>
+  <% unless post.post_photos.empty? %>
     <div class="post-images clearfix">
-      <% photos.each do |photo| %>
+      <% post.post_photos.each do |photo| %>
         <div class="post-image"> 
           <%= image_tag photo.image.url %>
         </div>
@@ -38,12 +38,11 @@
     <div class="category-label">
       Categories
     </div>
-    <div class="category">
-      weird pictures
-    </div>
-    <div class="category">
-      black and white
-    </div>
+    <% post.categories.each do |category| %>
+      <div class="category">
+        <%= category.name %>
+      </div>
+    <% end %>
   </div>
 </div>
 

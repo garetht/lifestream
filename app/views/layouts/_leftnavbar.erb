@@ -1,7 +1,7 @@
 <section class="leftnavbar">
   
 <ul>
-  <a href="<%= root_url %>"><li>Home</li></a>
+  <a href="<%= stream_posts_url(current_user.default_stream_id) %>"><li>Home</li></a>
   <a href="<%= streams_url %>"><li>Streams</li></a>
   <a href="<%= posts_url %>"><li>All Posts</li></a>
   <a href="<%= friendships_url %>"><li>Friends</li></a>

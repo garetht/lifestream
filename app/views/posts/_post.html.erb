@@ -1,52 +1,51 @@
-<div class="show-post-content clearfix">
-<header class="post-header">
-  <div class="date">
-    28
-  </div>
-  <div class="month">
-    6
-  </div>
-  <div class="year">
-    2011
-  </div>
-</header>
+<div class="posts-container clearfix">
 
-<div class="post-content clearfix">
-  <div class="metadata">
-    Monday. 3:14pm. New York, NY.
-  </div>
+  <div class="posts-header clearfix">
 
-  <div class="post-body">
-    <% if post.content_type == "plaintext" %>
-    <%= post.body.split("\r\n\r\n").map{|item| "<p>#{item}</p>"}.join("").html_safe %>
-    <% elsif post.content_type == "markdown" %>
-    <% elsif post.content_type == "code" %>
-    <% end %>
-  </div>
-
-  <% unless post.post_photos.empty? %>
-    <div class="post-images clearfix">
-      <% post.post_photos.each do |photo| %>
-        <div class="post-image"> 
-          <%= image_tag photo.image.url %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-  <div class="post-categories clearfix">
-    <div class="category-label">
-      Categories
-    </div>
-    <% post.categories.each do |category| %>
-      <div class="category">
-        <%= category.name %>
+    <div class="posts-text-container clearfix"> 
+      <div class="post-date">
+        28 
       </div>
-    <% end %>
+    </div>
+    <div class="post-title-container">
+      <div class="post-title">
+        This is an exceptionally long post title.
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="post-bottom-container clearfix">
+
+    <div class="posts-text-container clearfix">
+      <div class="post-under post-border">
+        June
+      </div>
+      <div class="post-under">
+        2011
+      </div>
+    </div>
+
+    <div class="post-body-container clearfix">
+      <div class="post-body-metadata">
+        Monday, 3:14pm in New York, NY.
+      </div>
+      <div class="post-body">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, vitae, aliquid, asperiores qui nihil earum ipsam accusamus ut perferendis iure fugit voluptates assumenda aspernatur pariatur in a soluta molestiae voluptatum.
+      </div>
+      <div class="post-categories clearfix">
+        <div class="category-label">
+          Categories
+        </div>
+        <div class="category">
+          lcd soundsystem
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
+
+
 
 
 <!-- import markdown parser -->
