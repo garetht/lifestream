@@ -6,26 +6,6 @@
   display: block;
 }
 
-.embedded-tweet{
-  background-color: white;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px;
-  border-radius: 5px;
-  border-image-outset: 0px;
-  border-image-repeat: stretch;
-  border-image-slice: 100%;
-  border-image-source: none;
-  border-image-width: 1;
-  border-bottom: 1px solid rgb(187, 187, 187);
-  border-left: 1px solid rgb(221, 221, 221);
-  border-right: 1px solid rgb(221, 221, 221);
-  border-top: 1px solid rgb(238, 238, 238);
-  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px;
-  float: left;
-  height: 186px;
-  margin: 10px 0;
-  width: 500px;
-}
-
 .show-post-content{
   padding: 20px 20px 20px 50px;
 }

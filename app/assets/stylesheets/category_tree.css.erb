@@ -1,0 +1,77 @@
+.recursive{
+  padding: 30px;
+  list-style-type: none;
+}
+
+#tree, #tree ul { 
+  padding-left: 27px; 
+  list-style-type: none;
+  cursor: move;
+  font: 14px "Source Sans Pro";
+  line-height: 300%;
+  color: #777;
+}
+#tree {
+  padding: 20px 0px 0px 20px;
+  width: 300px;
+}
+#tree li {
+  margin-top: -6px;
+}
+
+#tree a{
+  padding: 3px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #ddd;
+}
+
+#tree a:active{
+  background-color: rgb(68, 154, 222);
+}
+
+#tree .drop_hover {
+  background: url(<%= asset_path('dragblack.png') %>) no-repeat bottom left;
+}
+#tree .drop_top {
+  background-position: top left;
+}
+#tree .drop_bottom {
+  background-position: bottom left;
+}
+#tree .drop_insert {
+  background-position: 20px 100%;
+}
+
+.categories-container{
+  width: 100%;
+  font-family: "Gotham"
+}
+
+.categories-text-container{
+  width: 340px;
+  float: left;
+}
+
+.categories-text-header{
+  padding-top: 4px;
+  padding-left: 120px;
+  display: block;
+  float:left;
+  border-bottom: 10px solid rgb(230, 230, 230);
+  font-size: 36px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.categories-text{
+  display: block;
+  padding: 20px 0px 0px 120px;
+  color: #888;
+  float:left;
+  line-height: 200%;
+}
+
+.categories{
+  float: right;
+}

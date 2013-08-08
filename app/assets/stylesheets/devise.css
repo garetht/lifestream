@@ -1,4 +1,4 @@
-.signin-container{
+.signin-container, .signup-container{
   max-width: 620px;
   margin: auto;
 }
@@ -70,6 +70,10 @@
   padding: 5px 0;
   text-decoration: none;
   color: #71AAD0;
+}
+
+.signin-options a:hover, .signup-options a:hover{
+  text-decoration: underline;
 }
 
 .signin-options a:visited, .signup-options a:visited{

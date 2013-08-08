@@ -1,7 +1,6 @@
 .new-stream{
   padding-left: 30px;
   float:left;
-  border-bottom: 1px black dotted;
 }
 
 .new-stream-form{
@@ -28,4 +27,38 @@
 
 .streams-list ul{
   list-style-type: none;
+}
+
+.streams-container{
+  width: 100%;
+  font-family: "Gotham"
+}
+
+.streams-text-container{
+  width: 340px;
+  float: left;
+}
+
+.streams-text-header{
+  padding-top: 4px;
+  padding-left: 120px;
+  display: block;
+  float:left;
+  border-bottom: 10px solid rgb(230, 230, 230);
+  font-size: 36px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.streams-text{
+  display: block;
+  padding: 20px 0px 0px 120px;
+  color: #888;
+  float:left;
+  line-height: 200%;
+}
+
+.streams{
+  font-family: "Proxima Nova Light";
+  float: right;
 }

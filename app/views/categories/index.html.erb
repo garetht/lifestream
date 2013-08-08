@@ -6,7 +6,19 @@
 <%= stylesheet_link_tag "category_tree", media: "all" %>
 
 <section class="rightbar">
-<%= render partial: "rcat", locals: {hash: @hash, children: @root, first: true} %>
+  <div class="categories-container clearfix">
+    <div class="categories-text-container clearfix"> 
+      <div class="categories-text-header">
+        Categories 
+      </div>
+      <div class="categories-text">
+        You can nest your categories by dragging one category into another. All posts labeled with a category are also labeled with all of the categories they are nested under.
+      </div>
+    </div>
+    <div class="categories">
+        <%= render partial: "rcat", locals: {hash: @hash, children: @root, first: true} %>
+    </div>
+  </div>
 </section>
 
 <script>
@@ -15,12 +27,14 @@
       var locations = drag.to_params().match(/tree\[(\d+)\]\[parent_id\]=(\d+|[nul]+)/)
       var from = locations[1]
       var new_parent_id = locations[2]
-      console.log("before ajax")
       jQuery.ajax({
         url: "/categories/" + from,
         type: 'PUT',
         data: {new_parent_id: new_parent_id}
       }).done(function(data){console.log("Success")})
+    },
+    onHover: function(drag, drop, event){
+      alert("hovering")
     }
   });
   tree.setSortable();

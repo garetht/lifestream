@@ -33,6 +33,16 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Gotham';
+  src:url(<%= asset_path('Gotham-Medium.eot') %>);
+  src:url(<%= asset_path('Gotham-Medium.eot?#iefix') %>) format('embedded-opentype'),
+    url(<%= asset_path('Gotham-Medium.svg#Gotham-Medium') %>) format('svg'),
+    url(<%= asset_path('Gotham-Medium.woff') %>) format('woff'),
+    url(<%= asset_path('Gotham-Medium.ttf') %>) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body, nav, header, ul, li, label, input, h1, h2{
   margin: 0;
@@ -48,14 +58,10 @@ li{
   list-style-type: none;
 }
 
-.recursive li{
-  list-style-type: disc;
-}
-
 body{
   font-family: "Proxima Nova Light";
   font-smoothing: antialiased;
-  background: rgb(230, 230, 230)
+  background: rgb(230, 230, 230);
 }
 
 .clearfix:after{
@@ -94,7 +100,7 @@ nav{
 
 .navbar{
   float: left;
-  padding-left: 27%;
+  padding-left: 23.5%;
 }
 
 .navbar ul li{
@@ -170,3 +176,16 @@ nav{
   display: none !important;
 }
 
+.new{
+  font-family: "calluna", serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 3em;
+}
+
+.postdot{
+  font-family: "calluna", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 3em;
+}

@@ -1,10 +1,18 @@
 <%= stylesheet_link_tag    "streams_index", :media => "all" %>
+<%= stylesheet_link_tag    "show_post", :media => "all" %>
 
 <%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
-  <div class="new-stream">
-    <div class="new-stream-link"><span class="new">new</span> <span class="postdot">stream.</span></div>
+
+
+  <div class="streams-container clearfix">
+    <div class="streams-text-container clearfix"> 
+      <div class="streams-text-header">
+        streams 
+      </div>
+      <div class="streams-text">
+            <div class="new-stream-link">Create a new stream.</div>
     <div class="new-stream-form">
       <form>
         <label for="new-stream-name">New Stream Name</label>
@@ -13,17 +21,30 @@
         <button class="create-stream">Create Stream</button>
       </form>
     </div>
+      </div>
+    </div>
+    <div class="streams">
+      <% @streams.each do |stream| %>
+        <li><%= stream.name %>
+        <a href="<%= stream_posts_url(stream.id) %>">View Stream</a>
+        <!-- Make this an ajax request, and do a respond_to json -->
+          <% if stream.id != current_user.default_stream_id %>
+            <a href="<%= default_stream_url(stream.id) %>" data-method="post">Make Default</a>
+          <% else %>
+            This is your default stream.
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="new-stream">
+
 
   </div>
 
 <div class="streams-list">
   <ul>
-    <% @streams.each do |stream| %>
-    <li><%= stream.name %>
-    <a href="<%= stream_posts_url(stream.id) %>">View Stream</a>
-    <!-- Make this an ajax request, and do a respond_to json -->
-    <a href="<%= default_stream_url(stream.id) %>" data-method="post">Make Default</a>
-    <% end %>
+
   </ul>
 
 </section>

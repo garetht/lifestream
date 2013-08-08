@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "devise", media: "all" %>
+
 <div class="signup-header">Sign up for a free account with Lifestream.</div>
 
 <div class="signup-container">
@@ -26,14 +28,4 @@
       <div class="signup-button-container"><%= f.submit "Sign up", class: "signup-button" %></div>
     <% end %>
   </div>
-    <select data-placeholder="Choose a Country..." class="opportune" multiple style="width:350px;" tabindex="4">
-      <option value=""></option>
-      <option value="United States">United States</option>
-      <option value="United Kingdom">United Kingdom</option>
-      <option value="Western Sahara">Western Sahara</option>
-    </select>
 </div>
-
-<script type="application/javascript">
-$(".opportune").select2()
-</script>
