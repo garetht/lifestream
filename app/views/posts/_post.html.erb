@@ -44,7 +44,7 @@
     <div class="post-body-container clearfix">
       <div class="post-body-metadata">
         <%= "#{post.created_at.strftime("%A, %l:%M%P")}" %>
-        in New York, NY.
+        at <%= post.location %>
       </div>
       <div class="post-body" id="body-<%= post.id %>">
         <% if post.content_type == "plaintext" %>

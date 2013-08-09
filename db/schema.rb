@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130809154333) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "location"
+    t.boolean  "gmaps"
   end
 
   create_table "streams", :force => true do |t|
