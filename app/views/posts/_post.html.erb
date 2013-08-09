@@ -1,15 +1,31 @@
+<%= stylesheet_link_tag    "md_style", media: "all" %>
+<%= stylesheet_link_tag    "md_github", media: "all" %>
+<%= stylesheet_link_tag    "highlight_github", media: "all" %>
+<%= stylesheet_link_tag    "new_post", media: "all" %>
+<%= stylesheet_link_tag    "show_post", media: "all" %>
+<%= javascript_include_tag "jquery.autosize-min" %>
+<%= javascript_include_tag "markdown" %>
+<%= javascript_include_tag "newpost_main" %>
+<%= javascript_include_tag "highlight" %>
+
+ <% if post.content_type == "markdown" %>
+  <script type="application/json" id="markdown-contents-<%= post.id %>">
+    <%= post.body.gsub(/\r/, "").to_json.html_safe %>
+  </script>
+<% end %>
+
 <div class="posts-container clearfix">
 
   <div class="posts-header clearfix">
 
     <div class="posts-text-container clearfix"> 
       <div class="post-date">
-        28 
+        <%= post.created_at.strftime("%d") %>
       </div>
     </div>
     <div class="post-title-container">
       <div class="post-title">
-        This is an exceptionally long post title.
+        Post Title Standin
       </div>
     </div>
   </div>
@@ -18,34 +34,61 @@
 
     <div class="posts-text-container clearfix">
       <div class="post-under post-border">
-        June
+        <%= post.created_at.strftime("%b") %>
       </div>
       <div class="post-under">
-        2011
+        <%= post.created_at.strftime("%Y") %>
       </div>
     </div>
 
     <div class="post-body-container clearfix">
       <div class="post-body-metadata">
-        Monday, 3:14pm in New York, NY.
+        <%= "#{post.created_at.strftime("%A, %l:%M%P")}" %>
+        in New York, NY.
       </div>
-      <div class="post-body">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, vitae, aliquid, asperiores qui nihil earum ipsam accusamus ut perferendis iure fugit voluptates assumenda aspernatur pariatur in a soluta molestiae voluptatum.
+      <div class="post-body" id="body-<%= post.id %>">
+        <% if post.content_type == "plaintext" %>
+          <%= post.body %>
+        <% end %>
       </div>
+      <% if post.content_type == "markdown" %>
+        <script>
+          var raw = $("#markdown-contents-<%= post.id %>").html().match(/"(.+)"/)[1]
+          var unescaped_raw = raw.replace(/\\n/g, "\n")
+          $("#body-<%= post.id %>").html(markdown.toHTML(unescaped_raw))
+        </script>
+      <% end %>
+
+      <% unless post.post_photos.empty? %>
+        <div class="post-photos clearfix">
+        <% post.post_photos.each do |photo| %>
+          <div class="post-photo">
+            <%= image_tag photo.image.url(:thumbnail) %>
+          </div>
+        <% end %>
+        </div>
+      <% end %>
+
       <div class="post-categories clearfix">
         <div class="category-label">
           Categories
         </div>
+        <% post.categories.pluck(:name).each do |category_name| %>
         <div class="category">
-          lcd soundsystem
+          <%= category_name %>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
 
 </div>
 
-
+<script type="application/javascript">
+$(document).ready(function() {
+  $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+});
+</script>
 
 
 <!-- import markdown parser -->

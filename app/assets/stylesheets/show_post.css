@@ -58,21 +58,11 @@
   float: left;
 }
 
-/*.post-categories{
-  border-top: 1px dotted #aaa;
-  border-bottom: 1px dotted #aaa;
-}
-
-.post-categories .category{
-  padding: 6px;
-  font-size: 12px;
-  float: left;
-  text-decoration: underline;
-}
-*/
 .posts-container{
   width: 100%;
-  font-family: "Gotham"
+  font-family: "Gotham";
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .posts-text-container{
@@ -92,8 +82,7 @@
   padding-left: 40px;
   display: block;
   float:left;
-/*  border-bottom: 10px solid rgb(230, 230, 230);
-*/  font-size: 48px;
+  font-size: 48px;
   color: #888;
   text-transform: uppercase;
 }
@@ -135,7 +124,7 @@
 
 .post-body-container{
   width: 630px;
-  min-height: 300px;
+  min-height: 150px;
   float: right;
 }
 
@@ -154,6 +143,18 @@
   font-family: "Source Sans Pro";
 }
 
+.post-photos{
+  display: block;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.post-photo{
+  float:left;
+  padding-right: 10px;
+}
+
 .post-categories{
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -164,7 +165,7 @@
   text-transform: uppercase;
   font-size: 12px;
   font-family: "Proxima Nova Light";
-  padding: 7px 10px 6px 6px;
+  padding: 7px 10px 7px 6px;
   margin-right: 5px;
   float: left;
   color: #fff;
@@ -173,8 +174,8 @@
 
 .category{
   float: left;
-  margin: 3px 5px 5px 0px;
-  padding: 0 10px;
+  margin: 5px 5px 3px 0px;
+  padding: 0 12px;
   border: 1px solid #ccc;
   background-color: #ddd;
   color: #777;

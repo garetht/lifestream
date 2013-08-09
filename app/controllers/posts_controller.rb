@@ -3,10 +3,10 @@ class PostsController < ApplicationController
     if params[:stream_id]
       @streamid = params[:stream_id]
       # This needs to be thisstream.posts
-      @posts = Stream.find(@streamid).posts
+      @posts = Stream.find(@streamid).posts.order("created_at DESC")
     else
       @streamid = current_user.default_stream_id
-      @posts = current_user.posts
+      @posts = current_user.posts.order("created_at DESC")
     end
   end
 

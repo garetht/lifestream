@@ -133,7 +133,7 @@
 }
 
 .new-stream-button{
-  display: block;
+  float:right;
   padding-top: 10px;
   text-align: right;
 }

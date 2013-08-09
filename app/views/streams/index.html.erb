@@ -76,8 +76,7 @@ $(".create-stream-button").on("click", function(event){
     data: formData
   }).done(function(response){
     $(".new-stream").val("");
-    window.reload();
-    // Do a new StreamSquare fade in effect!
+    //Do a fadein here
   })
 })
 
@@ -95,6 +94,7 @@ $(".streams").on("click", ".make-default", function(event){
           $(".stream-default-letter").remove();
           $("#stream-" + id).addClass("default-stream");
           $("#stream-" + id).prepend(defaultLetter);
+          $(".default-home").attr("href", "/streams/" + id + "/posts")
         })
 })
 
