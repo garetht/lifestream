@@ -35,6 +35,8 @@ gem 'rest-client'
 gem 'addressable'
 gem 'rails3-jquery-autocomplete'
 gem 'paperclip'
+gem 'aws-sdk'
+gem 'figaro'
 gem 'select2-rails'
 
 # To use ActiveModel has_secure_password

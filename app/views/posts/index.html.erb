@@ -1,13 +1,9 @@
 <%= stylesheet_link_tag    "show_post", :media => "all" %>
-
+<%= render "streams/topbar_streams" %>
 <%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
-
-<!--   <a href="<%# new_stream_post_url(@streamid) %>"><span class="new">new</span> <span class="postdot">post.</span></a> -->
-
-<% @posts.each do |post| %>
-  <%= render partial: "post", locals: {post: post, photos: post.post_photos} %>
-<% end %>
-
+  <% @posts.each do |post| %>
+    <%= render partial: "post", locals: {post: post, photos: post.post_photos} %>
+  <% end %>
 </section>

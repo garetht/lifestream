@@ -5,7 +5,6 @@
 
 <section class="rightbar">
 
-
   <div class="streams-container clearfix">
     <div class="streams-text-container clearfix"> 
       <div class="streams-text-header">
@@ -25,36 +24,9 @@
       </div>
     </div>
     <div class="streams">
-
-    <% @streams.each do |stream| %>
-        <div class="stream  <%= "default-stream" if stream.id == current_user.default_stream_id %>" id="stream-<%= stream.id %>">
-          <% if stream.id == current_user.default_stream_id %>
-            <div class="stream-default-letter">
-              D
-            </div>
-          <% end %>
-          <div class="stream-name">
-            <%= stream.name %>
-          </div>
-          <div class="stream-hide-container">
-            <a href="<%= stream_posts_url(stream.id) %>">
-              <button class="view-stream">
-                  <div class="stream-half">
-                    View Stream
-                  </div>
-              </button>
-            </a>
-          </div>
-          <div class="stream-hide-container">
-            <button class="make-default" id="<%= stream.id %>">
-              <div class="stream-half">
-                Make Default
-              </div>
-            </button>
-          </div>
-        </div>
+      <% @streams.each do |stream| %>
+        <%= render stream %>
       <% end %>
-  
     </div>
 
     </div>

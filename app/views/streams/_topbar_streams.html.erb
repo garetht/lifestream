@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "topbar", media: "all" %>
+
+<section class="topbar clearfix">
+  
+  <div class="topbar-left">
+  </div>
+
+  <div class="topbar-right">
+
+    <div class="topbar-flash">
+      <% if flash[:alert] %>
+        <div class="topbar-message error-message">
+          <strong>Error: </strong> <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="topbar-message warning-message">
+          <strong>Warning: </strong> <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:success] %>
+        <div class="topbar-message success-message">
+          <strong>Success: </strong> <%= flash[:success] %>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="topbar-new">
+      <div class="create-post-button">
+        <a href="<%= new_stream_post_url(@streamid) %>">
+          <button class="blue-button new-post-button">Create a New Post</button>
+        </a>
+      </div>
+    </div>
+
+</section>
