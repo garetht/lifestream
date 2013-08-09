@@ -8,7 +8,7 @@ Lifestream::Application.routes.draw do
     root :to => "devise/sessions#new"
   end
 
-  resources :streams, only: [:new, :create, :destroy, :index] do
+  resources :streams, only: [:new, :create, :destroy, :index, :create] do
     member do
       post "default"
     end
@@ -16,7 +16,7 @@ Lifestream::Application.routes.draw do
   end
 
   resources :posts, only: [:index]
-  resources :categories, only: [:show, :index, :update]
+  resources :categories, only: [:show, :index, :update, :destroy, :create]
   resources :friendships, only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation:

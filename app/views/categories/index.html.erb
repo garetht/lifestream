@@ -1,3 +1,4 @@
+<%= render "topbar_categories" %>
 <%= render "layouts/leftnavbar" %>
 <%= javascript_include_tag "prototype" %>
 <%= javascript_include_tag "effects" %>
@@ -22,7 +23,9 @@
 </section>
 
 <script>
-  var tree = new SortableTree('tree', {
+var tree;
+var setupTree = function(){
+  tree = new SortableTree('tree', {
     onDrop: function(drag, drop, event){
       var locations = drag.to_params().match(/tree\[(\d+)\]\[parent_id\]=(\d+|[nul]+)/)
       var from = locations[1]
@@ -35,4 +38,23 @@
     }
   });
   tree.setSortable();
+}
+
+setupTree();
+
+var addNode = function(category){
+  jQuery("#tree").append("<li id='node_" + category.id + "'> <a>" + category.name + "</a><ul></ul></li>")
+}
+
+jQuery(".create-category-button").on("click", function(event){
+  event.preventDefault();
+  jQuery.post("<%= categories_url %>", 
+              {category: {name:jQuery(".category-input-field").val()}})
+  .done(function(category){
+    jQuery(".category-input-field").val("");
+    addNode(category);
+    setupTree();
+  })
+});
+
 </script>

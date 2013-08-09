@@ -1,0 +1,17 @@
+<% if flash[:alert] %>
+  <div class="topbar-message error-message">
+    <strong>Error: </strong> <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="topbar-message warning-message">
+    <strong>Warning: </strong> <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if flash[:success] %>
+  <div class="topbar-message success-message">
+    <strong>Success: </strong> <%= flash[:success] %>
+  </div>
+<% end %>

@@ -1,4 +1,7 @@
 class StreamsController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def create
     params[:stream][:user_id] = current_user.id
     @stream = Stream.new(params[:stream])
@@ -13,6 +16,7 @@ class StreamsController < ApplicationController
   end
 
   def destroy
+
   end
 
   def index
@@ -20,13 +24,16 @@ class StreamsController < ApplicationController
   end
 
   def default
-    if current_user.streams.pluck(:id).include?(params[:id].to_i)
+    if belongs_to_current_user params[:id]
       current_user.update_attributes(default_stream_id: params[:id])
       respond_to do |format|
         format.json {render json: "Success".to_json}
       end
     end
+  end
 
+  def belongs_to_current_user(id)
+    current_user.streams.pluck(:id).include?(id.to_i)
   end
 
 end

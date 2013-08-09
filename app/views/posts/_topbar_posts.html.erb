@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag "topbar", media: "all" %>
+
+<section class="topbar clearfix">
+  
+  <div class="topbar-left">
+  </div>
+
+  <div class="topbar-right">
+
+    <div class="topbar-flash">
+      <%= render "layouts/topbar_flashes" %>
+    </div>
+
+    <div class="topbar-new">
+      <div class="create-post-button">
+        <a href="<%= new_stream_post_url(@streamid) %>">
+          <button class="blue-button new-post-button">Create a New Post</button>
+        </a>
+      </div>
+    </div>
+
+</section>
+
+<!-- import markdown parser -->
+<!-- inject parsed Markdown with JSON -->
+<!-- Display as Github-formatted stuff? -->

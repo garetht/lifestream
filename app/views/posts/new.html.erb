@@ -58,6 +58,19 @@
 <div class="input-label">Categories</div>
 <input type="text" class="edit-categories" name="categories">
 
+<div class="new-post-location">Location
+
+<input type="hidden" class="latitude" name="post[latitude]">
+<input type="hidden" class="longitude" name="post[longitude]">
+<input type="hidden" class="location" name="post[location]">
+
+</div>
+
+<!-- This will be a dropdown. How? -->
+<div class="new-post-map">
+
+</div> 
+
 <div class="input-label">Photos!</div>
 <div class="new-post-photos">  
   <button class="add-photo">Add another photo</button>
@@ -110,5 +123,32 @@ $("#toggle-code").on("click", function(event){
 });
 
 $(".edit-categories").select2({tags: categories})
+
+$(document).ready(function(){
+
+  var reverseGeocode = function(latitude, longitude){
+    $.get("http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=true")
+    .done(function(data){
+      $(".location").attr("value", data.results[0].formatted_address)
+      $(".new-post-location").append(data.results[0].formatted_address)
+    })
+  }
+
+  var setPosition = function(position){
+    $(".latitude").attr("value", position.coords.latitude);
+    $(".longitude").attr("value", position.coords.longitude);
+    $(".new-post-location").append(position.coords.latitude);
+    $(".new-post-location").append(position.coords.longitude);
+    reverseGeocode(position.coords.latitude, position.coords.longitude)
+  }
+
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(setPosition);
+  }
+  else{
+    $(".new-post-location").append("Cannot get location.")
+  }
+});
+
 
 </script>

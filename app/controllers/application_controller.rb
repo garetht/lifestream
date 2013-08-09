@@ -4,4 +4,17 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     stream_posts_url(current_user.default_stream_id)
   end
+
+  def set_error(message)
+    flash[:alerts] = message
+  end
+
+  def set_warning(message)
+    flash[:notices] = message
+  end
+
+  def set_success(message)
+    flash[:success] = message
+  end
+  
 end

@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag    "streams_index", :media => "all" %>
 <%= stylesheet_link_tag    "show_post", :media => "all" %>
 
+<%= render "topbar_streams" %>
 <%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
@@ -9,18 +10,6 @@
     <div class="streams-text-container clearfix"> 
       <div class="streams-text-header">
         streams 
-      </div>
-      <div class="streams-text">
-    <div class="new-stream-form active">
-      <form>
-        <label class="input-label" for="new-stream-name">New Stream Name</label>
-        <input class="input-field inverse new-stream" type="text" name="stream[name]">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <div class="new-stream-button">
-          <button class="blue-button create-stream-button">Create Stream</button>
-        </div>
-      </form>
-    </div>
       </div>
     </div>
     <div class="streams">
