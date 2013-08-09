@@ -11,8 +11,6 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :post_photos
 
-  acts_as_gmappable
-
   def gmaps4rails_address
     "#{self.location}"
   end

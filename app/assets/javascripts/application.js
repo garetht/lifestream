@@ -30,18 +30,6 @@ var LSParser = function(){
   };
 
   var stockApiCall = function(ticker){
-    $.ajax({
-      url: "http://finance.yahoo.com/d/quotes.csv?s=" + ticker + "&f=k1",
-      type: "GET",
-      success: function(data){
-        console.log(data);
-      },
-      error: function(one, two, three){
-        console.log(one);
-        console.log(two);
-        console.log(three);
-      }
-    });
     $.get("http://finance.yahoo.com/d/quotes.csv?s=" + ticker + "&f=k1")
      .done(function(data){console.log(error)})
      .fail(function(one, two, three){console.log(one); console.log(two); console.log(three)});
