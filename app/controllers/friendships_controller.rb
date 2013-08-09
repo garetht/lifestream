@@ -1,4 +1,7 @@
 class FriendshipsController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def create
     to_friend= User.find_by_email(params[:friendship][:email])
     # Render error if cannot find user by that email.
