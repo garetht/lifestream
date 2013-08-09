@@ -14,7 +14,7 @@ if Rails.env.production?
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
-    ActionMailer::Base.delivery_method ||= :smtp
+  ActionMailer::Base.delivery_method ||= :smtp
 elsif Rails.env.development?
   # hey, did you hear about letter opener? Install it in your gemfile.
   ActionMailer::Base.delivery_method = :letter_opener
