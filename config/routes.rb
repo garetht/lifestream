@@ -1,6 +1,7 @@
 Lifestream::Application.routes.draw do
 
   get 'friendships/confirm' => "friendships#confirm"
+  get 'passthrough/get' => "pass_through#get"
 
   devise_for :users
 

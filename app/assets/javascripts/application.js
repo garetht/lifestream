@@ -30,9 +30,8 @@ var LSParser = function(){
   };
 
   var stockApiCall = function(ticker){
-    $.get("http://finance.yahoo.com/d/quotes.csv?s=" + ticker + "&f=k1")
-     .done(function(data){console.log(error)})
-     .fail(function(one, two, three){console.log(one); console.log(two); console.log(three)});
+    var baseurl = escape("http://dev.markitondemand.com/Api/Quote");
+    $.get("http://localhost:3000/passthrough/get", {baseurl: baseurl, symbol: ticker});
   };
 
   return {stockApiCall: stockApiCall};

@@ -3,11 +3,12 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    if params[:stream_id]
+    if params[:stream_id] && current_user.streams.pluck(:id).include?(params[:stream_id])
       @streamid = params[:stream_id]
       # This needs to be thisstream.posts
       @posts = Stream.find(@streamid).posts.order("created_at DESC")
     else
+      set_error "You are not authorized to view that stream" if !current_user.streams.pluck(:id).include?(params[:stream_id])
       @streamid = current_user.default_stream_id
       @posts = current_user.posts.order("created_at DESC")
     end
