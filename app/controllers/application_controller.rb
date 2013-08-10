@@ -6,15 +6,15 @@ class ApplicationController < ActionController::Base
   end
 
   def set_error(message)
-    flash[:alerts] = message
-  end
-
-  def set_warning(message)
-    flash[:notices] = message
+    flash[:alert] = message
   end
 
   def set_success(message)
-    flash[:success] = message
+    flash[:notice] = message
+  end
+
+  def set_warning(message)
+    flash[:warning] = message
   end
   
 end

@@ -5,13 +5,13 @@
 <% end %>
 
 <% if flash[:notice] %>
-  <div class="topbar-message warning-message">
-    <strong>Warning: </strong> <%= flash[:notice] %>
+  <div class="topbar-message success-message">
+    <strong>Success: </strong> <%= flash[:notice] %>
   </div>
 <% end %>
 
-<% if flash[:success] %>
-  <div class="topbar-message success-message">
-    <strong>Success: </strong> <%= flash[:success] %>
+<% if flash[:warning] %>
+  <div class="topbar-message warning-message">
+    <strong>Warning: </strong> <%= flash[:warning] %>
   </div>
 <% end %>
