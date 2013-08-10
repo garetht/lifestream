@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
   has_many :post_categories
   has_many :categories, through: :post_categories
 
+  acts_as_gmappable
+
   accepts_nested_attributes_for :post_photos
 
   def gmaps4rails_address
