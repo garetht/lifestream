@@ -39,6 +39,7 @@ gem 'aws-sdk'
 gem 'figaro'
 gem 'select2-rails'
 gem 'gmaps4rails'
+gem 'underscore-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

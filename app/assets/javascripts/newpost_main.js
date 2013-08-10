@@ -36,6 +36,7 @@ $(function() {
 
   $('#markdown-edit').bind('keyup', function() {
     isEdited = true;
+    LSParser.parse($("#markdown-edit").val())
     $('#output').html(markdown.toHTML($('#markdown-edit').val()));
   });
 

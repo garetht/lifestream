@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require select2
+//= require underscore
 //= require jquery_ujs
 
 /*
@@ -21,20 +22,49 @@
 */
 
 var LSParser = function(){
-  var parseCommand = function(){
-    string.match(/([A-Z]+)(.*)/);
+  var parse = function(string){
+    console.log(string)
+    var lsStrings = string.match(/@ (.+) @/g);
+    var results = _.each(lsStrings, function(lsString){
+      parseSequence(lsString);
+    });
   };
 
-  var parseStock = function(){
+  var parseSequence = function(lsString){
+    var split = lsString.match(/@ ([A-Z]+)(.*) @/);
+    var command = split[1]
+    var arguments = split[2].replace(/^\s+|\s+$/, '').split(" ");
 
+    if(command == "STOCK"){
+      parseStock(arguments);
+    }
+    else if(command == "WEATHER"){
+      parseWeather(arguments);
+    }
+    else{
+      parseIdentity(command, arguments);
+    }
   };
+
+  var parseStock = function(arguments){
+    var ticker = arguments[0];
+    stockApiCall(ticker);
+  }
 
   var stockApiCall = function(ticker){
-    var baseurl = escape("http://dev.markitondemand.com/Api/Quote");
-    $.get("http://localhost:3000/passthrough/get", {baseurl: baseurl, symbol: ticker});
+    var apiurl = "http://dev.markitondemand.com/Api/Quote";
+    $.get("http://localhost:3000/passthrough/get", 
+          {apiurl: apiurl, type: "xml", params: {symbol: ticker}})
+    .done(function(data){
+      console.log(data)
+      var price = data["QuoteApiModel"]["Data"]["LastPrice"];
+      if (price){
+        $("#markdown-edit").val($("#markdown-edit").val().replace(/@ STOCK.* @/, price));
+    }
+    });
   };
 
-  return {stockApiCall: stockApiCall};
+  return {parse: parse};
 }();
 
 
