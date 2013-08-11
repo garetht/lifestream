@@ -1,5 +1,17 @@
+<%= stylesheet_link_tag    "md_style", media: "all" %>
+<%= stylesheet_link_tag    "md_github", media: "all" %>
+<%= stylesheet_link_tag    "highlight_github", media: "all" %>
+<%= stylesheet_link_tag    "new_post", media: "all" %>
+<%= stylesheet_link_tag    "show_post", media: "all" %>
+<%= stylesheet_link_tag    "gmaps4rails" %>
+<%= javascript_include_tag "jquery.autosize-min" %>
+<%= javascript_include_tag "markdown" %>
+<%= javascript_include_tag "newpost_main" %>
+<%= javascript_include_tag "highlight" %>
+
 <%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
-<%= render @post %>
+  <%= render partial: "post", locals: {post: @post, onlymap: true,
+                                       firstmap: false, lastmap: false} %>
 </section>

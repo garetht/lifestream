@@ -1,18 +1,49 @@
-<%= stylesheet_link_tag    "md_style", media: "all" %>
-<%= stylesheet_link_tag    "md_github", media: "all" %>
-<%= stylesheet_link_tag    "highlight_github", media: "all" %>
-<%= stylesheet_link_tag    "new_post", media: "all" %>
-<%= stylesheet_link_tag    "show_post", media: "all" %>
-<%= javascript_include_tag "jquery.autosize-min" %>
-<%= javascript_include_tag "markdown" %>
-<%= javascript_include_tag "newpost_main" %>
-<%= javascript_include_tag "highlight" %>
+<% word_id = "#{post.id.to_words.gsub(/ /, "")}" %>
+
+<% markers = {markers: { data: post.to_gmaps4rails }} %>
+<% options = {map_options: {auto_adjust: false, center_on_user: true, %> 
+            <% zoom: 15, id: word_id, :class => "google-map" }} %>
+<% marker_options = markers.merge(options) %>
+<% not_last_map = {last_map: false} %>
+<% no_scripts = {scripts: :none} %>
+
+<% options_hash = marker_options.merge(no_scripts) if lastmap %>
+<% options_hash = marker_options.merge(not_last_map) if firstmap %>
+<% options_hash = marker_options if onlymap %>
+<% unless lastmap || firstmap || onlymap %>
+  <% options_hash = marker_options.merge(not_last_map).merge(no_scripts) %>
+<% end %>
 
  <% if post.content_type == "markdown" %>
   <script type="application/json" id="markdown-contents-<%= post.id %>">
     <%= post.body.gsub(/\r/, "").to_json.html_safe %>
   </script>
 <% end %>
+
+<script type="application/javascript">
+$(function(){
+  $(".accordion").accordion({
+    collapsible: true,
+    icons: false,
+    active: false
+  })
+
+  $(".ui-accordion-header").on("click", function(event){
+    var mapid = event["target"]["nextElementSibling"]["children"][0].id
+    var map = Gmaps[mapid].map
+    var latitude = event["target"]["parentElement"]["dataset"]["lat"]
+    var longitude = event["target"]["parentElement"]["dataset"]["long"]
+    var latlng = new google.maps.LatLng(latitude, longitude);
+    var bounds = map.getBounds()
+    if (bounds["Z"]["b"] === bounds["Z"]["d"]){
+        google.maps.event.trigger(map, "resize")
+        map.setCenter(latlng);
+    }
+  })
+});
+
+
+</script>
 
 <div class="posts-container clearfix">
 
@@ -68,6 +99,11 @@
         <% end %>
         </div>
       <% end %>
+      
+      <div class="post-map accordion" data-lat="<%= post.latitude %>" data-long="<%= post.longitude %>">
+        <h1> Location </h1>
+        <%= gmaps(options_hash) %>
+      </div>
 
       <div class="post-categories clearfix">
         <div class="category-label">
@@ -89,8 +125,3 @@ $(document).ready(function() {
   $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 });
 </script>
-
-
-<!-- import markdown parser -->
-<!-- inject parsed Markdown with JSON -->
-<!-- Display as Github-formatted stuff? -->

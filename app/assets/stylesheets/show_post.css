@@ -1,5 +1,4 @@
 .post-header{
-  font-family: "calluna";
 }
 
 .show-post-image{
@@ -153,6 +152,45 @@
 .post-photo{
   float:left;
   padding-right: 10px;
+}
+
+.post-map .map_container{
+  width: 630px;
+  box-shadow: none;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.post-map .google-map{
+  width: 630px;
+  height: 300px;
+  box-shadow: none;
+  margin: 0px;
+}
+
+/* Corners of the accordion header */
+.ui-corner-all, .ui-corner-top {
+  border-radius: 0px;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+  border: 0px;
+  border-top: 1px solid #ccc;
+  color: #888;
+  font-size: 18px;
+  font-family: "Source Sans Pro";
+}
+
+
+/* Collapsed header state */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  border: 0px;
+  border-top: 1px solid #ccc;
+  color: #333;
+  background: none;
+  font-size: 18px;
+  font-family: "Source Sans Pro";
 }
 
 .post-categories{

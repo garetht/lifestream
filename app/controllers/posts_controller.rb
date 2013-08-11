@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   def new
     @streamid = params[:stream_id]
-    # for select2
+    # for select2 dropdown box
     @categories = Category.select('name').
                   where("user_id = ?", current_user.id).
                   pluck(:name)
@@ -38,6 +38,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @json = Post.find(params[:id]).to_gmaps4rails
   end
 
   def update
@@ -45,6 +46,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    
   end
 
   def destroy

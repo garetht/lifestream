@@ -74,6 +74,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.4)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.0)
     launchy (2.3.0)
       addressable (~> 2.3)
@@ -85,6 +88,9 @@ GEM
     mime-types (1.23)
     multi_json (1.7.8)
     nokogiri (1.5.10)
+    numbers_and_words (0.9.0)
+      activesupport
+      i18n
     orm_adapter (0.4.0)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
@@ -164,7 +170,9 @@ DEPENDENCIES
   figaro
   gmaps4rails
   jquery-rails
+  jquery-ui-rails
   letter_opener
+  numbers_and_words
   paperclip
   pg
   rails (= 3.2.13)
