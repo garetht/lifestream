@@ -117,6 +117,7 @@
 
 .post-title-container{
   width: 630px;
+  min-height: 35px;
   padding-left: 30px;
   float:right;
 }

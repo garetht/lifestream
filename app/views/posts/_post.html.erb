@@ -1,4 +1,4 @@
-<% word_id = "#{post.id.to_words.gsub(/ /, "")}" %>
+<% word_id = "#{post.id.to_words.gsub(/[ -]/, "")}" %>
 
 <% markers = {markers: { data: post.to_gmaps4rails }} %>
 <% options = {map_options: {auto_adjust: false, center_on_user: true, 
