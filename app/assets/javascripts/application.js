@@ -15,6 +15,7 @@
 //= require underscore
 //= require jquery_ujs
 //= require jquery.ui.accordion
+//= require jquery.ui.autocomplete
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.bing
 //= require gmaps4rails/gmaps4rails.googlemaps

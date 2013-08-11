@@ -36,7 +36,11 @@ var LSParser = function(){
 
   var stockApiCall = function(ticker){
     var apiurl = "http://dev.markitondemand.com/Api/Quote";
-    $.get("http://" + window.location.hostname + "/passthrough/get", 
+    var currentHost = window.location.hostname;
+    if (window.location.port.length)
+      currentHost += ":" + window.location.port;
+
+    $.get("http://" + currentHost + "/passthrough/get", 
           {apiurl: apiurl, type: "xml", params: {symbol: ticker}})
     .done(function(data){
       console.log(data)

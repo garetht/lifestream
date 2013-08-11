@@ -59,21 +59,21 @@
 <div class="input-label">Categories</div>
 <input type="text" class="edit-categories" name="categories">
 
-<div class="new-post-location">Location
+<label class="input-label new-post-location">Location</label>
+<div class="new-post-location">
 
 <input type="hidden" class="latitude" name="post[latitude]">
 <input type="hidden" class="longitude" name="post[longitude]">
-<input type="hidden" class="location" name="post[location]">
-
+<input type="text" class="location input-field" name="post[location]">
+  <div class="new-post-map">
+  <%= gmaps("map_options" => { "detect_location" => true, 
+    "auto_zoom" => false, "center_on_user" => true, 
+    "zoom" => 15, :class => "google-map", "libraries" => ["places"]}) %>
+  </div> 
 </div>
 
-<!-- This will be a dropdown. How? -->
-<div class="new-post-map">
-
-</div> 
-
 <div class="input-label">Photos!</div>
-<div class="new-post-photos">  
+<div class="new-post-photos">
   <button class="add-photo">Add another photo</button>
   <div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][0][image]" type="file"></div>
 
@@ -84,7 +84,7 @@
 </section>
 
 <script type="application/javascript">
-
+var autocomplete;
 var categories = JSON.parse($("#categories").html())
 var postphotos = 0;
 
@@ -125,23 +125,51 @@ $("#toggle-code").on("click", function(event){
 
 $(".edit-categories").select2({tags: categories})
 
+var geocode = function(address){
+  $.get("http://maps.googleapis.com/maps/api/geocode/json",
+    {address: address, sensor: "true"})
+  .done(function(data){
+    var lat = data["results"][0]["geometry"]["location"]["lat"]
+    var lng = data["results"][0]["geometry"]["location"]["lng"]
+    
+    Gmaps.map.replaceMarkers([{"lat": lat, "lng": lng}]);
+    autocomplete.setBounds(Gmaps.map.serviceObject.getBounds());
+  })
+}
+
+$(".location.input-field").keypress(function(event){
+  if(event.which === 13){
+    geocode($(this).val())
+  }
+})
+
 $(document).ready(function(){
 
   var reverseGeocode = function(latitude, longitude){
-    $.get("http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=true")
+    $.get("http://maps.googleapis.com/maps/api/geocode/json",
+      {latlng: latitude + "," + longitude, sensor: "true"})
     .done(function(data){
       $(".location").attr("value", data.results[0].formatted_address)
-      $(".new-post-location").append(data.results[0].formatted_address)
     })
   }
 
-  var setPosition = function(position){
-    $(".latitude").attr("value", position.coords.latitude);
-    $(".longitude").attr("value", position.coords.longitude);
-    $(".new-post-location").append(position.coords.latitude);
-    $(".new-post-location").append(position.coords.longitude);
-    reverseGeocode(position.coords.latitude, position.coords.longitude)
+  Gmaps.map.setGeolocation = function(lat, lng){
+    $(".latitude").attr("value", lat);
+    $(".longitude").attr("value", lng);
+    Gmaps.map.addMarkers([{"lat": lat, "lng": lng}]);
   }
+
+  var setPosition = function(position){
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    // Fill in forms for submission.
+    $(".latitude").attr("value", lat);
+    $(".longitude").attr("value", lng);
+
+    reverseGeocode(lat, lng);
+    Gmaps.map.setGeolocation(lat, lng)
+    autocomplete.setBounds(Gmaps.map.serviceObject.getBounds());
+  };
 
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(setPosition);
@@ -149,7 +177,17 @@ $(document).ready(function(){
   else{
     $(".new-post-location").append("Cannot get location.")
   }
+
+  var input = document.getElementsByClassName("location")[0];
+  var options = { radius: 5000 }
+  autocomplete = new google.maps.places.Autocomplete(input, options)
+
+
 });
-
-
 </script>
+
+<% content_for :scripts do %>
+  <script>
+    google.maps.visualRefresh = true;
+  </script>
+<% end %>

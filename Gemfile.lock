@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:apneadiving/Google-Maps-for-Rails.git
+  revision: 95bdbf27789e9fd7aca9995aca9c3e017239c9e5
+  specs:
+    gmaps4rails (2.0.0.pre)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -67,7 +73,6 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
-    gmaps4rails (1.5.6)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -168,7 +173,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   figaro
-  gmaps4rails
+  gmaps4rails!
   jquery-rails
   jquery-ui-rails
   letter_opener

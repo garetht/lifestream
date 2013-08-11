@@ -3,3 +3,9 @@
 <section class="rightbar">
 <%= render @category %>
 </section>
+
+<% content_for :scripts do %>
+  <script>
+      google.maps.visualRefresh = true;
+  </script>
+<% end %>

@@ -167,6 +167,43 @@ input[type=radio]:checked + label {
         background-color:#e0e0e0;
 }
 
+.map_container{
+  width: 680px;
+  box-shadow: none;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.google-map{
+  width: 680px;
+  height: 300px;
+  box-shadow: none;
+  margin: 0px;
+}
+
+.location.input-field{
+  width: 666.5px;
+}
+
+.ui-corner-all{
+  border-radius: 0;
+}
+
+.pac-item{
+  font-family: "Source Sans Pro";
+  padding: 10px;  
+  font-weight: normal;
+}
+
+.pac-item.pac-selected{
+  background-color: #ABC9E3;
+}
+
+.pac-item:hover{
+  background-color: #F6F6E4;
+}
+
 /* The tag box itself, I think */
 .select2-container-multi .select2-choices {
 margin: 0;

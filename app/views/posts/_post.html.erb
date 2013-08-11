@@ -1,8 +1,9 @@
 <% word_id = "#{post.id.to_words.gsub(/ /, "")}" %>
 
 <% markers = {markers: { data: post.to_gmaps4rails }} %>
-<% options = {map_options: {auto_adjust: false, center_on_user: true, %> 
-            <% zoom: 15, id: word_id, :class => "google-map" }} %>
+<% options = {map_options: {auto_adjust: false, center_on_user: true, 
+             zoom: 15, id: word_id, :class => "google-map",
+             draggable: false }} %>
 <% marker_options = markers.merge(options) %>
 <% not_last_map = {last_map: false} %>
 <% no_scripts = {scripts: :none} %>
@@ -35,14 +36,13 @@ $(function(){
     var longitude = event["target"]["parentElement"]["dataset"]["long"]
     var latlng = new google.maps.LatLng(latitude, longitude);
     var bounds = map.getBounds()
-    if (bounds["Z"]["b"] === bounds["Z"]["d"]){
-        google.maps.event.trigger(map, "resize")
-        map.setCenter(latlng);
+    if (bounds.getNorthEast().equals(bounds.getSouthWest())){
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(latlng);
     }
+
   })
 });
-
-
 </script>
 
 <div class="posts-container clearfix">

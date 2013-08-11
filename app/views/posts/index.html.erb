@@ -12,20 +12,29 @@
 <%= render "topbar_posts" %>
 <%= render "layouts/leftnavbar" %>
 
+
 <section class="rightbar">
+  <!-- Do these checks on an array of post.map ids -->
   <% @posts.each do |post| %>
-  <% if @posts.length == 1 %>
-    <%= render partial: "post", locals: {post: post, 
-        lastmap: false, firstmap: false, onlymap: true} %>
-  <% elsif post.id == @posts.last.id %>
-    <%= render partial: "post", locals: {post: post, 
-        lastmap: true, firstmap: false, onlymap: false} %>
-  <% elsif post.id == @posts.first.id %>
-    <%= render partial: "post", locals: {post: post, 
-        lastmap: false, firstmap: true, onlymap: false} %>
-  <% else %>
-    <%= render partial: "post", locals: {post: post, 
-        lastmap: false, firstmap: false, onlymap: false} %>
-  <% end %>
+    <% if @posts.length == 1 %>
+      <%= render partial: "post", locals: {post: post, 
+          lastmap: false, firstmap: false, onlymap: true} %>
+    <% elsif post.id == @posts.last.id %>
+      <%= render partial: "post", locals: {post: post, 
+          lastmap: true, firstmap: false, onlymap: false} %>
+    <% elsif post.id == @posts.first.id %>
+      <%= render partial: "post", locals: {post: post, 
+          lastmap: false, firstmap: true, onlymap: false} %>
+    <% else %>
+      <%= render partial: "post", locals: {post: post, 
+          lastmap: false, firstmap: false, onlymap: false} %>
+    <% end %>
   <% end %>
 </section>
+
+<% content_for :scripts do %>
+  <script>
+      google.maps.visualRefresh = true;
+  </script>
+<% end %>
+
