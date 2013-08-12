@@ -1,4 +1,4 @@
-<div class="stream  <%= "default-stream" if stream.id == current_user.default_stream_id %>" id="stream-<%= stream.id %>">
+<div class="stream <%= "default-stream" if stream.id == current_user.default_stream_id %>" id="stream-<%= stream.id %>">
   <% if stream.id == current_user.default_stream_id %>
     <div class="stream-default-letter">
       D

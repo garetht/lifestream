@@ -42,7 +42,7 @@ gem 'gmaps4rails', :git => 'git://github.com/apneadiving/Google-Maps-for-Rails.g
 gem 'underscore-rails'
 gem 'numbers_and_words'
 gem 'jquery-ui-rails'
-gem 'ejs'
+gem 'animate-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -7,8 +7,12 @@ class StreamsController < ApplicationController
     @stream = Stream.new(params[:stream])
     @stream.save
 
-    respond_to do |format|
-      format.json {render json: @stream.to_json}
+    if request.xhr?
+      render @stream
+    else
+      respond_to do |format|
+        format.json {render json: @stream.to_json}
+      end
     end
   end
 

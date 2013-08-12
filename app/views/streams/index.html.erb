@@ -21,50 +21,16 @@
   </div>
 </section>
 
-<script type="text/template" id="new-stream-template">
-  <div class="stream" id="stream-<%%= stream.id %>">
-    <div class="stream-name">
-      <%%= stream.name %>
-    </div>
-    <div class="stream-hide-container">
-      <a href="/streams/" + <%%= stream.id %> + "/posts">
-        <button class="view-stream">
-            <div class="stream-half">
-              View Stream
-            </div>
-        </button>
-      </a>
-    </div>
-    <div class="stream-hide-container">
-      <button class="make-default" id="<%%= stream.id %>">
-        <div class="stream-half">
-          Make Default
-        </div>
-      </button>
-    </div>
-  </div>
-</script>
-
 <script type="application/javascript">
 
 $(".new-stream-link").on("click", function(event){
   $(".new-stream-form").toggleClass("active")
 })
 
-$(".create-stream-button").on("click", function(event){
-  event.preventDefault();
-  var formData = $(this.form).serialize()
-  $.ajax({
-    url: "<%= streams_url %>",
-    type: "POST",
-    data: formData
-  }).done(function(stream){
-    $(".new-stream").val("");
-    var streamTemplate = $("#new-stream-template").html();
-    var templateFunction = _.template(streamTemplate);
-    var renderedHTML = templateFunction({stream: stream})
-    $(".streams").append(renderedHTML);
-  })
+$(".create-stream-form").on("ajax:success", function(event, data){
+  $(".new-stream").val("");
+  $(".streams").append(data);
+  $(".stream:last-child").addClass("animate")
 })
 
 $(".streams").on("click", ".show-stream", function(event){
