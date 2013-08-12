@@ -1,0 +1,21 @@
+<div class="stream" id="stream-<%= stream.id %>">
+  <div class="stream-name">
+    <%= stream.name %>
+  </div>
+  <div class="stream-hide-container">
+    <a href="/streams/" + <%= stream.id %> + "/posts">
+      <button class="view-stream">
+          <div class="stream-half">
+            View Stream
+          </div>
+      </button>
+    </a>
+  </div>
+  <div class="stream-hide-container">
+    <button class="make-default" id="<%= stream.id %>">
+      <div class="stream-half">
+        Make Default
+      </div>
+    </button>
+  </div>
+</div>
