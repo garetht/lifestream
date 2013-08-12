@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:apneadiving/Google-Maps-for-Rails.git
+  remote: git://github.com/apneadiving/Google-Maps-for-Rails.git
   revision: 95bdbf27789e9fd7aca9995aca9c3e017239c9e5
   specs:
     gmaps4rails (2.0.0.pre)
