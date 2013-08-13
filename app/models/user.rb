@@ -10,10 +10,12 @@ class User < ActiveRecord::Base
                   :login, :friend_ids
   attr_accessor :login
 
-  has_many :streams
+  has_many :streams, dependent: :destroy
   has_many :friendships
   has_many :friends, through: :friendships, source: :friend
-  has_many :categories
+  has_many :categories, dependent: :destroy
+
+  has_many :comments, dependent: :destroy
 
   validates :username, uniqueness: true
 

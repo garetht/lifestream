@@ -1,0 +1,19 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag "comments", media: "all"%>
+<% end %>
+
+<div class="comments">
+  <%= render partial: "comment", 
+    locals:{hash: hash, children: root, first: true, current: nil} %>
+</div>
+
+<script type="application/javascript">
+$(".comments").on("click", ".comment-reply", function(){
+  $(this).parent().parent().find("> ul > .comment-form")
+  .toggleClass("hidden-comment-form");
+})
+
+$(".comment-tree").on("ajax:success", ".new-comment-form", function(event, data){
+  $(this).replaceWith(data);
+})
+</script>

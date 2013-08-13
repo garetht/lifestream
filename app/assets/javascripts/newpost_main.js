@@ -42,7 +42,7 @@ $(function() {
 
   $('#markdown-edit').on('keyup change', function() {
     isEdited = true;
-    LSParser.parse($("#markdown-edit").val())
+    LSParser.parse($("#markdown-edit").val());
     $('#output').html(markdown.toHTML($('#markdown-edit').val()));
   });
 

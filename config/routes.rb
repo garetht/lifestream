@@ -16,9 +16,15 @@ Lifestream::Application.routes.draw do
     resources :posts
   end
 
-  resources :posts, only: [:index]
+  resources :posts, only: [:index] do
+    member do
+      post "publicize"
+    end
+  end
+  
   resources :categories, only: [:show, :index, :update, :destroy, :create]
   resources :friendships, only: [:index, :create, :destroy]
+  resources :comments, only: [:new, :create, :destroy, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

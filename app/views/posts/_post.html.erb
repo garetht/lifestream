@@ -81,7 +81,15 @@ $(function(){
           <% end %>
         </div>
         <div class="post-body-publicize">
-          <button class="post-publicize orange-button button">Publicize</button>
+          <% if @cupids.include?(post.id) %>
+            <button class="post-publicize darkblue-button button" data-id="<%= post.id %>">
+              <% if post.public_type == "private" || !post.public_type %>
+              Publicize
+              <% elsif post.public_type == "public" %>
+              Privatize
+              <% end %>
+            </button>
+          <% end %>
         </div>
       </div>
 
@@ -133,4 +141,18 @@ $(function(){
 $(document).ready(function() {
   $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 });
+
+$(".posts-container").on("click", ".post-publicize", function(event){
+  event.preventDefault();
+  var that = $(this);
+  $.post("/posts/" + $(this).data("id") + "/publicize")
+  .done(function(data){
+    console.log(data)
+    if (data === "private"){
+      that.html("Privatize")
+    } else if (data === "public"){
+      that.html("Publicize")
+    }
+  })
+})
 </script>

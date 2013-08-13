@@ -14,6 +14,7 @@ class PostsController < ApplicationController
       set_error "You are not authorized to view that stream."
       redirect_to stream_posts_url(current_user.default_stream_id)
     end
+    @cupids = current_user.posts.pluck(:id)
   end
 
   def new
@@ -44,11 +45,26 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    
+    @cupids = current_user.posts.pluck(:id)
+    if @cupids.include?(params[:id].to_i)
+      @post = Post.find(params[:id])
+    else
+      set_error "You are not authorized to access that post."
+    end
+
   end
 
   def destroy
+  end
+
+  def publicize
+    @post = Post.find_by_id(params[:id])
+    if @post.public_type == "public" 
+      @post.update_attributes(public_type: "private")
+    elsif @post.public_type == "private" || !@post.public_type
+      @post.update_attributes(public_type: "public")
+    end
+    render json: @post.public_type.to_json
   end
 
   # Is there a way to get Rails to generate the missing categories

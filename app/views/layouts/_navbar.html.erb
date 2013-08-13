@@ -4,14 +4,14 @@
 <nav>
   <div class="navbar clearfix">
     <ul>
-      <a href="<%= root_url %>"><li class="home">Home</li></a>
-      <a href="#"><li>Contact</li></a>
+      <li class="home"><a href="<%= root_url %>">Home</a></li>
+      <li><a href="#">Contact</a></li>
       <% if current_user %>
-        <a href="<%= edit_user_registration_url %>"><li>Edit Profile</li></a>
-        <a href="<%= destroy_user_session_url %>" data-method="delete" rel="nofollow"><li>Sign Out</li></a>
+        <li><a href="<%= edit_user_registration_url %>">Edit Profile</a></li>
+        <li><a href="<%= destroy_user_session_url %>" data-method="delete" rel="nofollow">Sign Out</a></li>
       <% else %>
-        <a href="<%= new_user_registration_url %>"><li>Sign Up</li></a>
-        <a href="<%= new_user_session_url %>"><li>Sign In</li></a>
+       <li><a href="<%= new_user_registration_url %>">Sign Up</a></li>
+        <li><a href="<%= new_user_session_url %>">Sign In</a></li>
       <% end %>
     </ul>
   </div>

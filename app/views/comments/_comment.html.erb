@@ -1,0 +1,26 @@
+<ul <%= "class=comment-tree" if first %>>
+
+  <% children.each do |child| %>
+    <li id="node_<%= child.id %>">
+      <div class="comment-text"><%= child.text %></div>
+      <div class="comment-bottom clearfix">
+        <a class="comment-reply">Reply</a>
+        <div class="comment-time"><%= child.created_at.strftime("%B %e at %l:%M%p") %> </div>
+        <div class="comment-user">by <%= child.user_id %></div>
+      </div>
+      <% if hash[child.id] %>
+      <%= render partial: "comment", locals: {hash: hash, children: hash[child.id], first: false, current: child.id} %>
+      <% end %>
+    </li>
+  <% end %>
+
+  <div class="comment-form <%= 'hidden-comment-form' unless first %>">
+    <form action="<%= comments_url %>" class="new-comment-form" method="post" data-remote="true">
+      <div class="comment-field">
+        <input type="text" name="comment[text]" placeholder="Write a comment...">
+        <input type="hidden" name="comment[post_id]" value="12">
+        <input type="hidden" name="comment[parent_id]" value="<%= current %>">
+      </div>
+    </form>
+</div>
+</ul>

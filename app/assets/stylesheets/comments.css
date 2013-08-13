@@ -1,0 +1,65 @@
+.comments{
+  width: 400px;
+  margin: auto;
+}
+.comments ul{
+  font-family: "Source Sans Pro";
+  font-size: 13px;
+  text-align: left;
+  background-color: #ddd;
+}
+
+.comments .comment-text{
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.comments li{
+  border-top: 1px solid #ccc;
+  padding: 5px 0px 0px 15px;
+}
+
+.comments input{
+  width: 95%;
+  font-family: "Source Sans Pro";
+  font-size: 12px;
+  padding: 3px;
+  outline: 0;
+}
+
+.comments .comment-reply{
+  float: left;
+  font-size: 12px;
+  color: #478BC2;
+  padding-right: 8px;
+}
+
+.comments .comment-reply:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.comments .comment-time{
+  float: left;
+  padding-bottom: 3px;
+  font-size: 12px;
+  padding-right: 3px;
+  color: #888;
+}
+
+.comments .comment-user{
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+  color: #888;
+}
+
+.hidden-comment-form{
+  display: none;
+}
+
+.comments .comment-field{
+  padding: 7px;
+  background-color: #ddd;
+  border-top: 2px solid #ccc;
+}
