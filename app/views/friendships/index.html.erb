@@ -1,67 +1,63 @@
-<%= stylesheet_link_tag    "friends_index", :media => "all" %>
+<%= stylesheet_link_tag    "friendships_index", :media => "all" %>
 
+<%= render "topbar_friendships" %>
 <%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
-  <div class="new-friendship">
-    <div class="new-friendship-link"><span class="new">new</span> <span class="postdot">friendship.</span></div>
-    <div class="new-friendship-form">
-      <form>
-        <label for="new-friendship-email">Enter your friend's email.</label>
-        <input id="new-friendship-email" type="text" name="friendship[email]">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <button class="create-friendship">Add friend</button>
-      </form>
+  <div class="friendships-container clearfix">
+    <div class="friendships-text-container clearfix"> 
+      <div class="friendships-text-header">
+        Friends 
+      </div>
+    </div>
+  <div class="friendlists-container">
+    <div class="friendlist-requested">
+      <div class="friendlist-header">Pending Requests</div>
+      <ul>
+        <% @pending_requests.each do |request| %>
+          <%= render partial: "friend", locals: {friend: request, status: "requested"} %>
+        <% end %>
+      </ul>
     </div>
 
-  </div>
+    <div class="friendlist-pending">
+      <div class="friendlist-header">Pending Confirmations</div>
+      <ul>
+        <% @pending_friends.each do |request| %>
+          <%= render partial: "friend", locals: {friend: request, status: "pending"} %>
+        <% end %>
+      </ul>
+    </div>
 
-<div class="pending-requests">
-  Pending Requests
-  <ul>
-  <% @pending_requests.each do |request| %>
-  <li><%= request.username %></li>
-  <% end %>
-  </ul>
-</div>
-
-<div class="pending-friends">
-  Pending Friends
-  <ul>
-  <% @pending_friends.each do |friend| %>
-  <li><%= friend.username %></li>
-  <% end %>
-  </ul>
-</div>
-
-<div class="friendships-list">
-  Friendships List
-  <ul>
-    <% @friends.each do |friend| %>
-    <li><%= friend.username %></li>
-    <% end %>
-  </ul>
-</div>
+    <div class="friendlist-confirmed">
+      <div class="friendlist-header">Friends!</div>
+      <ul>
+        <% @friends.each do |friend| %>
+          <%= render partial: "friend", locals: {friend: friend, status: "confirmed"} %>
+        <% end %>
+      </ul>
+    </div>
 
 </section>
 
 <script type="application/javascript">
 
 $(".new-friendship-link").on("click", function(event){
-  $(".new-friendship-form").toggleClass("active")
+  $(".new-friendship-form").toggleClass("active");
 })
 
-$(".create-friendship").on("click", function(event){
-  event.preventDefault();
-  var formData = $(this.form).serialize()
-  $.ajax({
-    url: "<%= friendships_url %>",
-    type: "POST",
-    data: formData
-  }).done(function(response){
-    $(".new-friendship-name").val("");
-    $(".new-friendship-form").removeClass("active");
-    // Do a new friendshipSquare fade in effect!
+$(".create-friendship-form").on("ajax:success", function(event, data){
+  $(".friendship-input-field").val("");
+  var type = data.match(/li class = "(.*)"/)[1]
+  $(".friendlist-" + type).append(data);
+})
+
+$(".pending").on("click", function(event){
+  var email = $(this).data("email");
+  $.post("<%= friendships_url %>", {friendship: {email: email}})
+  .done(function(friendship){
+    $(".pending[data-email='" + email + "']").remove();
+    $(".friendlist-confirmed ul").append(friendship);
   })
 })
 

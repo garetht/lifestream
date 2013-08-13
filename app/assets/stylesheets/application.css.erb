@@ -11,7 +11,6 @@
  *= require_self
  *= require select2
  *= require gmaps4rails
- *= require animate
  *= require jquery.ui.accordion
  *= require jquery.ui.autocomplete
  */
@@ -221,8 +220,7 @@ nav{
   background-color: #ABC9E3;
 }
 
-.blue-button{
-  background-color: #478BC2;
+.button{
   font-family: "Source Sans Pro";
   text-transform: uppercase;
   font-size: 14px;
@@ -233,7 +231,30 @@ nav{
   margin: 0;
 }
 
-.blue-button:hover{
-  background-color: #8CB9D9;
+.button:hover{
   cursor:pointer;
+}
+
+.blue-button.button{
+  background-color: #478BC2;
+}
+
+.blue-button.button:hover{
+  background-color: #8CB9D9;
+}
+
+.green-button.button{
+  background-color: #27AE60;
+}
+
+.green-button.button:hover{
+  background-color: #2ecc71;
+}
+
+.orange-button.button{
+  background-color: #d35400;
+}
+
+.orange-button.button:hover{
+  background-color: #e67e22;
 }

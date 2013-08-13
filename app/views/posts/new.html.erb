@@ -26,7 +26,7 @@
     <label for="toggle-plaintext">Plain Text</label>
     <input type="radio" name="post[content_type]" id="toggle-markdown" value="markdown">
     <label for="toggle-markdown">Markdown</label>
-    <input type="radio" name="post[content_type]" id="toggle-code" value="code">
+    <input type="radio" name="post[content_type]" id="toggle-code" value="markdown">
     <label for="toggle-code">Code</label>
 
     <button class="clear-button">Clear</button>
@@ -43,11 +43,14 @@
 
   <div class="edit-field edit-markdown">
     <div id="container clearfix">
-        <div class="markdown-content">
-          <textarea id="markdown-edit" class="new-post-body input-textarea" name="post[body]" placeholder="Write your post here."></textarea>
-        </div>
-        <div class="live-preview live-preview-element">
 
+        <div class="markdown-content">
+          <textarea id="markdown-edit" class="active new-post-body input-textarea" name="post[body]" placeholder="Write your post here."></textarea>
+          <div id="code-edit">
+          </div>
+        </div>
+
+        <div class="live-preview live-preview-element">
           <div id="output" class="markdown-body">
           </div>
         </div>
@@ -79,8 +82,17 @@
 
 </div>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="submit" class="blue-button" value="Make new post!">
+  <input type="submit" class="blue-button button" value="Make new post!">
 </form>
+
+
+<script>
+    var editor = ace.edit("code-edit");
+    editor.setTheme("ace/theme/tomorrow");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.setValue("");
+</script>
+
 </section>
 
 <script type="application/javascript">
@@ -104,12 +116,16 @@ $(".add-photo").on("click", function(event){
 
 $("#toggle-plaintext").on("click", function(event){
   $(".live-preview-element").removeClass("active");
+  $("#code-edit").removeClass("active")
+  $("#markdown-edit").addClass("active")
   $(".clear-button").animate({marginLeft: 350}, 500 );
   $("#markdown-edit").animate({width: 650}, 500 );
   $("#markdown-edit").focus()
 });
 
 $("#toggle-markdown").on("click", function(event){
+  $("#code-edit").removeClass("active")
+  $("#markdown-edit").addClass("active")
   $(".clear-button").animate({marginLeft: 100}, 500 );
   $("#markdown-edit").animate({width: 400}, 500, function(){
     $(".live-preview-element").addClass("active");
@@ -118,13 +134,31 @@ $("#toggle-markdown").on("click", function(event){
 });
 
 $("#toggle-code").on("click", function(event){
-  $(".edit-plaintext").removeClass("active")
-  $(".edit-markdown").removeClass("active")
-  $(".edit-code").addClass("active")
+  $("#markdown-edit").animate({width: 400}, 500, function(){
+    $("#code-edit").addClass("active");
+    editor.setValue(editor.getValue());
+    editor.navigateFileEnd();
+    editor.focus();
+    $("#markdown-edit").removeClass("active");
+    $(".live-preview-element").addClass("active");
+  });
+  $(".edit-plaintext").removeClass("active");
+  $(".clear-button").animate({marginLeft: 100}, 500 );
 });
 
-$(".edit-categories").select2({tags: categories})
+$(".edit-categories").select2({tags: categories});
 
+//Mirroring the code editor and markdown-edit text field.
+$("#markdown-edit").keyup(function(){
+  editor.setValue(this.value);
+})
+
+editor.getSession().on("change", function(){
+  $("#markdown-edit").val(editor.getValue());
+  $("#markdown-edit").trigger("change")
+})
+
+//Geocoding and Location
 var geocode = function(address){
   $.get("http://maps.googleapis.com/maps/api/geocode/json",
     {address: address, sensor: "true"})
@@ -181,7 +215,6 @@ $(document).ready(function(){
   var input = document.getElementsByClassName("location")[0];
   var options = { radius: 5000 }
   autocomplete = new google.maps.places.Autocomplete(input, options)
-
 
 });
 </script>

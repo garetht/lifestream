@@ -34,7 +34,13 @@ $(function() {
     }
   });
 
-  $('#markdown-edit').bind('keyup', function() {
+  // $("#markdown-edit").bind("input change propertychange paste keyup", function(){
+  //   isEdited = true;
+  //   LSParser.parse($("#markdown-edit").val())
+  //   $('#output').html(markdown.toHTML($('#markdown-edit').val()));
+  // })
+
+  $('#markdown-edit').on('keyup change', function() {
     isEdited = true;
     LSParser.parse($("#markdown-edit").val())
     $('#output').html(markdown.toHTML($('#markdown-edit').val()));

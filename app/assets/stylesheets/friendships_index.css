@@ -1,0 +1,51 @@
+.friendships-container{
+  width: 100%;
+  font-family: "Gotham"
+}
+
+.friendships-text-container{
+  width: 280px;
+  float: left;
+}
+
+.friendships-text-header{
+  padding-top: 4px;
+  padding-left: 100px;
+  display: block;
+  float:left;
+  border-bottom: 10px solid rgb(230, 230, 230);
+  font-size: 36px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+/* For the friendships page */
+
+.friendlists-container{
+  clear:left;
+}
+
+.friendlist-header{
+  display: block;
+  clear: left;
+  font-family: "Gotham";
+  text-transform: uppercase;
+  padding: 10px 10px;
+}
+
+.friendlist-requested li, .friendlist-pending li, .friendlist-confirmed li{
+  list-style-type: none;
+  border: 5px solid #bbb;
+  color: #999;
+  padding: 5px;
+  margin-right: 20px;
+  float: left;
+}
+
+.friendlists-container ul{
+  display: block;
+}
+
+.pending:hover{
+  cursor: pointer;
+};

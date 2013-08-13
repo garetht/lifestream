@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "topbar", media: "all" %>
+
+<section class="topbar clearfix">
+  
+  <div class="topbar-left">
+  </div>
+
+  <div class="topbar-right">
+
+    <div class="topbar-flash">
+      <%= render "layouts/topbar_flashes" %>
+    </div>
+
+    <div class="topbar-new">
+      <div class="friendship-form">
+        <form class="create-friendship-form" action="<%= friendships_url %>" data-remote="true" method="post">
+          <div class="new-friendship-button">
+            <button class="blue-button button create-friendship-button">Add Friend</button>
+          </div>
+          <div class="create-friendship-field">
+            <label class="input-label">Email</label>
+            <input type="text" name="friendship[email]" class="input-field friendship-input-field">
+          </div>
+        </form>
+      </div>
+    </div>
+
+</section>

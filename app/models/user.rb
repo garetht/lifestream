@@ -64,4 +64,26 @@ class User < ActiveRecord::Base
   def requested_friends
     friend_query("'requested'")
   end
+
+  def all_posts
+    accessible_posts = <<-sql
+      SELECT posts.*
+      FROM posts
+      WHERE stream_id IN 
+        (   SELECT streams.id
+            FROM streams
+            WHERE streams.user_id = ? )
+      OR (stream_id IN
+        (   SELECT streams.id
+            FROM users INNER JOIN friendships
+            ON users.id = friendships.user_id
+            INNER JOIN streams
+            ON streams.user_id = friendships.friend_id
+            WHERE users.id = ?
+          ) AND public_type = 1)
+      ORDER BY created_at DESC
+    sql
+
+    Post.find_by_sql [accessible_posts, id, id]
+  end
 end

@@ -73,10 +73,18 @@ $(function(){
     </div>
 
     <div class="post-body-container clearfix">
-      <div class="post-body-metadata">
-        <%= "#{post.created_at.strftime("%A, %l:%M%P")}" %>
-        at <%= post.location %>
+      <div class="post-body-metadata-container clearfix">
+        <div class="post-body-metadata">
+          <%= "#{post.created_at.strftime("%A, %l:%M%P")}" %>
+          <% if post.location %>
+            at <%= post.location %>
+          <% end %>
+        </div>
+        <div class="post-body-publicize">
+          <button class="post-publicize orange-button button">Publicize</button>
+        </div>
       </div>
+
       <div class="post-body" id="body-<%= post.id %>">
         <% if post.content_type == "plaintext" %>
           <%= post.body %>
@@ -86,6 +94,7 @@ $(function(){
         <script>
           var raw = $("#markdown-contents-<%= post.id %>").html().match(/"(.+)"/)[1]
           var unescaped_raw = raw.replace(/\\n/g, "\n")
+          unescaped_raw = unescaped_raw.replace(/\\"/g, "\"")
           $("#body-<%= post.id %>").html(markdown.toHTML(unescaped_raw))
         </script>
       <% end %>
@@ -99,9 +108,9 @@ $(function(){
         <% end %>
         </div>
       <% end %>
-      
+
       <div class="post-map accordion" data-lat="<%= post.latitude %>" data-long="<%= post.longitude %>">
-        <h1> Location </h1>
+        <h4> Location </h4>
         <%= gmaps(options_hash) %>
       </div>
 

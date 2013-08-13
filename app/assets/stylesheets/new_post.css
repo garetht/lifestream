@@ -1,17 +1,3 @@
-.new{
-  font-family: "calluna", serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 3em;
-}
-
-.postdot{
-  font-family: "calluna", serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 3em;
-}
-
 .input-header{
   padding-top: 20px;
   padding-left: 2px;
@@ -44,6 +30,21 @@
   border-radius: 3px;
   outline: 0px;
   border:1px solid #dedede;
+}
+
+.code-edit.ace_editor.active{
+  display:block;
+}
+
+.ace_editor{
+  width: 420px;
+  height: 325px;
+  position: relative;
+  display: none;
+}
+
+.ace_editor.active{
+  display:block;
 }
 
 .live-preview-header-wrap{
@@ -101,6 +102,14 @@
 
 .file-chooser{
   display:block;
+}
+
+#markdown-edit{
+  display: none;
+}
+
+#markdown-edit.active{
+  display: block;
 }
 
 #markdown-content{
@@ -190,6 +199,7 @@ input[type=radio]:checked + label {
   border-radius: 0;
 }
 
+/* Google autocomplete - Places AutoComplete*/
 .pac-item{
   font-family: "Source Sans Pro";
   padding: 10px;  

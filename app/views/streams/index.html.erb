@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag    "streams_index", :media => "all" %>
 <%= stylesheet_link_tag    "show_post", :media => "all" %>
+<%= stylesheet_link_tag    "animate", media: "all" %>
 
 <%= render "topbar_streams" %>
 <%= render "layouts/leftnavbar" %>
@@ -30,7 +31,7 @@ $(".new-stream-link").on("click", function(event){
 $(".create-stream-form").on("ajax:success", function(event, data){
   $(".new-stream").val("");
   $(".streams").append(data);
-  $(".stream:last-child").addClass("animate")
+  $(".stream:last-child").addClass("animated fadeInRight");
 })
 
 $(".streams").on("click", ".show-stream", function(event){

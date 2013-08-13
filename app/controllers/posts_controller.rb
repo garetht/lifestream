@@ -8,12 +8,11 @@ class PostsController < ApplicationController
       @streamid = params[:stream_id]
       # This needs to be thisstream.posts
       @posts = Stream.find(@streamid).posts.order("created_at DESC")
+    elsif params[:stream_id] == nil
+      @posts = current_user.all_posts
     elsif !is_users_stream
       set_error "You are not authorized to view that stream."
       redirect_to stream_posts_url(current_user.default_stream_id)
-    else
-      @streamid = current_user.default_stream_id
-      @posts = current_user.posts.order("created_at DESC")
     end
   end
 

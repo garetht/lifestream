@@ -3,10 +3,9 @@ class FriendshipsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    to_friend= User.find_by_email(params[:friendship][:email])
+    to_friend = User.find_by_email(params[:friendship][:email])
     # Render error if cannot find user by that email.
     unless to_friend
-      #render some sort of error
     end
 
     @waiting = Friendship.find_by_friend_id_and_user_id(current_user.id,
@@ -19,12 +18,17 @@ class FriendshipsController < ApplicationController
                                                        to_friend.id)
       @present.update_attributes(friend_status: "confirmed")
 
-      respond_to do |format|
-        format.json {render json: @waiting}
+      if request.xhr?
+        render @present
+      else
+        respond_to do |format|
+          format.json {render json: @waiting}
+        end
       end
       return
     end
 
+    # If there is not, create friendships on both sides.
     @request = Friendship.new(user_id: current_user.id, 
                              friend_id: to_friend.id,
                              friend_status: "requested")
@@ -33,9 +37,13 @@ class FriendshipsController < ApplicationController
                               friend_id: current_user.id,
                               friend_status: "pending")
     @pending.save
-    respond_to do |format|
-      format.json {render json: @request}
-    end
+      if request.xhr?
+        render @request
+      else
+        respond_to do |format|
+          format.json {render json: @request}
+        end
+      end
   end
 
   def confirm

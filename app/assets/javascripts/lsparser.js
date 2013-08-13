@@ -6,7 +6,6 @@
 
 var LSParser = function(){
   var parse = function(string){
-    console.log(string)
     var lsStrings = string.match(/@ (.+) @/g);
     var results = _.each(lsStrings, function(lsString){
       parseSequence(lsString);
