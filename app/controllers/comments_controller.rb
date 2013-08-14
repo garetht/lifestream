@@ -6,11 +6,10 @@ class CommentsController < ApplicationController
     params[:comment][:user_id] = current_user.id
     @comment = Comment.new(params[:comment])
     if @comment.save
-      p @comment
       if request.xhr?
-        p "request is xhr"
-        p [@comment]
-        render partial: "comment", locals: {hash: {}, children: [@comment], first: false, current: @comment.id}
+        render partial: "comment", locals: {hash: Hash.new(Array.new), 
+        children: [@comment], first: !@comment.parent_id, current: @comment.id,
+        post_id: @comment.post_id}
       else
         render json: @comment
       end

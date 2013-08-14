@@ -1,12 +1,12 @@
 .comments{
-  width: 400px;
+  width: 630px;
   margin: auto;
 }
 .comments ul{
   font-family: "Source Sans Pro";
   font-size: 13px;
   text-align: left;
-  background-color: #ddd;
+  background-color: #eee;
 }
 
 .comments .comment-text{
@@ -60,6 +60,6 @@
 
 .comments .comment-field{
   padding: 7px;
-  background-color: #ddd;
+  background-color: #eee;
   border-top: 2px solid #ccc;
 }

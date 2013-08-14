@@ -132,6 +132,13 @@ $(function(){
         </div>
         <% end %>
       </div>
+
+      <% if post.public_type == "public" %>
+      <% hash = Comment.children_hash(post.id) %>
+      <% root = hash[nil] %>
+        <%= render partial: "comments/post_comments", locals: {hash: hash, root: root, post_id: post.id} %>
+      <% end %>
+
     </div>
   </div>
 

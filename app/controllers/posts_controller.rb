@@ -51,7 +51,6 @@ class PostsController < ApplicationController
     else
       set_error "You are not authorized to access that post."
     end
-
   end
 
   def destroy

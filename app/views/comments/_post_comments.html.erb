@@ -2,18 +2,30 @@
 <%= stylesheet_link_tag "comments", media: "all"%>
 <% end %>
 
-<div class="comments">
-  <%= render partial: "comment", 
-    locals:{hash: hash, children: root, first: true, current: nil} %>
+<div id="comments-<%= post_id %>" class="comments">
+  <%= render partial: "comments/comment", 
+    locals:{hash: hash, children: root, first: true, current: nil,
+      post_id: post_id} %>
+  <div class="comment-form">
+    <form action="<%= comments_url %>" class="new-comment-form" method="post" data-remote="true">
+      <div class="comment-field">
+        <input type="text" name="comment[text]" placeholder="Write a comment...">
+        <input type="hidden" name="comment[post_id]" value="<%= post_id %>">
+        <input type="hidden" name="comment[parent_id]" value="<%= nil %>">
+      </div>
+    </form>
+  </div>
 </div>
 
 <script type="application/javascript">
-$(".comments").on("click", ".comment-reply", function(){
+$("#comments-<%= post_id.to_s %>").on("click", ".comment-reply", function(event){
   $(this).parent().parent().find("> ul > .comment-form")
   .toggleClass("hidden-comment-form");
 })
 
-$(".comment-tree").on("ajax:success", ".new-comment-form", function(event, data){
-  $(this).replaceWith(data);
+//must insert before the comment form?
+$("#comments-<%= post_id.to_s %>").on("ajax:success", ".comment-form", function(event, data){
+  $(this).before(data);
+  $(this).find("input[name=comment\\[text\\]]").val("");
 })
 </script>
