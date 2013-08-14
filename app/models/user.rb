@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def posts
-    Post.where("stream_id IN (?)", streams.pluck(:id))
+    Post.where("stream_id IN (?)", streams.pluck(:id)).includes(:comment, :user)
   end
 
   def friend_query(status)

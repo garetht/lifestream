@@ -6,8 +6,7 @@ class PostsController < ApplicationController
     is_users_stream = current_user.streams.pluck(:id).include?(params[:stream_id].to_i)
     if params[:stream_id] && is_users_stream
       @streamid = params[:stream_id]
-      # This needs to be thisstream.posts
-      @posts = Stream.find(@streamid).posts.order("created_at DESC")
+      @posts = Post.includes(comments: :user).where('stream_id = ?', @streamid).order("created_at DESC")
     elsif params[:stream_id] == nil
       @posts = current_user.all_posts
     elsif !is_users_stream
@@ -56,14 +55,16 @@ class PostsController < ApplicationController
   def destroy
   end
 
+  def privatize
+    @post = Post.find_by_id(params[:id])
+    @post.update_attributes(public_type: "private")
+    render partial: "public_private", locals: {type: "private", post_id: @post.id}
+  end
+
   def publicize
     @post = Post.find_by_id(params[:id])
-    if @post.public_type == "public" 
-      @post.update_attributes(public_type: "private")
-    elsif @post.public_type == "private" || !@post.public_type
-      @post.update_attributes(public_type: "public")
-    end
-    render json: @post.public_type.to_json
+    @post.update_attributes(public_type: "public")
+    render partial: "public_private", locals: {type: "public", post_id: @post.id}
   end
 
   # Is there a way to get Rails to generate the missing categories

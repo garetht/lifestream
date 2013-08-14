@@ -82,13 +82,7 @@ $(function(){
         </div>
         <div class="post-body-publicize">
           <% if @cupids.include?(post.id) %>
-            <button class="post-publicize darkblue-button button" data-id="<%= post.id %>">
-              <% if post.public_type == "private" || !post.public_type %>
-              Publicize
-              <% elsif post.public_type == "public" %>
-              Privatize
-              <% end %>
-            </button>
+          <%= render partial: "public_private", locals: {type: post.public_type, post_id: post.id} %>
           <% end %>
         </div>
       </div>
@@ -147,16 +141,22 @@ $(document).ready(function() {
   $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 });
 
-$(".posts-container").on("click", ".post-publicize", function(event){
+$(".posts-container").on("click", ".post-publicize.private", function(event){
+  event.preventDefault();
+  var that = $(this);
+  $.post("/posts/" + $(this).data("id") + "/privatize")
+  .done(function(data){
+    that.replaceWith(data)
+  })
+})
+
+$(".posts-container").on("click", ".post-publicize.public", function(event){
   event.preventDefault();
   var that = $(this);
   $.post("/posts/" + $(this).data("id") + "/publicize")
   .done(function(data){
-    if (data === "private"){
-      that.html("Privatize")
-    } else if (data === "public"){
-      that.html("Publicize")
-    }
+    that.replaceWith(data);
   })
 })
+
 </script>

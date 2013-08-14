@@ -6,7 +6,7 @@
       <div class="comment-bottom clearfix">
         <a class="comment-reply">Reply</a>
         <div class="comment-time"><%= child.created_at.strftime("%B %e at %l:%M%p") %> </div>
-        <div class="comment-user">by <%= child.user_id %></div>
+        <div class="comment-user">by <%= child.user.username %></div>
       </div>
       <%= render partial: "comments/comment", locals: {hash: hash, children: hash[child.id], first: false, current: child.id, post_id: post_id} %>
     </li>
