@@ -10,7 +10,6 @@ class Comment < ActiveRecord::Base
 
   validates :text, presence: :true
 
-
   def self.children_hash(post_id)
     comments = Comment.where('post_id = ?', post_id)
     hash = Hash.new(Array.new)

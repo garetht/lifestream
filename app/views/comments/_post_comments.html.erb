@@ -9,7 +9,7 @@
   <div class="comment-form">
     <form action="<%= comments_url %>" class="new-comment-form" method="post" data-remote="true">
       <div class="comment-field">
-        <input type="text" name="comment[text]" placeholder="Write a comment...">
+        <input type="text" class="comment-text-field" name="comment[text]" placeholder="Write a note...">
         <input type="hidden" name="comment[post_id]" value="<%= post_id %>">
         <input type="hidden" name="comment[parent_id]" value="<%= nil %>">
       </div>
