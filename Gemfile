@@ -10,8 +10,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
-  gem 'guard'
-  gem 'guard-rspec'
 end
 
 group :production do
@@ -30,8 +28,16 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'debugger'
+end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 gem 'jquery-rails'

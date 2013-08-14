@@ -15,6 +15,10 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :post_photos
 
+  validates :body, presence: true
+  validates :public_type, inclusion: {:in => ["public", "private"]}
+  validates :content_type, inclusion: {:in => ["plaintext", "markdown"]}
+
   def gmaps4rails_address
     "#{self.location}"
   end

@@ -15,7 +15,9 @@
       <% if @streamid %>
         <div class="create-post-button">
           <a href="<%= new_stream_post_url(@streamid) %>">
-            <button class="blue-button button new-post-button">Create a New Post</button>
+            <form>
+              <button class="blue-button button new-post-button">Create a New Post</button>
+            </form>
           </a>
         </div>
       <% end %>

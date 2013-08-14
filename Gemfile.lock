@@ -87,6 +87,11 @@ GEM
       multi_json (~> 1.0)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.1.0)
+      factory_girl (~> 4.1.0)
+      railties (>= 3.0.0)
+    faker (1.2.0)
+      i18n (~> 0.5)
     ffi (1.9.0)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -232,12 +237,15 @@ DEPENDENCIES
   debugger
   devise
   factory_girl
+  factory_girl_rails
+  faker
   figaro
   gmaps4rails!
   guard
   guard-rspec
   jquery-rails
   jquery-ui-rails
+  launchy
   letter_opener
   numbers_and_words
   paperclip

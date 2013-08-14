@@ -3,4 +3,7 @@ class PostPhoto < ActiveRecord::Base
   has_attached_file :image, styles: { :thumbnail => "150x150" }
 
   belongs_to :post
+
+  validates :post_id, :image, presence: true
+  validates :post_id, numericality: true
 end

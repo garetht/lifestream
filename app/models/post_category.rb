@@ -3,4 +3,8 @@ class PostCategory < ActiveRecord::Base
 
   belongs_to :post
   belongs_to :category
+
+  validates :category_id, :post_id, presence: true
+  validates :category_id, :post_id, numericality: true
+
 end

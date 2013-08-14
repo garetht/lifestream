@@ -11,6 +11,9 @@ class Category < ActiveRecord::Base
   has_many :post_categories
   has_many :posts, through: :post_categories
 
+  validates :user_id, :name, presence: true
+  validates :user_id, numericality: true
+
   def trace_full_path
     start = self
     @route = [start]
