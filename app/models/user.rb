@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
             INNER JOIN streams
             ON streams.user_id = friendships.friend_id
             WHERE users.id = ?
-          ) AND "posts"."public_type" = "public")
+          ) AND "posts"."public_type" = 'public')
       ORDER BY created_at DESC
     sql
 
