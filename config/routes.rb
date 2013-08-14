@@ -19,6 +19,7 @@ Lifestream::Application.routes.draw do
   resources :posts, only: [:index] do
     member do
       post "publicize"
+      post "privatize"
     end
   end
   
