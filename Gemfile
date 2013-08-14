@@ -10,6 +10,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 group :production do
@@ -21,12 +23,15 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'debugger'
 end
 
 gem 'jquery-rails'
@@ -44,6 +49,7 @@ gem 'numbers_and_words'
 gem 'jquery-ui-rails'
 gem 'animate-rails'
 gem 'ace-rails-ap'
+gem 'factory_girl'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
