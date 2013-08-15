@@ -1,0 +1,38 @@
+<div class="input-full-container clearfix">
+
+  <div class="input-text-container clearfix">
+    <div class="input-header clearfix">
+      <div class="input-options">
+        <input type="radio" name="post[content_type]" id="toggle-plaintext" value="plaintext" checked>
+
+        <label for="toggle-plaintext">Plain Text</label>
+        <input type="radio" name="post[content_type]" id="toggle-markdown" value="markdown">
+        <label for="toggle-markdown">Markdown</label>
+        <input type="radio" name="post[content_type]" id="toggle-code" value="markdown">
+        <label for="toggle-code">Code</label>
+      </div>
+
+      <div class="input-clear-button">
+        <button class="clear-button button red-button small-button">Clear
+        </button>
+      </div>
+
+    </div>
+    <textarea id="markdown-edit" class="active new-post-body input-textarea" name="post[body]" placeholder="Write your post here."></textarea>
+    <div id="code-edit">
+    </div>
+  </div>
+
+  <div class="live-preview-container">
+      <div class="live-preview-header-wrap clearfix">
+        <div class="live-preview-header live-preview-element">
+          Markdown Live Preview
+        </div>
+      </div>
+
+      <div class="live-preview live-preview-element">
+      <div id="output" class="markdown-body">
+      </div>
+    </div>
+  </div>
+</div>

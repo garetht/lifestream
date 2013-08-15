@@ -1,7 +1,6 @@
 <%= stylesheet_link_tag    "md_style", :media => "all" %>
 <%= stylesheet_link_tag    "md_github", :media => "all" %>
 <%= stylesheet_link_tag    "new_post", :media => "all" %>
-<%= javascript_include_tag "jquery-1.9.1.min" %>
 <%= javascript_include_tag "jquery.autosize-min" %>
 <%= javascript_include_tag "markdown" %>
 <%= javascript_include_tag "newpost_main" %>
@@ -13,7 +12,7 @@
 <div class="bottom-drop-border drop-border"></div>
 <div class="left-drop-border drop-border"></div>
 <div class="drop-message drop-border">
-  Drop a file in this window to add it to your post.
+  Drop a file in this window to add it to your post!
 </div>
 <% end %>
 
@@ -22,83 +21,58 @@
 </script>
 
 <section class="newpost">
-
-<span class="new">new</span> <span class="postdot">post.</span>
-<form accept-charset="UTF-8" action="<%= stream_posts_url(@streamid) %>" class="new_post" enctype="multipart/form-data" id="new_post" method="post">
-
-  <div class="new-post-title">
-    <label for="edit-title" class="input-label">Title</label>
-    <input type="text" id="edit-title" class="input-field" name="post[title]">
-  </div>
-<div class="input-header clearfix">
-  <div class="input-options">
-    <input type="radio" name="post[content_type]" id="toggle-plaintext" value="plaintext" checked>
-    <label for="toggle-plaintext">Plain Text</label>
-    <input type="radio" name="post[content_type]" id="toggle-markdown" value="markdown">
-    <label for="toggle-markdown">Markdown</label>
-    <input type="radio" name="post[content_type]" id="toggle-code" value="markdown">
-    <label for="toggle-code">Code</label>
-
-    <button class="clear-button">Clear</button>
-  </div>
-
-  <div class="live-preview-header-wrap clearfix">
-    <div class="live-preview-header live-preview-element">
-      Markdown Live Preview
-    </div>
-  </div>
-</div>
-
-<div class="edit-area clearfix">
-
-  <div class="edit-field edit-markdown">
-    <div id="container clearfix">
-
-        <div class="markdown-content">
-          <textarea id="markdown-edit" class="active new-post-body input-textarea" name="post[body]" placeholder="Write your post here."></textarea>
-          <div id="code-edit">
-          </div>
-        </div>
-
-        <div class="live-preview live-preview-element">
-          <div id="output" class="markdown-body">
-          </div>
-        </div>
+<div class="new-post-container clearfix">
+  <div class="new-post-text-container clearfix">
+    <div class="new-post-text-header">
+      New Post
     </div>
   </div>
 
+  <div class="new-post-forms-container clearfix">
+  <form accept-charset="UTF-8" action="<%= stream_posts_url(@streamid) %>" class="new_post" enctype="multipart/form-data" id="new_post" method="post">
+
+    <input type="hidden" name="post[public_type]" value="private">
+
+    <div class="new-post-title">
+      <label for="edit-title" class="input-label">Title</label>
+      <input type="text" id="edit-title" class="input-field" name="post[title]">
+    </div>
+
+    <%= render "new_post_text" %>
+
+  <div class="category-field">
+  <label for="edit-categories" class="input-label">Categories</label>
+  <input type="text" class="edit-categories" name="categories">
+  </div>
+
+  <label for="new-post-location" class="input-label new-post-location">Location</label>
+  <div class="new-post-location">
+
+  <label for="latitude"></label>
+  <input type="hidden" class="latitude" name="post[latitude]">
+  <label for="longitude"></label>
+  <input type="hidden" class="longitude" name="post[longitude]">
+  <label for="location"></label>
+  <input type="text" class="location input-field" name="post[location]">
+    <div class="new-post-map">
+    <%= gmaps("map_options" => { "detect_location" => true, 
+      "auto_zoom" => false, "center_on_user" => true, 
+      "zoom" => 15, :class => "google-map", "libraries" => ["places"]}) %>
+    </div> 
+  </div>
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" id="create-post-button" class="blue-button button" value="Make new post!">
+  </form>
+
+    <div class="new-post-photos">
+      <div class="input-label">Photos: drag and drop to upload!</div>
+      <%= render "new_post_photos" %>
+    </div>
+
+  </div>
 </div>
-
-<div class="input-label">Categories</div>
-<input type="text" class="edit-categories" name="categories">
-
-<label class="input-label new-post-location">Location</label>
-<div class="new-post-location">
-
-<input type="hidden" class="latitude" name="post[latitude]">
-<input type="hidden" class="longitude" name="post[longitude]">
-<input type="text" class="location input-field" name="post[location]">
-  <div class="new-post-map">
-  <%= gmaps("map_options" => { "detect_location" => true, 
-    "auto_zoom" => false, "center_on_user" => true, 
-    "zoom" => 15, :class => "google-map", "libraries" => ["places"]}) %>
-  </div> 
-</div>
-
-<!-- <div class="input-label">Photos!</div>
-<div class="new-post-photos">
-  <button class="add-photo">Add another photo</button>
-  <div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][0][image]" type="file"></div> -->
-
-</div>
-
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="submit" class="blue-button button" value="Make new post!">
-</form>
-
-<div class="new-post-photos">
-<%= render "new_post_photos" %>
-</div>
+</section>
 
 
 <script>
@@ -108,7 +82,6 @@
     editor.setValue("");
 </script>
 
-</section>
 
 <script type="application/javascript">
 var autocomplete;
@@ -119,6 +92,7 @@ $(".clear-button").on("click", function(event){
   event.preventDefault();
   $('.new-post-body').val("");
   $('#output').html(markdown.toHTML($('#markdown-edit').val()));
+  editor.setValue("")
 })
 
 $(".add-photo").on("click", function(event){
@@ -133,32 +107,25 @@ $("#toggle-plaintext").on("click", function(event){
   $(".live-preview-element").removeClass("active");
   $("#code-edit").removeClass("active")
   $("#markdown-edit").addClass("active")
-  $(".clear-button").animate({marginLeft: 350}, 500 );
-  $("#markdown-edit").animate({width: 650}, 500 );
+  $(".input-text-container").animate({width: 800}, 500 );
   $("#markdown-edit").focus()
 });
 
 $("#toggle-markdown").on("click", function(event){
   $("#code-edit").removeClass("active")
   $("#markdown-edit").addClass("active")
-  $(".clear-button").animate({marginLeft: 100}, 500 );
-  $("#markdown-edit").animate({width: 400}, 500, function(){
+  $(".input-text-container").animate({width: 400}, 500, function(){
     $(".live-preview-element").addClass("active");
   });
   $("#markdown-edit").focus()
 });
 
 $("#toggle-code").on("click", function(event){
-  $("#markdown-edit").animate({width: 400}, 500, function(){
-    $("#code-edit").addClass("active");
-    editor.setValue(editor.getValue());
-    editor.navigateFileEnd();
-    editor.focus();
-    $("#markdown-edit").removeClass("active");
-    $(".live-preview-element").addClass("active");
-  });
+  $("#markdown-edit").removeClass("active");
+  $("#code-edit").addClass("active");
+  $(".live-preview-element").addClass("active");
+  $(".input-text-container").animate({width: 400}, 500 );
   $(".edit-plaintext").removeClass("active");
-  $(".clear-button").animate({marginLeft: 100}, 500 );
 });
 
 $(".edit-categories").select2({tags: categories});

@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to stream_post_url(1, @post.id)
     else
-      render :new
+      redirect_to stream_posts_url(current_user.default_stream_id)
     end
   end
 
@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @streamid = params[:stream_id]
     @cupids = current_user.posts.pluck(:id)
     if @cupids.include?(params[:id].to_i)
       @post = Post.find(params[:id])

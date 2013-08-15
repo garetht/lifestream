@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible :body, :title, :content_type, :post_photos_attributes, 
                   :stream_id, :category_ids, :latitude, :longitude,
-                  :location, :public_type
+                  :location, :public_type, :post_photo_ids
 
   belongs_to :stream
   has_many :post_photos

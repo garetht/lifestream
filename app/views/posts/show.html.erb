@@ -8,9 +8,8 @@
 <%= javascript_include_tag "markdown" %>
 <%= javascript_include_tag "newpost_main" %>
 <%= javascript_include_tag "highlight" %>
-
+<%= render "topbar_posts" %>
 <%= render "layouts/leftnavbar" %>
-
 <section class="rightbar">
   <%= render partial: "post", locals: {post: @post, onlymap: true,
                                        firstmap: false, lastmap: false} %>

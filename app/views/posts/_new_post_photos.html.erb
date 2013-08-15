@@ -9,25 +9,10 @@
           <span>Add files...</span>
           <input id="upload_upload" name="post_photo[image]" type="file" />
         </span>
-        <button type="submit" class="button blue-button start">
-          <i class="icon-upload icon-white"></i>
-          <span>Start upload</span>
-        </button>
         <button type="reset" class="button orange-button cancel">
           <i class="icon-ban-circle icon-white"></i>
           <span>Cancel upload</span>
         </button>
-        <button type="button" class="button red-button delete">
-          <i class="icon-trash icon-white"></i>
-          <span>Delete</span>
-        </button>
-        <input type="checkbox" class="toggle">
-      </div>
-      <div class="span5">
-        <!-- The global progress bar -->
-        <div class="progress progress-success progress-striped active fade">
-          <div class="bar" style="width:0%;"></div>
-        </div>
       </div>
     </div>
     <!-- The loading indicator is shown during image processing -->
@@ -49,7 +34,7 @@
     <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
     {% } else if (o.files.valid && !i) { %}
     <td>
-      <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
+      <div class="upload-progress-bar"><div class="bar" style="width:0%;"></div></div>
     </td>
     <td class="start">{% if (!o.options.autoUpload) { %}
       <button class="button green-button small-button">
@@ -93,17 +78,41 @@
           <i class="icon-trash icon-white"></i>
           <span>{%=locale.fileupload.destroy%}</span>
         </button>
-        <input type="checkbox" name="delete" value="1">
       </td>
     </tr>
     {% } %}
 </script>
 
 <script>
+var postPhotoCount = 0;
+$("#fileupload").fileupload({
+  autoUpload: true
+});
 
-$("#fileupload").fileupload();
+$("#fileupload").on("fileuploadfail", function(event, data){
+  console.log("error")
+  console.log(data)
+})
 
-$(document).bind('dragover', function (e) {
+$("#fileupload").on("fileuploaddone", function(event, data){
+  var id = data["result"]["files"][0]["id"]
+  $("#new_post").prepend("<input type='hidden' name='post[post_photo_ids][]' value='" + id + "'>");
+  postPhotoCount += 1;
+})
+
+$("#fileupload").on("fileuploadprogress", function(event, data){
+  var progress = parseInt(data.loaded / data.total * 100)
+  var printout;
+  printout = (progress === 100 ? "Processing..." : progress + "%")
+  console.log(printout)
+  $(".upload-progress-bar").html(printout)
+})
+
+$(document).on("drop", function(event){
+  event.preventDefault();
+})
+
+$(document).on('dragover', function (event) {
   var top = $(".top-drop-border");
   var right = $(".right-drop-border");
   var bottom = $(".bottom-drop-border");

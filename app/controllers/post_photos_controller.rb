@@ -18,6 +18,12 @@ class PostPhotosController < ApplicationController
 
   def destroy
     @post_photo = PostPhoto.find_by_id(params[:id])
-    @post_photo.destroy
+    respond_to do |format|
+      if @post_photo.destroy
+        format.json {render json: "success".to_json}
+      else
+        format.json {render json: "failure".to_json}
+      end
+    end
   end
 end

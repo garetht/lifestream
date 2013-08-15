@@ -1,7 +1,7 @@
 /*
   * LSParser-JS ~ 
   * :: A simple parser that makes API calls to replace text surrounded
-  * :: in @  @. The tag, recall, is at-space!
+  * :: in @  @. The tag is an @ followed by a space.
 */
 
 var LSParser = function(){
@@ -39,7 +39,7 @@ var LSParser = function(){
     if (window.location.port.length)
       currentHost += ":" + window.location.port;
 
-    $.get("http://" + currentHost + "/passthrough/get", 
+    $.get("http://" + currentHost + "/passthrough/get",
           {apiurl: apiurl, type: "xml", params: {symbol: ticker}})
     .done(function(data){
       console.log(data)

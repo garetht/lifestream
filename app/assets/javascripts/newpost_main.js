@@ -46,14 +46,6 @@ $(function() {
     $('#output').html(markdown.toHTML($('#markdown-edit').val()));
   });
 
-  //clear
-  $('#clearButton').click(function(event) {
-    event.preventDefault();
-    if (window.confirm('Are you sure you want to delete?')) {
-      $('#markdown-edit').val('');
-    }
-  });
-
   //autoresize
   $('textarea').autosize();
   $('#markdown-edit').focus();
