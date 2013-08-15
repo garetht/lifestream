@@ -20,12 +20,14 @@ Lifestream::Application.routes.draw do
     member do
       post "publicize"
       post "privatize"
+      post "add_file"
     end
   end
   
   resources :categories, only: [:show, :index, :update, :destroy, :create]
   resources :friendships, only: [:index, :create, :destroy]
   resources :comments, only: [:new, :create, :destroy, :show]
+  resources :post_photos, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

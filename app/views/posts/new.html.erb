@@ -7,6 +7,16 @@
 <%= javascript_include_tag "newpost_main" %>
 <%= javascript_include_tag "lsparser" %>
 
+<% content_for :drop_zone do %>
+<div class="top-drop-border drop-border"></div>
+<div class="right-drop-border drop-border"></div>
+<div class="bottom-drop-border drop-border"></div>
+<div class="left-drop-border drop-border"></div>
+<div class="drop-message drop-border">
+  Drop a file in this window to add it to your post.
+</div>
+<% end %>
+
 <script type="application/json" id="categories">
   <%= @categories.to_json.html_safe %>
 </script>
@@ -75,15 +85,20 @@
   </div> 
 </div>
 
-<div class="input-label">Photos!</div>
+<!-- <div class="input-label">Photos!</div>
 <div class="new-post-photos">
   <button class="add-photo">Add another photo</button>
-  <div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][0][image]" type="file"></div>
+  <div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][0][image]" type="file"></div> -->
 
 </div>
+
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" class="blue-button button" value="Make new post!">
 </form>
+
+<div class="new-post-photos">
+<%= render "new_post_photos" %>
+</div>
 
 
 <script>

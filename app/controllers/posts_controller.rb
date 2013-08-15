@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :parse_raw_upload, only: :add_files
 
   def index
     is_users_stream = current_user.streams.pluck(:id).include?(params[:stream_id].to_i)
@@ -66,6 +67,10 @@ class PostsController < ApplicationController
     @post.update_attributes(public_type: "public")
     render partial: "public_private", locals: {type: "public", post_id: @post.id}
   end
+
+
+  private
+
 
   # Is there a way to get Rails to generate the missing categories
   # by itself?

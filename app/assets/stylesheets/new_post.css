@@ -1,3 +1,49 @@
+.drop-border{
+  position: fixed;
+  background-color: rgb(39, 174, 96);
+  z-index: 1000;
+  opacity: 0;
+}
+
+.top-drop-border{
+  height: 6px;
+  width: 100%;
+  top: 0px;
+}
+
+.right-drop-border{
+  height: 100%;
+  width: 6px;
+  right: 0px;
+}
+
+.bottom-drop-border{
+  height: 6px;
+  width: 100%;
+  bottom: 0px;
+}
+
+.left-drop-border{
+  height: 100%;
+  width: 6px;
+  left: 0px;
+}
+
+.drop-message{
+  padding: 5px 15px 5px 15px;
+  text-align: left;
+  border-radius-bottom: 1px;
+  font-family: "Source Sans Pro";
+  color: #eee;
+  top: 6px;
+}
+
+.drop-active{
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+}
+
+
 .input-header{
   padding-top: 20px;
   padding-left: 2px;
@@ -89,11 +135,6 @@
 /*This is the text field for plaintext and code.*/
 .new-post-body{
 
-}
-
-.new-post-photos{
-  float:left;
-  padding-bottom: 20px;
 }
 
 .file-input{
@@ -197,6 +238,14 @@ input[type=radio]:checked + label {
 
 .ui-corner-all{
   border-radius: 0;
+}
+
+/* jQuery New Post Photos */
+
+.new-post-photos{
+  width: 500px;
+  min-height: 300px;
+  margin: auto;
 }
 
 /* Google autocomplete - Places AutoComplete*/

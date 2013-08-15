@@ -40,22 +40,38 @@ group :test do
   gem 'launchy'
 end
 
-gem 'jquery-rails'
+
+# Authentication (or with external services)
 gem 'devise'
+gem 'figaro'
+gem 'aws-sdk'
+
+#HTTP
 gem 'rest-client'
 gem 'addressable'
+
+#Javascript
+gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
-gem 'paperclip'
-gem 'aws-sdk'
-gem 'figaro'
-gem 'select2-rails'
-gem 'gmaps4rails', :git => 'git://github.com/apneadiving/Google-Maps-for-Rails.git'
 gem 'underscore-rails'
-gem 'numbers_and_words'
 gem 'jquery-ui-rails'
-gem 'animate-rails'
+gem 'select2-rails'
+gem 'jquery-fileupload-rails'
+
+
+# Other utilities
+gem 'gmaps4rails', :git => 'git://github.com/apneadiving/Google-Maps-for-Rails.git'
+gem 'paperclip'
+gem 'numbers_and_words'
 gem 'ace-rails-ap'
+
+# Tests
 gem 'factory_girl'
+
+#Animations
+gem 'animate-rails'
+
+#File Handling
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

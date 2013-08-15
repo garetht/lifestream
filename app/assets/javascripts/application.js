@@ -16,6 +16,7 @@
 //= require jquery_ujs
 //= require jquery.ui.accordion
 //= require jquery.ui.autocomplete
+//= require jquery-fileupload
 //= require ace/ace
 //= require ace/theme-tomorrow.js
 //= require gmaps4rails/gmaps4rails.base

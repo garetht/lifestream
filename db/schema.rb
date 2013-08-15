@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20130813140037) do
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "post_id"
+    t.integer  "post_id"tt
     t.integer  "user_id"
     t.integer  "parent_id"
     t.text     "text"

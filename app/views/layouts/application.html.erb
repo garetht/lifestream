@@ -9,6 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= yield :drop_zone %>
   <%= render "layouts/navbar" %>
   <div class="container clearfix">
     <%= yield %>
