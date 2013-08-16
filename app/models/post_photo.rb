@@ -1,6 +1,6 @@
 class PostPhoto < ActiveRecord::Base
   attr_accessible :post_id, :image
-  has_attached_file :image, styles: { :thumbnail => "150x150", :small => "75x75" }
+  has_attached_file :image, styles: { :thumbnail => "142x142", :small => "75x75" }
 
   belongs_to :post
 
@@ -17,4 +17,5 @@ class PostPhoto < ActiveRecord::Base
       "delete_type" => "DELETE"
     }
   end
+
 end

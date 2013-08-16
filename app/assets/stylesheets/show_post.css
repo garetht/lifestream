@@ -148,7 +148,7 @@
 
 .post-photo{
   float:left;
-  padding-right: 10px;
+  padding-right: 15px;
 }
 
 .post-map .map_container{
@@ -166,8 +166,20 @@
   margin: 0px;
 }
 
+.static-map.ui-accordion-content{
+  width: 630px;
+  height: 330px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.static-map img{
+  width: 630px;
+  height: 330px;
+}
+
 /* Corners of the accordion header */
-.ui-corner-all, .ui-corner-top {
+.ui-corner-all, .ui-corner-top, .ui-corner-bottom {
   border-radius: 0px;
 }
 
@@ -179,6 +191,9 @@
   font-family: "Source Sans Pro";
 }
 
+.ui-widget-content{
+  border: 0;
+}
 /* Collapsed header state */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   border: 0px;

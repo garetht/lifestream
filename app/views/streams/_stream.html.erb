@@ -7,7 +7,7 @@
   <div class="stream-name">
     <%= stream.name %>
   </div>
-  <div class="stream-hide-container">
+  <div class="stream-hide-container stream-view">
     <a href="<%= stream_posts_url(stream.id) %>">
       <button class="view-stream">
           <div class="stream-half">
@@ -16,7 +16,8 @@
       </button>
     </a>
   </div>
-  <div class="stream-hide-container">
+  
+  <div class="stream-hide-container stream-default <%= "stream-default-hidden" if stream.id == current_user.default_stream_id %>">
     <button class="make-default" id="<%= stream.id %>">
       <div class="stream-half">
         Make Default

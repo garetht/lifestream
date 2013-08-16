@@ -74,16 +74,13 @@
 </div>
 </section>
 
-
-<script>
-    var editor = ace.edit("code-edit");
-    editor.setTheme("ace/theme/tomorrow");
-    editor.getSession().setMode("ace/mode/javascript");
-    editor.setValue("");
-</script>
-
-
 <script type="application/javascript">
+
+var editor = ace.edit("code-edit");
+editor.setTheme("ace/theme/tomorrow");
+editor.getSession().setMode("ace/mode/javascript");
+editor.setValue("");
+
 var autocomplete;
 var categories = JSON.parse($("#categories").html())
 var postphotos = 0;

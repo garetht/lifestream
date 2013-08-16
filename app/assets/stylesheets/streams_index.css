@@ -76,6 +76,10 @@
   background-color: #e74c3c;
 }
 
+.stream-hide-container.stream-default-hidden{
+  display: none;
+}
+
 .stream-name{
   position: absolute;
   z-index: 0;

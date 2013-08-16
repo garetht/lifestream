@@ -44,11 +44,15 @@ $(".streams").on("click", ".make-default", function(event){
   var defaultLetter = '<div class="stream-default-letter">D</div>'
   $.post("streams/" + id + "/default", {}).
         done(function(data){
+          console.log(data)
+          var old = data["old"]
           $(".stream.default-stream").removeClass("default-stream");
           $(".stream-default-letter").remove();
           $("#stream-" + id).addClass("default-stream");
           $("#stream-" + id).prepend(defaultLetter);
           $(".default-home").attr("href", "/streams/" + id + "/posts")
+          $("#stream-" + old + " .stream-default").removeClass("stream-default-hidden")
+          $("#stream-" + id + " .stream-default").addClass("stream-default-hidden")
         })
 })
 

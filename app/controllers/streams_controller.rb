@@ -29,9 +29,11 @@ class StreamsController < ApplicationController
 
   def default
     if belongs_to_current_user params[:id]
-      current_user.update_attributes(default_stream_id: params[:id])
+      old_default = current_user.default_stream_id
+      new_default = params[:id]
+      current_user.update_attributes(default_stream_id: new_default)
       respond_to do |format|
-        format.json {render json: "Success".to_json}
+        format.json {render json: {old: old_default, new: new_default.to_i}}
       end
     end
   end

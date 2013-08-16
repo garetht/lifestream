@@ -102,19 +102,22 @@ $(function(){
       <% end %>
 
       <% unless post.post_photos.empty? %>
-        <div class="post-photos clearfix">
+        <ul class="post-photos clearfix">
         <% post.post_photos.each do |photo| %>
-          <div class="post-photo">
+          <li class="post-photo">
             <%= image_tag photo.image.url(:thumbnail) %>
-          </div>
+          </li>
         <% end %>
-        </div>
+        </ul>
       <% end %>
 
+      <% if post.location %>
       <div class="post-map accordion" data-lat="<%= post.latitude %>" data-long="<%= post.longitude %>">
         <h4> Location </h4>
-        <%= gmaps(options_hash) %>
+        <%# gmaps(options_hash) %>
+        <div class="static-map"><%= image_tag post.static_map_url %></div>
       </div>
+      <% end %>
 
       <div class="post-categories clearfix">
         <div class="category-label">
@@ -146,7 +149,7 @@ $(".posts-container").on("click", ".post-publicize.private", function(event){
   var that = $(this);
   $.post("/posts/" + $(this).data("id") + "/privatize")
   .done(function(data){
-    that.replaceWith(data)
+    that.replaceWith(data);
   })
 })
 

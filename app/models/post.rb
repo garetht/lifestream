@@ -22,4 +22,11 @@ class Post < ActiveRecord::Base
   def gmaps4rails_address
     "#{self.location}"
   end
+
+  def static_map_url
+    "http://maps.googleapis.com/maps/api/staticmap?center=" \
+    "#{URI.escape location}&zoom=14&size=630x330&maptype=roadmap" \
+    "&markers=color:red%7C#{latitude},#{longitude}&sensor=false" \
+    "&visual_refresh=true&scale=2"
+  end
 end
