@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'New Post' do
+feature 'New Post', js: true do
   before :each do
     visit "/users/sign_in"
     sign_in_as_testuser
@@ -8,7 +8,7 @@ feature 'New Post' do
   end
 
   it "should have a new post form" do
-    page.should have_content "New Post"
+    expect(page).to have_content "NEW POST"
   end
 
 

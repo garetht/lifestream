@@ -15,6 +15,7 @@ end
 group :development, :test do
   # Rspec
   gem 'rspec-rails'
+  gem 'poltergeist'
   gem 'factory_girl_rails'
   gem 'debugger'
 

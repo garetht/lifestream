@@ -122,8 +122,8 @@ $(document).on('dragover', function (event) {
     }
 
     window.dropZoneTimeout = setTimeout(function () {
-        window.dropZoneTimeout = null;
-        _(all).map(function(x){ x.removeClass("drop-active") })
+      window.dropZoneTimeout = null;
+      _(all).map(function(x){ x.removeClass("drop-active") })
     }, 100);
 });
 </script>

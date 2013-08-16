@@ -19,6 +19,8 @@
 //= require jquery-fileupload
 //= require ace/ace
 //= require ace/theme-tomorrow.js
+//= require ace/mode-javascript.js
+//= require ace/worker-javascript.js
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.bing
 //= require gmaps4rails/gmaps4rails.googlemaps
