@@ -83,21 +83,12 @@ editor.setValue("");
 
 var autocomplete;
 var categories = JSON.parse($("#categories").html())
-var postphotos = 0;
 
 $(".clear-button").on("click", function(event){
   event.preventDefault();
   $('.new-post-body').val("");
   $('#output').html(markdown.toHTML($('#markdown-edit').val()));
-  editor.setValue("")
-})
-
-$(".add-photo").on("click", function(event){
-  event.preventDefault();
-  postphotos += 1;
-  $(".new-post-photos").append(
-      '<div class="file-chooser"><input class="file-input" name="post[post_photos_attributes][' + postphotos + '][image]" type="file"></div>'
-  )
+  editor.setValue("");
 })
 
 $("#toggle-plaintext").on("click", function(event){

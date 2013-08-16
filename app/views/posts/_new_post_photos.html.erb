@@ -84,27 +84,22 @@
 </script>
 
 <script>
-var postPhotoCount = 0;
 $("#fileupload").fileupload({
   autoUpload: true
 });
 
 $("#fileupload").on("fileuploadfail", function(event, data){
-  console.log("error")
-  console.log(data)
 })
 
 $("#fileupload").on("fileuploaddone", function(event, data){
   var id = data["result"]["files"][0]["id"]
   $("#new_post").prepend("<input type='hidden' name='post[post_photo_ids][]' value='" + id + "'>");
-  postPhotoCount += 1;
 })
 
 $("#fileupload").on("fileuploadprogress", function(event, data){
   var progress = parseInt(data.loaded / data.total * 100)
   var printout;
   printout = (progress === 100 ? "Processing..." : progress + "%")
-  console.log(printout)
   $(".upload-progress-bar").html(printout)
 })
 
@@ -118,24 +113,17 @@ $(document).on('dragover', function (event) {
   var bottom = $(".bottom-drop-border");
   var left = $(".left-drop-border");
   var message = $(".drop-message");
+  var all = [top, right, bottom, left, message];
   timeout = window.dropZoneTimeout;
     if (!timeout) {
-        top.addClass("drop-active");
-        right.addClass("drop-active");
-        bottom.addClass("drop-active");
-        left.addClass("drop-active");
-        message.addClass("drop-active")
+      _(all).map(function(x){ x.addClass("drop-active") })
     } else {
         clearTimeout(timeout);
     }
 
     window.dropZoneTimeout = setTimeout(function () {
         window.dropZoneTimeout = null;
-        top.removeClass("drop-active");
-        right.removeClass("drop-active");
-        bottom.removeClass("drop-active");
-        left.removeClass("drop-active");
-        message.removeClass("drop-active");
+        _(all).map(function(x){ x.removeClass("drop-active") })
     }, 100);
 });
 </script>
