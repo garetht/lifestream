@@ -6,6 +6,9 @@ class PostPhoto < ActiveRecord::Base
 
   validates :image, presence: true
 
+  before_create :escape_file_name
+  before_update :escape_file_name
+
   def json_data
     {
       "name" => read_attribute(:image_file_name),
@@ -16,6 +19,14 @@ class PostPhoto < ActiveRecord::Base
       "delete_url" => "/post_photos/#{id}",
       "delete_type" => "DELETE"
     }
+  end
+
+  private
+  
+  def escape_file_name
+    if image_file_name
+      self.image.instance_write(:file_name, "#{URI.escape(image_file_name)}")
+    end
   end
 
 end

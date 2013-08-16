@@ -12,6 +12,26 @@ group :development do
   gem 'letter_opener'
 end
 
+group :development, :test do
+  # Rspec
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'debugger'
+
+  # Spork and Guard
+  gem 'spork-rails'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'childprocess'
+end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'launchy'
+end
+
 group :production do
   gem 'pg'
 end
@@ -25,21 +45,6 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
-
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'debugger'
-end
-
-group :test do
-  gem 'faker'
-  gem 'capybara'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'launchy'
-end
-
 
 # Authentication (or with external services)
 gem 'devise'

@@ -4,7 +4,7 @@
 <nav>
   <div class="navbar clearfix">
     <ul>
-      <li class="home"><a href="<%= stream_posts_url(current_user.default_stream_id) %>">Home</a></li>
+      <li class="home"><a href="<%= current_user ? stream_posts_url(current_user.default_stream_id) : root_url %>">Home</a></li>
       <li><a href="#">Contact</a></li>
       <% if current_user %>
         <li><a href="<%= edit_user_registration_url %>">Edit Profile</a></li>

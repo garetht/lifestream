@@ -111,13 +111,13 @@ $(function(){
         </ul>
       <% end %>
 
-      <% if post.location %>
+      <%# if post.location %>
       <div class="post-map accordion" data-lat="<%= post.latitude %>" data-long="<%= post.longitude %>">
         <h4> Location </h4>
-        <%# gmaps(options_hash) %>
-        <div class="static-map"><%= image_tag post.static_map_url %></div>
+        <%= gmaps(options_hash) %>
+<!-- <div class="static-map"><%# image_tag post.static_map_url %></div> -->
       </div>
-      <% end %>
+      <%# end %>
 
       <div class="post-categories clearfix">
         <div class="category-label">
