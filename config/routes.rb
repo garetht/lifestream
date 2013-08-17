@@ -2,6 +2,7 @@ Lifestream::Application.routes.draw do
 
   get 'friendships/confirm' => "friendships#confirm"
   get 'passthrough/get' => "pass_through#get"
+  get 'worker-javascript.js' => "comments#destroy"
 
   devise_for :users
 

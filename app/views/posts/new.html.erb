@@ -53,7 +53,7 @@
   <label for="longitude"></label>
   <input type="hidden" class="longitude" name="post[longitude]">
   <label for="location"></label>
-  <input type="text" class="location input-field" name="post[location]">
+  <input type="text" id="edit-location" class="location input-field" name="post[location]">
     <div class="new-post-map">
     <%= gmaps("map_options" => { "detect_location" => true, 
       "auto_zoom" => false, "center_on_user" => true, 
