@@ -44,7 +44,7 @@ $(".streams").on("click", ".make-default", function(event){
   var defaultLetter = '<div class="stream-default-letter">D</div>'
   $.post("streams/" + id + "/default", {}).
         done(function(data){
-          console.log(data)
+          console.log("sigh")
           var old = data["old"]
           $(".stream.default-stream").removeClass("default-stream");
           $(".stream-default-letter").remove();

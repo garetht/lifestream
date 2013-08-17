@@ -40,7 +40,7 @@ $(function() {
   //   $('#output').html(markdown.toHTML($('#markdown-edit').val()));
   // })
 
-  $('#markdown-edit').on('keyup change', function() {
+  $('#markdown-edit').on('keypress change', function(e) {
     isEdited = true;
     LSParser.parse($("#markdown-edit").val());
     $('#output').html(markdown.toHTML($('#markdown-edit').val()));

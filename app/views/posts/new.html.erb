@@ -1,10 +1,12 @@
-<%= stylesheet_link_tag    "md_style", :media => "all" %>
-<%= stylesheet_link_tag    "md_github", :media => "all" %>
-<%= stylesheet_link_tag    "new_post", :media => "all" %>
-<%= javascript_include_tag "jquery.autosize-min" %>
-<%= javascript_include_tag "markdown" %>
-<%= javascript_include_tag "newpost_main" %>
-<%= javascript_include_tag "lsparser" %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "md_style", :media => "all" %>
+  <%= stylesheet_link_tag    "md_github", :media => "all" %>
+  <%= stylesheet_link_tag    "new_post", :media => "all" %>
+  <%= javascript_include_tag "jquery.autosize-min" %>
+  <%= javascript_include_tag "markdown" %>
+  <%= javascript_include_tag "newpost_main" %>
+  <%= javascript_include_tag "lsparser" %>
+<% end %>
 
 <% content_for :drop_zone do %>
 <div class="top-drop-border drop-border"></div>
@@ -20,46 +22,38 @@
   <%= @categories.to_json.html_safe %>
 </script>
 
+<%= render "categories/topbar_categories" %>
+
 <section class="newpost">
 <div class="new-post-container clearfix">
   <div class="new-post-text-container clearfix">
     <div class="new-post-text-header">
-      New Post
+      <%= @post.persisted? ? "Edit" : "New" %> Post
     </div>
   </div>
 
   <div class="new-post-forms-container clearfix">
-  <form accept-charset="UTF-8" action="<%= stream_posts_url(@streamid) %>" class="new_post" enctype="multipart/form-data" id="new_post" method="post">
-
+  <form accept-charset="UTF-8" 
+  action="<%= stream_posts_url(@streamid) %>" 
+  class="new_post" enctype="multipart/form-data" id="new_post" method="post">
+    <% if @post.persisted? %>
+    <input type="hidden" name="_method" value="PUT">
+    <% end %>
     <input type="hidden" name="post[public_type]" value="private">
 
     <div class="new-post-title">
       <label for="edit-title" class="input-label">Title</label>
-      <input type="text" id="edit-title" class="input-field" name="post[title]">
+      <input type="text" id="edit-title" class="input-field" name="post[title]" value="<%= @post.title %>">
     </div>
 
-    <%= render "new_post_text" %>
+  <%= render "new_post_text" %>
 
   <div class="category-field">
   <label for="edit-categories" class="input-label">Categories</label>
-  <input type="text" class="edit-categories" name="categories">
+  <input type="text" class="edit-categories" name="categories" value="<%= @set_categories %>">
   </div>
 
-  <label for="new-post-location" class="input-label new-post-location">Location</label>
-  <div class="new-post-location">
-
-  <label for="latitude"></label>
-  <input type="hidden" class="latitude" name="post[latitude]">
-  <label for="longitude"></label>
-  <input type="hidden" class="longitude" name="post[longitude]">
-  <label for="location"></label>
-  <input type="text" id="edit-location" class="location input-field" name="post[location]">
-    <div class="new-post-map">
-    <%= gmaps("map_options" => { "detect_location" => true, 
-      "auto_zoom" => false, "center_on_user" => true, 
-      "zoom" => 15, :class => "google-map", "libraries" => ["places"]}) %>
-    </div> 
-  </div>
+  <%= render "new_post_location" %>
 
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="submit" id="create-post-button" class="blue-button button" value="Make new post!">
@@ -100,19 +94,20 @@ $("#toggle-plaintext").on("click", function(event){
 });
 
 $("#toggle-markdown").on("click", function(event){
-  $("#code-edit").removeClass("active")
-  $("#markdown-edit").addClass("active")
+  $("#code-edit").removeClass("active");
+  $("#markdown-edit").addClass("active");
   $(".input-text-container").animate({width: 400}, 500, function(){
     $(".live-preview-element").addClass("active");
   });
-  $("#markdown-edit").focus()
+  $("#markdown-edit").focus();
 });
 
 $("#toggle-code").on("click", function(event){
   $("#markdown-edit").removeClass("active");
   $("#code-edit").addClass("active");
-  $(".live-preview-element").addClass("active");
-  $(".input-text-container").animate({width: 400}, 500 );
+  $(".input-text-container").animate({width: 400}, 500, function(){
+    $(".live-preview-element").addClass("active");
+  });
   $(".edit-plaintext").removeClass("active");
 });
 
@@ -124,8 +119,10 @@ $("#markdown-edit").keyup(function(){
 })
 
 editor.getSession().on("change", function(){
+  if ($("#toggle-code").prop("checked")){
   $("#markdown-edit").val(editor.getValue());
-  $("#markdown-edit").trigger("change")
+  $("#markdown-edit").trigger("change");
+  };
 })
 
 //Geocoding and Location
@@ -160,16 +157,22 @@ $(document).ready(function(){
   Gmaps.map.setGeolocation = function(lat, lng){
     $(".latitude").attr("value", lat);
     $(".longitude").attr("value", lng);
+    var center = new google.maps.LatLng({lat: lat, lng: lng})
     Gmaps.map.addMarkers([{"lat": lat, "lng": lng}]);
+    Gmaps.map.setCenter(center);
   }
 
   var setPosition = function(position){
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
+    var lat, lng;
+    if ($(".latitude").attr("value") === "" || $(".latitude").attr("value") === ""){
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
     // Fill in forms for submission.
-    $(".latitude").attr("value", lat);
-    $(".longitude").attr("value", lng);
-
+    } else{
+      lat = $(".latitude").attr("value");
+      lng = $(".longitude").attr("value");
+    }
+    
     reverseGeocode(lat, lng);
     Gmaps.map.setGeolocation(lat, lng)
     autocomplete.setBounds(Gmaps.map.serviceObject.getBounds());

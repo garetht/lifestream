@@ -1,0 +1,17 @@
+<label for="new-post-location" class="input-label new-post-location">Location</label>
+<div class="new-post-location">
+
+<label for="latitude"></label>
+<input type="hidden" class="latitude" name="post[latitude]" 
+value="<%= @post.latitude %>">
+<label for="longitude"></label>
+<input type="hidden" class="longitude" name="post[longitude]"
+value="<%= @post.longitude %>">
+<label for="location"></label>
+<input type="text" id="edit-location" class="location input-field" name="post[location]">
+  <div class="new-post-map">
+  <%= gmaps("map_options" => { "detect_location" => true, 
+    "auto_zoom" => false, "center_on_user" => true, 
+    "zoom" => 15, :class => "google-map", "libraries" => ["places"]}) %>
+  </div> 
+</div>

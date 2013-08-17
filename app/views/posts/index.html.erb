@@ -1,13 +1,16 @@
-<%= stylesheet_link_tag    "md_style", media: "all" %>
-<%= stylesheet_link_tag    "md_github", media: "all" %>
-<%= stylesheet_link_tag    "highlight_github", media: "all" %>
-<%= stylesheet_link_tag    "new_post", media: "all" %>
-<%= stylesheet_link_tag    "show_post", media: "all" %>
-<%= stylesheet_link_tag    "gmaps4rails" %>
-<%= javascript_include_tag "jquery.autosize-min" %>
-<%= javascript_include_tag "markdown" %>
-<%= javascript_include_tag "newpost_main" %>
-<%= javascript_include_tag "highlight" %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "md_style", media: "all" %>
+  <%= stylesheet_link_tag    "md_github", media: "all" %>
+  <%= stylesheet_link_tag    "highlight_github", media: "all" %>
+  <%= stylesheet_link_tag    "new_post", media: "all" %>
+  <%= stylesheet_link_tag    "show_post", media: "all" %>
+  <%= stylesheet_link_tag    "gmaps4rails" %>
+  <%= javascript_include_tag "jquery.autosize-min" %>
+  <%= javascript_include_tag "markdown" %>
+  <%= javascript_include_tag "newpost_main" %>
+  <%= javascript_include_tag "highlight" %>
+<% end %>
+
 <%= render "topbar_posts" %>
 <%= render "layouts/leftnavbar" %>
 

@@ -1,4 +1,6 @@
-<%= stylesheet_link_tag    "friendships_index", :media => "all" %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "friendships_index", :media => "all" %>
+<% end %>
 
 <%= render "topbar_friendships" %>
 <%= render "layouts/leftnavbar" %>

@@ -33,7 +33,13 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to stream_post_url(1, @post.id)
     else
-      redirect_to stream_posts_url(current_user.default_stream_id)
+      set_error @post.errors.full_messages.first
+      @streamid = params[:stream_id]
+      @categories = Category.select('name').
+                  where("user_id = ?", current_user.id).
+                  pluck(:name)
+      @set_categories = params[:categories]
+      render :new
     end
   end
 

@@ -31,7 +31,7 @@ var LSParser = function(){
   var parseStock = function(arguments){
     var ticker = arguments[0];
     stockApiCall(ticker);
-  }
+  };
 
   var stockApiCall = function(ticker){
     var apiurl = "http://dev.markitondemand.com/Api/Quote";
@@ -42,11 +42,12 @@ var LSParser = function(){
     $.get("http://" + currentHost + "/passthrough/get",
           {apiurl: apiurl, type: "xml", params: {symbol: ticker}})
     .done(function(data){
-      console.log(data)
       var price = data["QuoteApiModel"]["Data"]["LastPrice"];
       if (price){
         $("#markdown-edit").val($("#markdown-edit").val().replace(/@ STOCK.* @/, price));
     }
+    })
+    .fail(function(data){
     });
   };
 

@@ -109,8 +109,8 @@
 .live-preview-container{
   width: 360px;
   float: left;
-  padding: 30px 0px 0px 30px;
 }
+
 
 .input-textarea{
   display:block;
@@ -148,6 +148,7 @@
 .live-preview-header{
   display: none;
   text-align: center;
+  padding: 30px 0px 0px 80px;
 }
 
 .live-preview-header.active{
@@ -159,6 +160,7 @@
 
 .live-preview{
   display: none;
+  padding-left: 80px;
 }
 
 .live-preview.active{
@@ -195,10 +197,12 @@
 
 #markdown-edit.active{
   display: block;
+  box-sizing: border-box;
+  padding: 15px;
 }
 
 #markdown-content{
-    height: 200px;
+  height: 200px;
 }
 
 .markdown-body{

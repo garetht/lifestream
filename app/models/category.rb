@@ -1,7 +1,6 @@
 class Category < ActiveRecord::Base
   attr_accessible :name, :parent_id, :user_id
 
-  # has_many :children, class_name: "Category", foreign_key: 
   has_many :children, class_name: "Category", foreign_key: :parent_id
   has_one :parent, class_name: "Category", primary_key: :parent_id, 
           foreign_key: :id

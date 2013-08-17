@@ -1,10 +1,13 @@
-<%= render "topbar_categories" %>
-<%= render "layouts/leftnavbar" %>
+<% content_for :head do %>
 <%= javascript_include_tag "prototype" %>
 <%= javascript_include_tag "effects" %>
 <%= javascript_include_tag "dragdrop" %>
 <%= javascript_include_tag "sortable_tree" %>
 <%= stylesheet_link_tag "category_tree", media: "all" %>
+<% end %>
+
+<%= render "topbar_categories" %>
+<%= render "layouts/leftnavbar" %>
 
 <section class="rightbar">
   <div class="categories-container clearfix">
