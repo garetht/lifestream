@@ -4,21 +4,18 @@
 
 <section class="topbar clearfix">
   
-  <div class="topbar-left">
-  </div>
-
-  <div class="topbar-right">
-
+  <div class="topbar-fullpage-left">
     <div class="topbar-flash">
       <%= render "layouts/topbar_flashes" %>
     </div>
+  </div>
+
+  <div class="topbar-fullpage-right">
 
     <div class="topbar-new">
       <% if @streamid %>
         <div class="create-post-button">
-          <form action="<%= new_stream_post_url(@streamid) %>">
-            <button class="blue-button button new-post-button">Create a New Post</button>
-          </form>
+ 
         </div>
       <% end %>
     </div>

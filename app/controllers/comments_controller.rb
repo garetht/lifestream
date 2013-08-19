@@ -23,4 +23,12 @@ class CommentsController < ApplicationController
     @hash = Comment.children_hash(12)
     @root = @hash[nil]
   end
+
+  def update
+    @comment = Comment.find_by_id(params[:id])
+    @comment.update_attributes(params[:comment])
+    if request.xhr?
+      render json: @comment.text.to_json
+    end
+  end
 end

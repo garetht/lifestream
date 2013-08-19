@@ -80,6 +80,13 @@ $(function(){
             at <%= post.location %>
           <% end %>
         </div>
+        <div class="post-body-edit">
+          <% if @cupids.include?(post.id) %>
+          <form action="<%= edit_stream_post_url(post.stream_id, post.id) %>">
+            <button class="post-publicize darkblue-button button small-button">Edit Post</button>
+          </form>
+          <% end %>
+        </div>
         <div class="post-body-publicize">
           <% if @cupids.include?(post.id) %>
           <%= render partial: "public_private", locals: {type: post.public_type, post_id: post.id} %>
@@ -102,12 +109,12 @@ $(function(){
       <% end %>
 
       <% unless post.post_photos.empty? %>
-        <ul class="post-photos clearfix">
-        <% post.post_photos.each do |photo| %>
-          <li class="post-photo">
-            <%= image_tag photo.image.url(:thumbnail) %>
-          </li>
-        <% end %>
+         <ul class="post-photos clearfix">
+          <% post.post_photos.each do |photo| %>
+            <li class="post-photo">
+              <%= image_tag photo.image.url(:thumbnail) %>
+            </li>
+          <% end %>
         </ul>
       <% end %>
 

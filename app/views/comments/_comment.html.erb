@@ -5,6 +5,10 @@
       <div class="comment-text" id="comment-<%= child.id.to_s %>"><%= child.text %></div>
       <div class="comment-bottom clearfix">
         <a class="comment-reply">Reply</a>
+        <%# if current user comments includes %>
+        <a class="comment-edit">Edit</a>
+        <a class="comment-delete">Delete</a>
+        <%# end %>
         <div class="comment-time"><%= child.created_at.strftime("%B %e at %l:%M%p") %> </div>
         <div class="comment-user">by <%= child.user.username %></div>
       </div>

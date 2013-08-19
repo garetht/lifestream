@@ -229,11 +229,6 @@ input[type=radio] + label {
     border-top: 1px solid #eee;
     border-right: 1px solid #eee;
     border-bottom: 1px solid #eee;
-/*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
-/*    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);*/
 }
  
 input[type=radio] + label:hover{
@@ -251,9 +246,6 @@ input[type=radio] + label:hover{
 input[type=radio]:checked + label {
     background-image: none;
     outline: 0;
-/*    -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
-    -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);*/
     background-color:rgb(230, 230, 230);
 }
 
@@ -279,6 +271,46 @@ input[type=radio]:checked + label {
 
 .ui-corner-all{
   border-radius: 0;
+}
+
+/* Edit Post Photos */
+
+
+.post-photos{
+  display: block;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.deletable-photo{
+  float:left;
+}
+
+.deletable-photo-background{
+  position: absolute;
+}
+
+.deletable-photo .deletable-photo-overlay{
+  width: 70px;
+  height: 142px;
+  -webkit-transition: width 0.3s;
+}
+
+.deletable-photo:hover .deletable-photo-overlay{
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #efefef;
+  display: block;
+  font-family: "Source Sans Pro";
+  position: relative;
+  padding: 15px;
+  height: 142px;
+  width: 142px;
+  font-size: 22px;
+  margin-right: 20px;
+  box-sizing: border-box;
+  -webkit-transition: width 0.3s;
+  cursor: pointer;
 }
 
 /* jQuery New Post Photos */
@@ -336,7 +368,7 @@ input[type=radio]:checked + label {
   text-decoration: underline;
 }
 
-/* Google autocomplete - Places AutoComplete*/
+/* Google autocomplete - Places AutoComplete */
 .pac-item{
   font-family: "Source Sans Pro";
   padding: 10px;  

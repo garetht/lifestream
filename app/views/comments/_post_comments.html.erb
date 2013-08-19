@@ -28,4 +28,18 @@ $("#comments-<%= post_id.to_s %>").on("ajax:success", ".comment-form", function(
   $(this).before(data);
   $(this).find("input[name=comment\\[text\\]]").val("");
 })
+
+$("#comments-<%= post_id.to_s %>").on("click", ".comment-edit",
+  function(event){
+    var comment_text = $(this).parent().siblings(".comment-text")
+    var comment_id = comment_text.attr("id").match(/comment-(\d+)/)[1]
+    var form = "<form class='comment-edit-form' data-remote='true' method='put' action='/comments/" + comment_id + "'><input type='text' name='comment[text]'></form>"
+    $(this).parent().siblings(".comment-text").html(form)
+  })
+
+$("#comments-<%= post_id.to_s %>").on("ajax:success", ".comment-edit",
+  function(event, data){
+    $(this).parent().siblings(".comment-text").html(data)
+  })
+
 </script>

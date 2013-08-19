@@ -27,14 +27,14 @@
   outline: 0;
 }
 
-.comments .comment-reply{
+.comments .comment-reply, .comments .comment-delete, .comments .comment-edit{
   float: left;
   font-size: 12px;
   color: #478BC2;
   padding-right: 8px;
 }
 
-.comments .comment-reply:hover{
+.comments .comment-reply:hover, .comments .comment-delete:hover, .comments .comment-edit:hover{
   text-decoration: underline;
   cursor: pointer;
 }

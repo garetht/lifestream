@@ -1,0 +1,14 @@
+<ul class="post-photos clearfix">
+<% post.post_photos.each do |photo| %>
+  <li class="post-photo" id="photo-<%= photo.id %>">
+    <div class="deletable-photo">
+      <div class="deletable-photo-background">
+        <%= image_tag photo.image.url(:thumbnail) %>
+      </div>
+      <div class="deletable-photo-overlay">
+        Delete
+      </div>
+    </div>
+  </li>
+<% end %>
+</ul>

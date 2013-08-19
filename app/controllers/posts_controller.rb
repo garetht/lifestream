@@ -20,9 +20,7 @@ class PostsController < ApplicationController
   def new
     @streamid = params[:stream_id]
     # for select2 dropdown box
-    @categories = Category.select('name').
-                  where("user_id = ?", current_user.id).
-                  pluck(:name)
+    @categories = user_available_categories
     @post = Post.new
   end
 
@@ -35,19 +33,25 @@ class PostsController < ApplicationController
     else
       set_error @post.errors.full_messages.first
       @streamid = params[:stream_id]
-      @categories = Category.select('name').
-                  where("user_id = ?", current_user.id).
-                  pluck(:name)
+      @categories = user_available_categories
       @set_categories = params[:categories]
       render :new
     end
   end
 
   def edit
-    @json = Post.find(params[:id]).to_gmaps4rails
+    @post = Post.find_by_id(params[:id])
+    @categories = user_available_categories
+    @streamid = params[:stream_id]
+    @set_categories = @post.get_set_categories.join(",")
+    render :new
   end
 
   def update
+    @post = Post.find_by_id(params[:id])
+    params[:post][:category_ids] = process_categories(params[:categories])
+    @post.update_attributes(params[:post])
+    redirect_to stream_post_url(params[:stream_id], params[:id])
   end
 
   def show
@@ -95,6 +99,12 @@ class PostsController < ApplicationController
   #   parent_id of nil. Categories that exist also have all parent
   #   categories added to them.
 
+  def user_available_categories
+    Category.select('name').
+            where("user_id = ?", current_user.id).
+            pluck(:name)
+  end
+
   def process_categories(categories)
     names = Set.new(categories.split(","))
     matching = Category.where("name IN (?)", names)
@@ -119,5 +129,8 @@ class PostsController < ApplicationController
     end 
     all_parents.flatten.uniq
   end
+
+# Chosen colors?
+#C26B00 #EDEAE81
 
 end

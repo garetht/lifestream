@@ -22,7 +22,7 @@
   <%= @categories.to_json.html_safe %>
 </script>
 
-<%= render "categories/topbar_categories" %>
+<%= render "topbar_neweditpost" %>
 
 <section class="newpost">
 <div class="new-post-container clearfix">
@@ -34,10 +34,14 @@
 
   <div class="new-post-forms-container clearfix">
   <form accept-charset="UTF-8" 
-  action="<%= stream_posts_url(@streamid) %>" 
+  action="<%= @post.persisted? ? stream_post_url(@streamid, @post.id) :
+              stream_posts_url(@streamid) %>" 
   class="new_post" enctype="multipart/form-data" id="new_post" method="post">
     <% if @post.persisted? %>
     <input type="hidden" name="_method" value="PUT">
+      <% @post.post_photos.each do |photo| %>
+        <input type="hidden" id="post-photo-<%= photo.id %>" name="post[post_photo_ids][]" value="<%= photo.id %>">
+      <% end %>
     <% end %>
     <input type="hidden" name="post[public_type]" value="private">
 
@@ -56,10 +60,14 @@
   <%= render "new_post_location" %>
 
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="submit" id="create-post-button" class="blue-button button" value="Make new post!">
+    <input type="submit" id="create-post-button" class="blue-button button" value="<%= @post.persisted? ? "Edit your post!" : "Make new post!" %>">
+    <% else %>
   </form>
 
     <div class="new-post-photos">
+        <% if @post.persisted? %>
+    <%= render partial: "post_edit_photos", locals: {post: @post} %>
+        <% end %>
       <div class="input-label">Photos: drag and drop to upload!</div>
       <%= render "new_post_photos" %>
     </div>
@@ -72,8 +80,8 @@
 
 var editor = ace.edit("code-edit");
 editor.setTheme("ace/theme/tomorrow");
-editor.getSession().setMode("ace/mode/javascript");
-editor.setValue("");
+editor.getSession().setMode("ace/mode/markdown");
+editor.setValue("<%= @post.body %>");
 
 var autocomplete;
 var categories = JSON.parse($("#categories").html())
@@ -123,6 +131,18 @@ editor.getSession().on("change", function(){
   $("#markdown-edit").val(editor.getValue());
   $("#markdown-edit").trigger("change");
   };
+})
+
+//Deleting Photos
+$(".post-photos").on("click", ".post-photo", function(event){
+  var photo_id = $(this).attr("id").match(/photo-(\d+)/)[1]
+  $.ajax({
+    url: "/post_photos/" + photo_id,
+    type: "DELETE"
+  }).done(function(data){
+    $("#post-photo-" + photo_id).remove();
+    $("#photo-" + photo_id).remove();
+  })
 })
 
 //Geocoding and Location

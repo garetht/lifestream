@@ -124,7 +124,7 @@
   padding: 10px 0;
 }
 
-.post-body-publicize{
+.post-body-publicize, .post-body-edit{
   float: right;
   padding: 5px 10px 5px 0px;
 }

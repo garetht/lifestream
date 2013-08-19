@@ -29,4 +29,9 @@ class Post < ActiveRecord::Base
     "&markers=color:red%7C#{latitude},#{longitude}&sensor=false" \
     "&visual_refresh=true&scale=2"
   end
+
+  def get_set_categories
+    Category.joins(:post_categories).where("post_id = ?", id).pluck(:name)
+  end
+
 end
