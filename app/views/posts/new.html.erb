@@ -22,6 +22,10 @@
   <%= @categories.to_json.html_safe %>
 </script>
 
+<script type="application/json" id="postbody">
+  <%= @post.body.to_json.html_safe %>
+</script>
+
 <%= render "topbar_neweditpost" %>
 
 <section class="newpost">
@@ -78,13 +82,14 @@
 
 <script type="application/javascript">
 
+var autocomplete;
+var categories = JSON.parse($("#categories").html())
+var postBody = JSON.parse($("#postbody").html())
+
 var editor = ace.edit("code-edit");
 editor.setTheme("ace/theme/tomorrow");
 editor.getSession().setMode("ace/mode/markdown");
-editor.setValue("<%= @post.body %>");
-
-var autocomplete;
-var categories = JSON.parse($("#categories").html())
+editor.setValue(postBody);
 
 $(".clear-button").on("click", function(event){
   event.preventDefault();
