@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   def add_default_stream
     new_stream = Stream.create
-    self.default_stream_id = new_stream.id
+    self.update_attributes(default_stream_id: new_stream.id)
   end
 
   def customize_default_stream
