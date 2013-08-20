@@ -31,12 +31,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def add_default_stream
-    new_stream = Stream.create
-    self.update_attributes(default_stream_id: new_stream.id)
-  end
-
   def customize_default_stream
+    new_stream = Stream.create
+    self.default_stream_id = new_stream.id
+    self.save
     lastid = User.last.id
     Stream.last.update_attributes(user_id: lastid, name: "User #{lastid}'s Stream")
   end
