@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
 
   validates :username, uniqueness: true
 
-  before_create :add_default_stream
   after_create :customize_default_stream
 
   def self.find_first_by_auth_conditions(warden_conditions)
