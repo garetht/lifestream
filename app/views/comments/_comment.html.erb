@@ -6,8 +6,9 @@
       <div class="comment-bottom clearfix">
         <a class="comment-reply">Reply</a>
         <%# if current user comments includes %>
+        <% if child.user_id == current_user.id %>
         <a class="comment-edit">Edit</a>
-        <a class="comment-delete">Delete</a>
+        <!-- <a class="comment-delete">Delete</a> -->
         <%# end %>
         <div class="comment-time"><%= child.created_at.strftime("%B %e at %l:%M%p") %> </div>
         <div class="comment-user">by <%= child.user.username %></div>

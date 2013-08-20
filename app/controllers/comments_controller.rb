@@ -26,7 +26,9 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find_by_id(params[:id])
-    @comment.update_attributes(params[:comment])
+    if @comment.user_id = current_user.id
+      @comment.update_attributes(params[:comment])
+    end
     if request.xhr?
       render json: @comment.text.to_json
     end
