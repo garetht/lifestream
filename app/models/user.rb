@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   validates :username, uniqueness: true
 
+  before_create :assign_default_stream
   after_create :customize_default_stream
 
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -30,10 +31,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def customize_default_stream
+  def assign_default_stream
     new_stream = Stream.create
     self.default_stream_id = new_stream.id
-    self.save
+  end
+
+  def customize_default_stream
     lastid = User.last.id
     Stream.last.update_attributes(user_id: lastid, name: "User #{lastid}'s Stream")
   end
