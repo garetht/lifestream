@@ -16,7 +16,10 @@
       <%= f.password_field :password, class: "signin-field" %></div>
 
       <% if devise_mapping.rememberable? -%>
-        <div><%= f.check_box :remember_me, class: "signin-remember" %> <%= f.label :remember_me, class: "signin-remember-label" %></div>
+        <div>
+          <%# f.check_box :remember_me, class: "signin-remember" %> 
+          <%# f.label :remember_me, class: "signin-remember-label" %>
+        </div>
       <% end -%>
 
       <div class="signin-button-container"><%= f.submit "Sign in", class: "signin-button" %></div>
