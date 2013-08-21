@@ -10,6 +10,10 @@
   font-size: 36px;
 }
 
+.signin-header.demo-header{
+  padding-bottom: 0px;
+}
+
 .devise-errors{
   max-width: 270px;
   font-size: 14px;
