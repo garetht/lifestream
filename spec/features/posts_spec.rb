@@ -15,7 +15,6 @@ feature 'New Post', js: true do
     fill_in "edit-title", with: "Test Title"
     fill_in "markdown-edit", with: "Test Content"
     fill_in "edit-location", with: "770 Broadway, New York, NY 10003, USA"
-    
   end
 
   it "raises an error when the body is empty" do
